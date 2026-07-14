@@ -1,36 +1,56 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Simpli Intelligent Website
 
-## Getting Started
+Public one-page landing site for **Simpli Intelligent** (`simpliintelligent.com`).
 
-First, run the development server:
+This is a standalone Next.js application. It is not connected to Simpli Operate, Simpli Reach, Supabase, authentication, analytics, or any backend services.
+
+## Stack
+
+- Next.js App Router
+- TypeScript
+- Tailwind CSS
+- Static-first architecture (no database, no CMS, no paid services)
+
+## Local setup
+
+Prerequisites: Node.js 20+ and npm.
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Scripts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Command | Purpose |
+| --- | --- |
+| `npm run dev` | Start local development server |
+| `npm run build` | Production build |
+| `npm run start` | Serve the production build |
+| `npm run lint` | ESLint |
+| `npm run typecheck` | TypeScript check |
+| `npm run test` | Automated Vitest suite |
 
-## Learn More
+## Configuration
 
-To learn more about Next.js, take a look at the following resources:
+Site identity, SEO copy, product listings, and the contact email live in one place:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+`src/lib/site.ts`
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+To change the contact address later (for example to a `@simpliintelligent.com` inbox), update only `SITE.contactEmail` in that file.
 
-## Deploy on Vercel
+## Deployment (manual)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. Push this repository to GitHub.
+2. Import the repo into Vercel as a new project.
+3. Use the default Next.js settings (no environment variables required for V1).
+4. Connect `simpliintelligent.com` only when authorized.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Do not deploy automatically from this local sprint unless explicitly approved.
+
+## Project docs
+
+- `PROJECT_STATUS.md` — scope and V1 status
+- `COMPLETION_REPORT.md` — handoff summary for founder review
