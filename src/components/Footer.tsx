@@ -25,7 +25,7 @@ export function Footer() {
           © {SITE.copyrightYear} {SITE.name}
         </p>
         <p className="mt-1 text-sm text-muted">
-          Operated by {SITE.legalEntity}
+          {SITE.brandLine}
         </p>
         <p className="mt-1 text-sm text-muted">{SITE.location}</p>
       </div>

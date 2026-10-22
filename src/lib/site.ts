@@ -8,6 +8,8 @@ export const SITE = {
   url: "https://simpliintelligent.com",
   contactEmail: "brian@simpliintelligent.com",
   legalEntity: "Polaris Intelligence LLC",
+  /** Parent company and brand. Do not add a trademark symbol. */
+  brandLine: "Simpli Intelligent, a brand of Polaris Intelligence LLC",
   location: "South Bend, Indiana",
   copyrightYear: 2026,
   founder: "Brian Glon",
@@ -44,7 +46,7 @@ export const PRODUCTS = [
     name: "SIMPLI CHECK",
     category: "Inspection Software",
     description:
-      "Inspection software in development, built by a working inspector. Join the waitlist for early access.",
+      "Inspection software on the waitlist, built by a working home inspector to cut report-writing time. Coming to founding members: photo recognition, narratives you review and edit, and plain-language defect notes for clients.",
     status: "Waitlist",
     href: "/check",
   },

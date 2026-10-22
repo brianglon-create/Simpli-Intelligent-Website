@@ -1,5 +1,4 @@
 import { LeadForm } from "@/components/LeadForm";
-import { bookingUrl } from "@/lib/env";
 import { SITE } from "@/lib/site";
 
 export function Contact() {
@@ -28,7 +27,7 @@ export function Contact() {
             reserves your place. It does not charge a card.
           </p>
           <div className="mt-8">
-            <LeadForm page="/" bookingUrl={bookingUrl()} id="contact-form" />
+            <LeadForm page="/" id="contact-form" />
           </div>
           <p className="mt-8 text-base text-muted">
             Or email{" "}

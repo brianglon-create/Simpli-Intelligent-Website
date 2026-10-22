@@ -9,17 +9,6 @@ import {
 import type { FoundingSnapshot } from "@/lib/leads/types";
 import { ARCHIVE_FIRST_MONTH_USD, ARCHIVE_MONTHLY_USD } from "@/lib/offers";
 
-function tierDetail(
-  configured: boolean,
-  remaining: number,
-  cap: number,
-  closedFallback: string,
-) {
-  if (!configured) return closedFallback;
-  if (remaining === 0) return "This tier is full.";
-  return `${remaining} of ${cap} left at this rate.`;
-}
-
 export function FoundingOffer({
   status,
   showCta = false,
@@ -47,9 +36,7 @@ export function FoundingOffer({
   return (
     <div className="mt-8">
       {status.configured ? (
-        <p className="text-base font-medium text-navy">
-          {status.count} of {FOUNDING_CAP} founding spots claimed.
-        </p>
+        <p className="text-base font-medium text-navy">Founding spots are available.</p>
       ) : null}
       <ul className="mt-6 grid gap-4 md:grid-cols-2">
         <li className="border border-border bg-white p-6">
@@ -60,12 +47,7 @@ export function FoundingOffer({
             ${FOUNDING_PRICE_49}/month
           </p>
           <p className="mt-3 text-base leading-relaxed text-muted">
-            {tierDetail(
-              status.configured,
-              status.tier49Remaining,
-              TIER_49_CAP,
-              "Locked at this rate for the first 50 Check signups.",
-            )}
+            Locked at this rate for the first 50 Check signups.
           </p>
         </li>
         <li className="border border-border bg-white p-6">
@@ -76,12 +58,7 @@ export function FoundingOffer({
             ${FOUNDING_PRICE_69}/month
           </p>
           <p className="mt-3 text-base leading-relaxed text-muted">
-            {tierDetail(
-              status.configured,
-              status.tier69Remaining,
-              TIER_69_CAP,
-              "Locked at this rate for the following 50 Check signups.",
-            )}
+            Locked at this rate for the following 50 Check signups.
           </p>
         </li>
       </ul>

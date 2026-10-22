@@ -75,11 +75,26 @@ export const EXPORT_STEPS = [
   },
   {
     title: "Write down what you actually received",
-    body: "Note the date range and the kinds of files Horizon gave you. A final list of formats Simpli Archive will accept is not published yet.",
+    body: "Note the date range and the kinds of files Horizon gave you, then tell us. We confirm how those files can come into Simpli Archive before you pay.",
   },
   {
     title: "Tell us what you have",
     body: "Use the form on this page. We will confirm how those files can come into Simpli Archive before you pay. This checklist is the sequence to follow. It is not a click-by-click tour of Horizon's screens.",
+  },
+] as const;
+
+export const CHECK_PILLARS = [
+  {
+    title: "Real-time photo recognition",
+    body: "Snap a photo and Check identifies the defect as you go.",
+  },
+  {
+    title: "Automatic narrative generation",
+    body: "Report-ready narratives written from your photos and notes. You review and edit them before they go in the report.",
+  },
+  {
+    title: "Inspector reference library",
+    body: "Plain-language education for the client on each defect: what it is, and why it matters.",
   },
 ] as const;
 
@@ -110,7 +125,7 @@ export const HORIZON_FAQS = [
   {
     question: "What file types can Archive take?",
     answer:
-      "A final list is not published. Tell us what Horizon exported and we will confirm what Archive can store before you upload anything.",
+      "Tell us what Horizon exported and we will confirm what Archive can store before you upload anything.",
   },
   {
     question: "Where is my data stored, and who owns the reports?",
@@ -133,12 +148,12 @@ export const HORIZON_FAQS = [
   {
     question: "What can Simpli Check do?",
     answer:
-      "Simpli Check is in development. This site does not publish a feature list. Feature details have to be confirmed before launch. Join the waitlist if you want early access and a direct line to Brian while it is being built.",
+      "Simpli Check is on the waitlist, built by a working home inspector to cut the time you spend writing the report. Coming to founding members as Check launches: snap a photo and Check identifies the defect as you go; report-ready narratives from your photos and notes, which you review and edit; and plain-language education for the client on each defect, what it is and why it matters. It is not available to use today.",
   },
   {
     question: "How will I search old reports?",
     answer:
-      "Archive is being built so past reports live in one searchable place instead of a folder of exports. This page does not list the search fields. Those will be confirmed before launch.",
+      "Archive is being built so past reports live in one searchable place instead of a folder of exports.",
   },
   {
     question: "Does joining the list bill me?",

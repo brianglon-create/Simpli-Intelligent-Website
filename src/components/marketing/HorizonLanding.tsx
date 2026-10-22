@@ -1,9 +1,10 @@
 import { ArchivePricing } from "@/components/ArchivePricing";
+import { CheckPillars } from "@/components/CheckPillars";
 import { Countdown } from "@/components/Countdown";
 import { FaqList } from "@/components/FaqList";
 import { FoundingOffer } from "@/components/FoundingOffer";
 import { LeadForm } from "@/components/LeadForm";
-import { BookingLink } from "@/components/BookingLink";
+import { PersonalFollowUp } from "@/components/PersonalFollowUp";
 import { Section } from "@/components/Section";
 import { SignupLinks } from "@/components/SignupLinks";
 import { primaryButtonClass } from "@/components/classes";
@@ -23,13 +24,7 @@ import { SITE } from "@/lib/site";
 
 const lede = "max-w-3xl text-lg leading-relaxed text-muted";
 
-export function HorizonLanding({
-  status,
-  bookingUrl,
-}: {
-  status: FoundingSnapshot;
-  bookingUrl: string | null;
-}) {
+export function HorizonLanding({ status }: { status: FoundingSnapshot }) {
   return (
     <>
       <section aria-labelledby="horizon-hero-heading" className="relative overflow-hidden">
@@ -46,7 +41,8 @@ export function HorizonLanding({
           <p className={`${lede} mt-6`}>
             Historical reports, PDFs, photos, and work orders stay behind when you
             switch. Simpli Archive keeps that history. Simpli Check is the waitlist
-            if you want inspection software built by a working inspector.
+            for inspection software, built by a working inspector, that cuts the
+            time you spend writing the report.
           </p>
           <Countdown />
           <SignupLinks />
@@ -128,8 +124,6 @@ export function HorizonLanding({
           searchable and ready when a client, agent, insurer, or attorney comes
           asking.
         </p>
-        {/* TODO(archive-search): The draft suggested search by address, client, or date.
-            Do not list search fields until Brian confirms them. */}
         <ul className="mt-8 grid gap-4 lg:grid-cols-3">
           {ARCHIVE_BULLETS.map((bullet) => (
             <li key={bullet.title} className="border border-border bg-white p-6">
@@ -143,32 +137,19 @@ export function HorizonLanding({
           <ol className="list-decimal space-y-2 pl-5">
             <li>Export your Horizon history before {SHUTDOWN_LABEL}.</li>
             <li>Tell us what you exported. We confirm how those files come into Archive before you pay.</li>
-            {/* TODO(archive-formats): Confirm which Horizon export formats Archive will accept. */}
             <li>Find a past report later without digging through a folder.</li>
           </ol>
         </div>
         <ArchivePricing status={status} showCta />
       </Section>
 
-      <Section id="check-offer" title="Simpli Check, for inspectors who don't want to rush" tone="white" eyebrow="Simpli Check">
+      <Section id="check-offer" title="Simpli Check cuts the time you spend writing the report" tone="white" eyebrow="Simpli Check">
         <p className={lede}>
-          Simpli Check is inspection software in development, built by a working
-          inspector. Join the waitlist for early access and founding-member pricing.
+          Built by a working home inspector at {SITE.inspectionBusiness}. Join the
+          waitlist. The tools below are coming to founding members as Check
+          launches. They are not available to use today.
         </p>
-        {/* TODO(check-features): Brian must confirm Simpli Check capabilities before launch.
-            Do not publish AI behavior, report speed, voice or wording control, offline
-            capture, or a feature list. The draft line "faster reports with your findings
-            and your wording" is intentionally omitted. */}
-        <div className="mt-8 max-w-3xl border border-border bg-neutral p-6">
-          <h3 className="font-display text-lg font-semibold text-navy">
-            Feature details are not published yet
-          </h3>
-          <p className="mt-3 text-base leading-relaxed text-muted">
-            What Simpli Check will do is still being confirmed. This page does not
-            list features, and it does not describe how any assistant or automation
-            will behave.
-          </p>
-        </div>
+        <CheckPillars />
         <ul className="mt-8 max-w-3xl space-y-3 text-base leading-relaxed text-muted">
           {CHECK_PERKS.map((perk) => (
             <li key={perk}>{perk}</li>
@@ -183,8 +164,8 @@ export function HorizonLanding({
             Simpli Intelligent is the platform. Simpli Archive and Simpli Check are
             two products on it. Archive is the history problem every switcher has,
             whichever software they choose next. Check is the inspection product on
-            the waitlist, for inspectors who do not want to rush into a tool they
-            do not like.
+            the waitlist, built to cut the time a working inspector spends writing
+            the report.
           </p>
           <p>
             Founding Check members include Archive while they stay on Check. If
@@ -195,9 +176,6 @@ export function HorizonLanding({
             intelligence engine. That shared engine is the direction. It is not
             something you can use today.
           </p>
-          {/* TODO(archive-check-integration): Do not describe a file handoff, shared login,
-              or live data sync between Archive and Check beyond the pricing relationship
-              above until Brian confirms it. */}
         </div>
         <div className="mt-8">
           <a href="#signup" className={primaryButtonClass}>
@@ -207,11 +185,9 @@ export function HorizonLanding({
       </Section>
 
       <Section id="export-checklist" title="Export checklist" eyebrow="Before December 15">
-        {/* TODO(horizon-export-clicks): Do not invent Horizon menu names or click paths.
-            Replace this sequence with confirmed Horizon screens once Brian verifies them. */}
         <p className={lede}>
           Follow this sequence before {SHUTDOWN_LABEL}. It is not a tour of
-          Horizon&apos;s screens. Those exact clicks still need to be confirmed.
+          Horizon&apos;s screens.
         </p>
         <ol className="mt-8 grid gap-4">
           {EXPORT_STEPS.map((step, index) => (
@@ -261,16 +237,10 @@ export function HorizonLanding({
       <Section id="join" title="Tell us what you need" tone="white">
         <p className={`${lede} mb-8`}>
           One form. Choose Archive, Check, or both.
-          {bookingUrl ? " Prefer to talk instead?" : ""}
         </p>
-        {bookingUrl ? (
-          <div className="mb-8">
-            <BookingLink bookingUrl={bookingUrl} />
-          </div>
-        ) : null}
+        <PersonalFollowUp />
         <LeadForm
           page="/horizon"
-          bookingUrl={bookingUrl}
           interests={["archive", "check", "both"]}
           defaultInterest="both"
         />

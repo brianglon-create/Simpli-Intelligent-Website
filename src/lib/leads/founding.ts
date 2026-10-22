@@ -36,14 +36,15 @@ export function tierPosition(spot: number): number | null {
   return null;
 }
 
-/** Thank-you screen and the inspector's confirmation email. */
-export function foundingSpotSentence(spot: number): string | null {
-  const position = tierPosition(spot);
-  if (position == null) return null;
-  if (spot <= TIER_49_CAP) {
-    return `You're spot ${position} of the first ${TIER_49_CAP}, locked in line for the $${FOUNDING_PRICE_49}/month founding rate.`;
+/**
+ * Public thank-you screen and the inspector's confirmation email.
+ * Names the tier the lead received. Never includes their spot number.
+ */
+export function publicFoundingLine(price: 49 | 69): string {
+  if (price === FOUNDING_PRICE_49) {
+    return `You're in line for a founding spot at $${FOUNDING_PRICE_49}/month (first ${TIER_49_CAP}).`;
   }
-  return `You're spot ${position} of the next ${TIER_69_CAP} (spots ${TIER_49_CAP + 1}-${FOUNDING_CAP}), in line for the $${FOUNDING_PRICE_69}/month founding rate.`;
+  return `You're in line for a founding spot at $${FOUNDING_PRICE_69}/month (next ${TIER_69_CAP}).`;
 }
 
 /** Compact line for Brian's notification and threshold emails. */

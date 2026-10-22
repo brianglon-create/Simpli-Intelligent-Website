@@ -108,11 +108,6 @@ export function canSendEmail(): boolean {
   return Boolean(resendApiKey() && emailFrom() && leadNotifyEmail());
 }
 
-/** Cal.com or Calendly link. Empty until Brian sets it. */
-export function bookingUrl(): string | null {
-  return read("NEXT_PUBLIC_BOOKING_URL") ?? null;
-}
-
 /**
  * Mailing address for the privacy page and confirmation emails.
  * CASL and CAN-SPAM want a postal address. Falls back to the city we
@@ -120,6 +115,6 @@ export function bookingUrl(): string | null {
  */
 export function mailingAddress(): string {
   const postal = read("POSTAL_ADDRESS");
-  if (postal) return `${SITE.legalEntity}, ${postal}`;
-  return `${SITE.legalEntity}, ${SITE.location}`;
+  if (postal) return `${SITE.brandLine}, ${postal}`;
+  return `${SITE.brandLine}, ${SITE.location}`;
 }

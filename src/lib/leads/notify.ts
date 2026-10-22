@@ -10,7 +10,8 @@ import {
   FOUNDING_PRICE_49,
   FOUNDING_PRICE_69,
   foundingSpotLabel,
-  foundingSpotSentence,
+  priceForSpot,
+  publicFoundingLine,
 } from "@/lib/leads/founding";
 import type { Interest, StoredLead } from "@/lib/leads/types";
 import { ARCHIVE_FIRST_MONTH_USD, ARCHIVE_MONTHLY_USD, SHUTDOWN_LABEL } from "@/lib/offers";
@@ -137,10 +138,11 @@ export function leadConfirmation(lead: StoredLead): OutboundEmail {
     `Thanks for signing up. I'm Brian, a home inspector at ${SITE.inspectionBusiness} since ${SITE.inspectingSince}, and the founder of ${SITE.name}.`,
   ];
 
-  if (lead.foundingSpot && foundingSpotSentence(lead.foundingSpot)) {
+  const foundingPrice = priceForSpot(lead.foundingSpot);
+  if (foundingPrice) {
     lines.push(
       "",
-      `${foundingSpotSentence(lead.foundingSpot)} That includes personal support from me and Simpli Archive. If you leave Simpli Check, Archive storage resumes at $${ARCHIVE_MONTHLY_USD}/month.`,
+      `${publicFoundingLine(foundingPrice)} That includes personal support from me and Simpli Archive. If you leave Simpli Check, Archive storage resumes at $${ARCHIVE_MONTHLY_USD}/month.`,
       "This email does not start billing.",
     );
   } else if (lead.productInterest === "archive") {
@@ -178,14 +180,15 @@ export function leadConfirmation(lead: StoredLead): OutboundEmail {
 
   lines.push(
     "",
-    "If you'd rather talk, reply to this email. I read every response.",
+    "Brian will follow up personally.",
+    `Prefer to talk? Reply to this email or email ${SITE.contactEmail}.`,
     "",
     "Brian",
     mailingAddress(),
     SITE.contactEmail,
     SITE.url,
     "",
-    `You are receiving this because you asked ${SITE.name} (${SITE.legalEntity}) to email you about the product you chose.`,
+    `You are receiving this because you asked ${SITE.brandLine} to email you about the product you chose.`,
     `To unsubscribe, reply to this email with "unsubscribe" or write to ${leadNotifyEmail()} with the subject Unsubscribe. We will stop commercial email as soon as we can, and within 10 business days.`,
   );
 

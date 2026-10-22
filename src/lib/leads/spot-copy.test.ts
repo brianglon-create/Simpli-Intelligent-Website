@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { formatIndianapolis } from "@/lib/datetime";
-import { foundingSpotLabel, foundingSpotSentence } from "@/lib/leads/founding";
+import { foundingSpotLabel, publicFoundingLine } from "@/lib/leads/founding";
 import { leadConfirmation, signupNotification, thresholdNotification } from "@/lib/leads/notify";
 import { thankYouCopy } from "@/lib/leads/thank-you";
 import type { StoredLead } from "@/lib/leads/types";
@@ -29,20 +29,20 @@ function lead(spot: number): StoredLead {
 }
 
 describe("founding spot wording", () => {
-  it("names a place inside the first 50 and the next 50", () => {
-    expect(foundingSpotSentence(1)).toBe(
-      "You're spot 1 of the first 50, locked in line for the $49/month founding rate.",
+  it("keeps the spot number for Brian and leaves it out of public copy", () => {
+    expect(publicFoundingLine(49)).toBe(
+      "You're in line for a founding spot at $49/month (first 50).",
     );
-    expect(foundingSpotSentence(51)).toBe(
-      "You're spot 1 of the next 50 (spots 51-100), in line for the $69/month founding rate.",
+    expect(publicFoundingLine(69)).toBe(
+      "You're in line for a founding spot at $69/month (next 50).",
     );
     expect(foundingSpotLabel(1)).toBe("1 of the first 50 ($49/month)");
     expect(foundingSpotLabel(51)).toBe("1 of the next 50 (spots 51-100) ($69/month)");
     expect(foundingSpotLabel(100)).toBe("50 of the next 50 (spots 51-100) ($69/month)");
   });
 
-  it("uses that wording on the thank-you screen, confirmation, and Brian's emails", () => {
-    expect(thankYouCopy({
+  it("uses the tier price in public copy and the spot number only in Brian's emails", () => {
+    const thankYou = thankYouCopy({
       ok: true,
       duplicate: false,
       upgraded: false,
@@ -51,13 +51,28 @@ describe("founding spot wording", () => {
       foundingPrice: 69,
       foundingClosed: false,
       notified: true,
-    }).paragraphs[0]).toBe(
-      "You're spot 1 of the next 50 (spots 51-100), in line for the $69/month founding rate.",
+    });
+    expect(thankYou.paragraphs[0]).toBe(
+      "You're in line for a founding spot at $69/month (next 50).",
     );
+    expect(thankYou.paragraphs.join(" ")).not.toMatch(/you're spot \d/i);
+    expect(thankYou.paragraphs.join(" ")).not.toContain("51");
 
-    expect(leadConfirmation(lead(1)).text).toContain(
-      "You're spot 1 of the first 50, locked in line for the $49/month founding rate.",
+    const confirmation = leadConfirmation(lead(51));
+    expect(confirmation.text).toContain(
+      "You're in line for a founding spot at $69/month (next 50).",
     );
+    expect(confirmation.text).toContain(
+      "Simpli Intelligent, a brand of Polaris Intelligence LLC",
+    );
+    expect(confirmation.text).not.toMatch(/you're spot \d/i);
+    expect(confirmation.text).not.toContain("51");
+    expect(confirmation.text).not.toMatch(/\(R\)|®|™/);
+    expect(confirmation.text).toContain("Brian will follow up personally.");
+    expect(confirmation.text).toContain(
+      "Prefer to talk? Reply to this email or email brian@simpliintelligent.com.",
+    );
+    expect(confirmation.text).not.toMatch(/book 15 minutes/i);
 
     const notice = signupNotification({
       lead: lead(1),

@@ -8,14 +8,12 @@ export function ComingSoonLanding({
   description,
   interest,
   page,
-  bookingUrl,
 }: {
   productName: string;
   eyebrow: string;
   description: string;
   interest: Extract<Interest, "operate" | "reach">;
   page: string;
-  bookingUrl: string | null;
 }) {
   return (
     <>
@@ -37,7 +35,6 @@ export function ComingSoonLanding({
       <Section id="join-list" title={`Join the ${productName} list`} tone="white">
         <LeadForm
           page={page}
-          bookingUrl={bookingUrl}
           interests={[interest]}
           defaultInterest={interest}
           lockInterest

@@ -14,7 +14,9 @@ export async function GET() {
   const status = await readFoundingStatus();
   return Response.json(
     {
-      ...status,
+      configured: status.configured,
+      closed: status.closed,
+      available: status.configured && !status.closed,
       cap: FOUNDING_CAP,
       tier49Cap: TIER_49_CAP,
       tier69Cap: TIER_69_CAP,

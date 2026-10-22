@@ -1,6 +1,5 @@
 import { ArchiveLanding } from "@/components/marketing/ArchiveLanding";
 import { SiteFrame } from "@/components/SiteFrame";
-import { bookingUrl } from "@/lib/env";
 import { readFoundingStatus } from "@/lib/leads/store";
 import { pageMetadata } from "@/lib/metadata";
 
@@ -17,7 +16,7 @@ export default async function ArchivePage() {
   const status = await readFoundingStatus();
   return (
     <SiteFrame>
-      <ArchiveLanding status={status} bookingUrl={bookingUrl()} />
+      <ArchiveLanding status={status} />
     </SiteFrame>
   );
 }

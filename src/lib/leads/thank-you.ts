@@ -1,7 +1,7 @@
 import {
   FOUNDING_PRICE_49,
   FOUNDING_PRICE_69,
-  foundingSpotSentence,
+  publicFoundingLine,
 } from "@/lib/leads/founding";
 import type { SuccessBody } from "@/lib/leads/types";
 import {
@@ -27,12 +27,12 @@ export function thankYouCopy(result: SuccessBody): {
     };
   }
 
-  if (result.foundingSpot && result.foundingPrice) {
+  if (result.foundingPrice) {
     const added = result.upgraded ? "We added Simpli Check to your signup. " : "";
     return {
       title: "You're on the list.",
       paragraphs: [
-        `${added}${foundingSpotSentence(result.foundingSpot)}`,
+        `${added}${publicFoundingLine(result.foundingPrice)}`,
         `That includes personal support from Brian and Simpli Archive. If you leave Simpli Check, Archive storage resumes at $${ARCHIVE_MONTHLY_USD}/month.`,
         noBill,
         exportLine,

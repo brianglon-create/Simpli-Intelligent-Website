@@ -6,7 +6,7 @@ export const contentType = "image/png";
 
 export default function Image() {
   return ogImage(
-    "Inspection software built by an inspector.",
-    "Join the Simpli Check waitlist for founding-member pricing.",
+    "Cut the time you spend writing the report.",
+    "Coming to founding members. Built by a working home inspector.",
   );
 }

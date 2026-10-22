@@ -60,7 +60,6 @@ Founding spots are counted from `leads.founding_spot` in that database. Spots 1â
 2. Set `RESEND_API_KEY` and `EMAIL_FROM` (the verified from address).
 3. Set `LEAD_NOTIFY_EMAIL` to the inbox that should receive signup and threshold mail.
 4. Set `POSTAL_ADDRESS` to the street address that should appear on the privacy page and on confirmation email. CASL and CAN-SPAM expect that address before commercial email goes out.
-5. Set `NEXT_PUBLIC_BOOKING_URL` to the Cal.com or Calendly link. "Book 15 minutes with Brian" stays hidden until that URL is set.
 
 Campaign links should point at `/horizon` and keep their query string, for example `/horizon?utm_source=linkedin&utm_medium=post&utm_campaign=dec15&source=cahpi`. Those values are stored on the lead.
 

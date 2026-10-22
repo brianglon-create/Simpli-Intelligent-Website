@@ -5,6 +5,10 @@ describe("site configuration", () => {
   it("keeps contact email in a single configurable constant", () => {
     expect(SITE.contactEmail).toBe("brian@simpliintelligent.com");
     expect(SITE.url).toBe("https://simpliintelligent.com");
+    expect(SITE.brandLine).toBe(
+      "Simpli Intelligent, a brand of Polaris Intelligence LLC",
+    );
+    expect(SITE.brandLine).not.toMatch(/\(R\)|®|™/);
   });
 
   it("defines the public product family without external app URLs", () => {

@@ -13,7 +13,7 @@ const unconfigured = foundingSnapshot(0, false);
 
 describe("Horizon landing", () => {
   it("explains the shutdown, the migration gap, pricing, and the export sequence", () => {
-    render(<HorizonLanding status={open} bookingUrl={null} />);
+    render(<HorizonLanding status={open} />);
 
     expect(
       screen.getByRole("heading", {
@@ -21,8 +21,10 @@ describe("Horizon landing", () => {
         name: /horizon shuts down december 15, 2026/i,
       }),
     ).toBeInTheDocument();
-    expect(screen.getByText(/12 of 100 founding spots claimed/i)).toBeInTheDocument();
-    expect(screen.getByText(/38 of 50 left at this rate/i)).toBeInTheDocument();
+    expect(screen.getByText(/founding spots are available/i)).toBeInTheDocument();
+    expect(screen.queryByText(/spots claimed/i)).not.toBeInTheDocument();
+    expect(screen.queryByText(/left at this rate/i)).not.toBeInTheDocument();
+    expect(screen.queryByText(/you're spot \d/i)).not.toBeInTheDocument();
     expect(screen.getAllByText(/\$19/).length).toBeGreaterThan(0);
     expect(screen.getAllByText(/\$9\/month/).length).toBeGreaterThan(0);
     expect(screen.getAllByText(/\$49\/month/).length).toBeGreaterThan(0);
@@ -32,26 +34,39 @@ describe("Horizon landing", () => {
     expect(screen.getByRole("heading", { name: /export checklist/i })).toBeInTheDocument();
     expect(screen.getByText(/not a tour of horizon's screens/i)).toBeInTheDocument();
     expect(screen.getAllByText(/north star inspection services/i).length).toBeGreaterThan(0);
-    expect(screen.getByText(/feature details are not published yet/i)).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: /real-time photo recognition/i })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: /automatic narrative generation/i })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: /inspector reference library/i })).toBeInTheDocument();
+    expect(screen.getAllByText(/coming to founding members/i).length).toBeGreaterThan(0);
+    expect(screen.getAllByText(/not available to use today/i).length).toBeGreaterThan(0);
     expect(screen.getAllByRole("link", { name: /protect my report history/i }).length).toBeGreaterThan(1);
     expect(screen.queryByText(/your findings and your wording/i)).not.toBeInTheDocument();
     expect(screen.queryByText(/address, client, or date/i)).not.toBeInTheDocument();
+    expect(
+      screen.getByText(
+        /i agree to receive emails from simpli intelligent, a brand of polaris intelligence llc, about the product i selected/i,
+      ),
+    ).toBeInTheDocument();
+    expect(screen.getByText(/brian will follow up personally/i)).toBeInTheDocument();
+    expect(
+      screen.getByText(/prefer to talk\? reply to the confirmation email or email/i),
+    ).toBeInTheDocument();
     expect(screen.queryByRole("link", { name: /book 15 minutes with brian/i })).not.toBeInTheDocument();
     expect(screen.queryByText(/\bAI\b/)).not.toBeInTheDocument();
   });
 
   it("stops offering founding tiers when 100 spots are claimed", () => {
-    render(<HorizonLanding status={closed} bookingUrl="https://cal.example/brian" />);
+    render(<HorizonLanding status={closed} />);
     expect(screen.getByRole("heading", { name: /founding-member pricing is closed/i })).toBeInTheDocument();
+    expect(screen.queryByText(/founding spots are available/i)).not.toBeInTheDocument();
     expect(screen.queryByText(/spots claimed/i)).not.toBeInTheDocument();
-    expect(screen.getByRole("link", { name: /book 15 minutes with brian/i })).toHaveAttribute(
-      "href",
-      "https://cal.example/brian",
-    );
+    expect(screen.queryByRole("link", { name: /book 15 minutes with brian/i })).not.toBeInTheDocument();
+    expect(screen.getByText(/brian will follow up personally/i)).toBeInTheDocument();
   });
 
   it("does not invent a live remaining count before storage is connected", () => {
-    render(<HorizonLanding status={unconfigured} bookingUrl={null} />);
+    render(<HorizonLanding status={unconfigured} />);
+    expect(screen.queryByText(/founding spots are available/i)).not.toBeInTheDocument();
     expect(screen.queryByText(/spots claimed/i)).not.toBeInTheDocument();
     expect(screen.queryByText(/left at this rate/i)).not.toBeInTheDocument();
     expect(screen.getAllByText(/\$49\/month/).length).toBeGreaterThan(0);
@@ -60,15 +75,24 @@ describe("Horizon landing", () => {
 
 describe("product pages", () => {
   it("keeps Archive pricing and points campaigns back to Horizon", () => {
-    render(<ArchiveLanding status={open} bookingUrl={null} />);
+    render(<ArchiveLanding status={open} />);
     expect(screen.getByRole("heading", { level: 1, name: /don't let december 15, 2026 erase/i })).toBeInTheDocument();
     expect(screen.getByRole("link", { name: /read the full horizon briefing/i })).toHaveAttribute("href", "/horizon");
   });
 
-  it("shows the Check waitlist without a feature list", () => {
-    render(<CheckLanding status={open} bookingUrl={null} />);
-    expect(screen.getByRole("heading", { level: 1, name: /built by an inspector, not a sales team/i })).toBeInTheDocument();
-    expect(screen.getByText(/does not list features/i)).toBeInTheDocument();
+  it("shows Check as a waitlist built to shorten report writing", () => {
+    render(<CheckLanding status={open} />);
+    expect(screen.getByRole("heading", { level: 1, name: /cut the time you spend writing the report/i })).toBeInTheDocument();
+    expect(screen.getByText(/working home inspector/i)).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: /real-time photo recognition/i })).toBeInTheDocument();
+    expect(screen.getByText(/identifies the defect as you go/i)).toBeInTheDocument();
+    expect(screen.getByText(/you review and edit them/i)).toBeInTheDocument();
+    expect(screen.getByText(/what it is, and why it matters/i)).toBeInTheDocument();
+    expect(screen.queryByText(/save \d+%/i)).not.toBeInTheDocument();
+    expect(screen.queryByText(/not published yet/i)).not.toBeInTheDocument();
+    expect(screen.getByText(/founding spots are available/i)).toBeInTheDocument();
+    expect(screen.queryByText(/spots claimed/i)).not.toBeInTheDocument();
+    expect(screen.queryByText(/left at this rate/i)).not.toBeInTheDocument();
   });
 
   it("uses the same form for Operate and Reach", () => {
@@ -79,7 +103,6 @@ describe("product pages", () => {
         description="A practical operating platform."
         interest="operate"
         page="/operate"
-        bookingUrl={null}
       />,
     );
     expect(screen.getByRole("heading", { level: 1, name: /simpli operate is coming soon/i })).toBeInTheDocument();
@@ -95,6 +118,9 @@ describe("privacy page", () => {
     expect(screen.getByRole("heading", { name: /casl, and can-spam/i })).toBeInTheDocument();
     expect(screen.getAllByText(/unsubscribe/i).length).toBeGreaterThan(0);
     expect(screen.getByText(/express consent/i)).toBeInTheDocument();
-    expect(screen.getAllByText(/polaris intelligence llc/i).length).toBeGreaterThan(0);
+    expect(
+      screen.getAllByText(/simpli intelligent, a brand of polaris intelligence llc/i).length,
+    ).toBeGreaterThan(0);
+    expect(screen.queryByText(/\(R\)|®|™/)).not.toBeInTheDocument();
   });
 });

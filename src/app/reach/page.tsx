@@ -1,6 +1,5 @@
 import { ComingSoonLanding } from "@/components/marketing/ComingSoonLanding";
 import { SiteFrame } from "@/components/SiteFrame";
-import { bookingUrl } from "@/lib/env";
 import { pageMetadata } from "@/lib/metadata";
 import { PRODUCTS } from "@/lib/site";
 
@@ -25,7 +24,6 @@ export default function ReachPage() {
         }
         interest="reach"
         page="/reach"
-        bookingUrl={bookingUrl()}
       />
     </SiteFrame>
   );

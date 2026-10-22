@@ -73,14 +73,12 @@ function campaignFields() {
 
 export function LeadForm({
   page,
-  bookingUrl,
   interests = ["archive", "check", "both", "operate", "reach"],
   defaultInterest,
   lockInterest = false,
   id = "signup",
 }: {
   page: string;
-  bookingUrl: string | null;
   interests?: Interest[];
   defaultInterest?: Interest;
   lockInterest?: boolean;
@@ -168,7 +166,7 @@ export function LeadForm({
   if (result) {
     return (
       <div id={id} className="scroll-mt-28">
-        <ThankYou result={result} bookingUrl={bookingUrl} />
+        <ThankYou result={result} />
       </div>
     );
   }
@@ -360,8 +358,8 @@ export function LeadForm({
             aria-describedby={errors.consent ? `${id}-consent-error` : undefined}
           />
           <label htmlFor={`${id}-consent`} className="text-sm leading-relaxed text-muted">
-            I agree to receive emails from {SITE.name} ({SITE.legalEntity}) about the
-            product I selected. I can unsubscribe at any time.
+            I agree to receive emails from {SITE.brandLine}, about the product I
+            selected. I can unsubscribe at any time.
           </label>
         </div>
         {errors.consent ? (

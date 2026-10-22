@@ -5,13 +5,7 @@ import { primaryButtonClass, secondaryButtonClass } from "@/components/classes";
 import type { FoundingSnapshot } from "@/lib/leads/types";
 import { ARCHIVE_BULLETS, SHUTDOWN_LABEL } from "@/lib/offers";
 
-export function ArchiveLanding({
-  status,
-  bookingUrl,
-}: {
-  status: FoundingSnapshot;
-  bookingUrl: string | null;
-}) {
+export function ArchiveLanding({ status }: { status: FoundingSnapshot }) {
   return (
     <>
       <section className="relative overflow-hidden">
@@ -46,11 +40,8 @@ export function ArchiveLanding({
             </li>
           ))}
         </ul>
-        {/* TODO(archive-search): Do not list search fields until Brian confirms them. */}
-        {/* TODO(archive-formats): Do not list accepted Horizon export formats until Brian confirms them. */}
         <p className="mt-8 max-w-3xl text-base leading-relaxed text-muted">
-          Search fields and accepted export formats are not published yet. The
-          full shutdown briefing, including what Spectora&apos;s migration leaves
+          The full shutdown briefing, including what Spectora&apos;s migration leaves
           behind, is on the Horizon page.
         </p>
         <ArchivePricing status={status} />
@@ -58,7 +49,6 @@ export function ArchiveLanding({
       <Section id="archive-join" title="Reserve Simpli Archive">
         <LeadForm
           page="/archive"
-          bookingUrl={bookingUrl}
           interests={["archive", "check", "both"]}
           defaultInterest="archive"
         />

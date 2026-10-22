@@ -91,7 +91,7 @@ describe("Simpli Intelligent homepage", () => {
       screen.getByText(`© ${SITE.copyrightYear} ${SITE.name}`),
     ).toBeInTheDocument();
     expect(
-      screen.getByText(`Operated by ${SITE.legalEntity}`),
+      screen.getByText(SITE.brandLine),
     ).toBeInTheDocument();
     expect(screen.getAllByText(SITE.location).length).toBeGreaterThanOrEqual(1);
   });

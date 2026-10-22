@@ -1,3 +1,4 @@
+import { CheckPillars } from "@/components/CheckPillars";
 import { FoundingOffer } from "@/components/FoundingOffer";
 import { LeadForm } from "@/components/LeadForm";
 import { Section } from "@/components/Section";
@@ -6,13 +7,7 @@ import type { FoundingSnapshot } from "@/lib/leads/types";
 import { CHECK_PERKS } from "@/lib/offers";
 import { SITE } from "@/lib/site";
 
-export function CheckLanding({
-  status,
-  bookingUrl,
-}: {
-  status: FoundingSnapshot;
-  bookingUrl: string | null;
-}) {
+export function CheckLanding({ status }: { status: FoundingSnapshot }) {
   return (
     <>
       <section className="relative overflow-hidden">
@@ -21,12 +16,13 @@ export function CheckLanding({
             SIMPLI CHECK
           </p>
           <h1 className="font-display mt-6 max-w-4xl text-4xl font-semibold leading-tight tracking-tight text-navy sm:text-5xl">
-            Inspection software built by an inspector, not a sales team.
+            Cut the time you spend writing the report.
           </h1>
           <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted">
-            Simpli Check is inspection software in development, shaped by years
-            of inspections at {SITE.inspectionBusiness}. Join the waitlist for
-            early access and founding-member pricing.
+            Simpli Check is inspection software from a working home inspector at{" "}
+            {SITE.inspectionBusiness}, not a sales team. It is on the waitlist.
+            Photo recognition, report narratives, and client defect notes are
+            coming to founding members as Check launches.
           </p>
           <div className="mt-10 flex flex-col gap-3 sm:flex-row">
             <a href="#signup" className={primaryButtonClass}>
@@ -38,18 +34,12 @@ export function CheckLanding({
           </div>
         </div>
       </section>
-      <Section id="check-features" title="What we will say when it's confirmed" tone="white">
-        {/* TODO(check-features): Brian must confirm Simpli Check capabilities before launch.
-            Do not publish AI behavior, report speed, voice or wording control, offline
-            capture, or a feature list. The draft line "faster reports with your findings
-            and your wording" is intentionally omitted. */}
-        <div className="max-w-3xl border border-border bg-neutral p-6">
-          <p className="text-base leading-relaxed text-muted">
-            What Simpli Check will do is still being confirmed. This page does not
-            list features, and it does not describe how any assistant or automation
-            will behave.
-          </p>
-        </div>
+      <Section id="check-features" title="Coming to founding members" tone="white">
+        <p className="max-w-3xl text-lg leading-relaxed text-muted">
+          The writing is what eats the evening. These are coming to founding
+          members as Check launches. They are not available to use today.
+        </p>
+        <CheckPillars />
         <ul className="mt-8 max-w-3xl space-y-3 text-base leading-relaxed text-muted">
           {CHECK_PERKS.map((perk) => (
             <li key={perk}>{perk}</li>
@@ -60,7 +50,6 @@ export function CheckLanding({
       <Section id="check-join" title="Join the Simpli Check waitlist">
         <LeadForm
           page="/check"
-          bookingUrl={bookingUrl}
           interests={["check", "archive", "both"]}
           defaultInterest="check"
         />

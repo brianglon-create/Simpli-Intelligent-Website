@@ -55,7 +55,9 @@ export async function POST(request: Request) {
 
   try {
     const outcome = await submitLead(json);
-    return Response.json(outcome.body, {
+    const body =
+      outcome.status === 200 ? { ...outcome.body, foundingSpot: null } : outcome.body;
+    return Response.json(body, {
       status: outcome.status,
       headers: { "Cache-Control": "no-store" },
     });

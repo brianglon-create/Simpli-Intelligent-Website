@@ -8,7 +8,7 @@ function filesIn(dir: string): string[] {
   for (const entry of entries) {
     const full = path.join(dir, entry);
     if (statSync(full).isDirectory()) files.push(...filesIn(full));
-    else if (/\.(ts|tsx|css|md)$/.test(entry) && !entry.endsWith("naming.test.ts")) {
+    else if (/\.(ts|tsx|css|md)$/.test(entry) && !entry.includes(".test.")) {
         files.push(full);
       }
   }
@@ -24,13 +24,11 @@ describe("product naming", () => {
     }
   });
 
-  it("keeps Check feature placeholders marked for Brian", () => {
+  it("does not ship TODO placeholders", () => {
     const files = filesIn(path.join(process.cwd(), "src"));
     const combined = files.map((file) => readFileSync(file, "utf8")).join("\n");
-    expect(combined).toContain("TODO(check-features)");
-    expect(combined).toContain("TODO(archive-search)");
-    expect(combined).toContain("TODO(archive-formats)");
-    expect(combined).toContain("TODO(horizon-export-clicks)");
-    expect(combined).toContain("TODO(archive-check-integration)");
+    expect(combined).not.toMatch(/TODO\(/);
+    expect(combined).not.toMatch(/not published yet/i);
+    expect(combined).not.toMatch(/still being confirmed/i);
   });
 });

@@ -1,15 +1,9 @@
-import { BookingLink } from "@/components/BookingLink";
+import { PersonalFollowUp } from "@/components/PersonalFollowUp";
 import { thankYouCopy } from "@/lib/leads/thank-you";
 import type { SuccessBody } from "@/lib/leads/types";
 import { SHUTDOWN_LABEL } from "@/lib/offers";
 
-export function ThankYou({
-  result,
-  bookingUrl,
-}: {
-  result: SuccessBody | null;
-  bookingUrl: string | null;
-}) {
+export function ThankYou({ result }: { result: SuccessBody | null }) {
   const copy = result
     ? thankYouCopy(result)
     : {
@@ -28,14 +22,7 @@ export function ThankYou({
           <p key={paragraph}>{paragraph}</p>
         ))}
       </div>
-      {bookingUrl ? (
-        <>
-          <p className="mt-8 text-base font-medium text-navy">Prefer to talk?</p>
-          <div className="mt-4">
-            <BookingLink bookingUrl={bookingUrl} />
-          </div>
-        </>
-      ) : null}
+      <PersonalFollowUp />
       <p className="mt-6 text-sm text-muted">
         <a href="/privacy" className="font-medium text-navy underline-offset-2 hover:underline">
           Privacy policy

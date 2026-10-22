@@ -26,9 +26,9 @@ export default function PrivacyPage() {
           <section>
             <h2 className="font-display text-2xl font-semibold text-navy">Who we are</h2>
             <p className="mt-3">
-              {SITE.name} is operated by {SITE.legalEntity}, {SITE.location}. This
-              policy covers the signup form on {SITE.url}. It does not yet cover
-              report files, because Simpli Archive is not accepting uploads.
+              {SITE.brandLine}, {SITE.location}. This policy covers the signup form
+              on {SITE.url}. It does not yet cover report files, because Simpli
+              Archive is not accepting uploads.
             </p>
           </section>
           <section>
@@ -64,8 +64,8 @@ export default function PrivacyPage() {
             <p className="mt-3">
               The checkbox is express consent. It is not pre-checked. You can
               refuse, and you can withdraw consent later. Commercial email from us
-              will identify {SITE.name} and {SITE.legalEntity}, include a mailing
-              address, and include a way to unsubscribe.
+              will identify {SITE.brandLine}, include a mailing address, and include
+              a way to unsubscribe.
             </p>
             <p className="mt-3">
               To unsubscribe, email{" "}
@@ -108,7 +108,7 @@ export default function PrivacyPage() {
           <section>
             <h2 className="font-display text-2xl font-semibold text-navy">Contact</h2>
             <p className="mt-3">
-              {SITE.legalEntity}
+              {SITE.brandLine}
               <br />
               {address}
               <br />

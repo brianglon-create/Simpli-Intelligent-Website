@@ -54,6 +54,15 @@ describe("POST /api/lead", () => {
     expect(body.foundingSpot).toBeNull();
   });
 
+  it("does not return a founding spot number to the browser", async () => {
+    setLeadStoreForTests(createMemoryStore());
+    const response = await post({ ...valid, interest: "check" });
+    expect(response.status).toBe(200);
+    const body = await response.json();
+    expect(body.foundingPrice).toBe(49);
+    expect(body.foundingSpot).toBeNull();
+  });
+
   it("returns field errors for an incomplete signup", async () => {
     setLeadStoreForTests(createMemoryStore());
     const response = await post({ ...valid, email: "not-an-email", consent: false });
