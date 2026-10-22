@@ -19,7 +19,6 @@ function sameOrigin(request: Request): boolean {
 }
 
 export async function POST(request: Request) {
-  logSupabaseKeyDiagnostic("startup");
   if (!sameOrigin(request)) {
     return Response.json({ ok: false, error: "origin" }, { status: 403 });
   }
@@ -61,7 +60,7 @@ export async function POST(request: Request) {
       headers: { "Cache-Control": "no-store" },
     });
   } catch (error) {
-    logSupabaseKeyDiagnostic("failure");
+    logSupabaseKeyDiagnostic();
     logServerError("Lead route failed", error);
     return Response.json(
       {

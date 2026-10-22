@@ -18,8 +18,6 @@ export type SupabaseKeyDiagnostic = {
   refsMatch: boolean | null;
 };
 
-let loggedStartup = false;
-
 function keyShape(key: string | undefined): KeyShape {
   if (!key) return "missing";
   if (key.startsWith("sb_secret_")) return "sb_secret";
@@ -77,9 +75,9 @@ export function describeSupabaseServiceKey(): SupabaseKeyDiagnostic {
   };
 }
 
-function formatDiagnostic(reason: "startup" | "failure", info: SupabaseKeyDiagnostic): string {
+function formatDiagnostic(info: SupabaseKeyDiagnostic): string {
   return [
-    `reason=${reason}`,
+    "reason=failure",
     `env=${info.env}`,
     `present=${info.present}`,
     `length=${info.length}`,
@@ -93,19 +91,10 @@ function formatDiagnostic(reason: "startup" | "failure", info: SupabaseKeyDiagno
 }
 
 /**
- * Log which admin key the server actually loaded.
- * Startup logs once per server instance. Failures log every time.
+ * Log which admin key the server loaded after a Supabase failure.
  * The line contains the env var name, length, a 4-character prefix, the
  * JWT role and project ref, and the ref from SUPABASE_URL. Not the key.
  */
-export function logSupabaseKeyDiagnostic(reason: "startup" | "failure"): void {
-  if (reason === "startup") {
-    if (loggedStartup) return;
-    loggedStartup = true;
-  }
-  console.error("Supabase key diagnostic", formatDiagnostic(reason, describeSupabaseServiceKey()));
-}
-
-export function resetSupabaseKeyDiagnosticForTests(): void {
-  loggedStartup = false;
+export function logSupabaseKeyDiagnostic(): void {
+  console.error("Supabase key diagnostic", formatDiagnostic(describeSupabaseServiceKey()));
 }

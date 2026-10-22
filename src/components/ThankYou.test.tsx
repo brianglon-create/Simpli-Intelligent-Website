@@ -19,10 +19,27 @@ describe("ThankYou", () => {
     render(<ThankYou result={result} bookingUrl={null} />);
 
     expect(screen.getByRole("heading", { name: /you're on the list/i })).toBeInTheDocument();
-    expect(screen.getByText(/number 2 of 100/i)).toBeInTheDocument();
+    expect(
+      screen.getByText(/you're spot 2 of the first 50, locked in line for the \$49\/month founding rate/i),
+    ).toBeInTheDocument();
     expect(screen.queryByRole("link", { name: /book 15 minutes with brian/i })).not.toBeInTheDocument();
     expect(screen.queryByText(/prefer to talk/i)).not.toBeInTheDocument();
     expect(screen.getByRole("link", { name: /privacy policy/i })).toBeInTheDocument();
+  });
+
+  it("places a later spot inside the $69 tier", () => {
+    render(
+      <ThankYou
+        result={{ ...result, foundingSpot: 51, foundingPrice: 69 }}
+        bookingUrl={null}
+      />,
+    );
+    expect(
+      screen.getByText(
+        /you're spot 1 of the next 50 \(spots 51-100\), in line for the \$69\/month founding rate/i,
+      ),
+    ).toBeInTheDocument();
+    expect(screen.queryByRole("link", { name: /book 15 minutes with brian/i })).not.toBeInTheDocument();
   });
 
   it("shows the booking link when a URL is set", () => {

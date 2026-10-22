@@ -96,7 +96,7 @@ export async function submitLead(
   try {
     store = deps?.store ?? getLeadStore();
   } catch (error) {
-    logSupabaseKeyDiagnostic("failure");
+    logSupabaseKeyDiagnostic();
     logServerError("Lead store setup failed", error);
     return {
       status: 503,
@@ -112,7 +112,7 @@ export async function submitLead(
   try {
     saved = await store.save(parsed.lead);
   } catch (error) {
-    logSupabaseKeyDiagnostic("failure");
+    logSupabaseKeyDiagnostic();
     logServerError("Lead save failed", error);
     return {
       status: 503,
@@ -125,7 +125,7 @@ export async function submitLead(
   }
 
   if (!saved.ok) {
-    logSupabaseKeyDiagnostic("failure");
+    logSupabaseKeyDiagnostic();
     console.error("Lead was not stored", {
       email: parsed.lead.email,
       interest: parsed.lead.productInterest,

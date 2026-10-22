@@ -1,4 +1,3 @@
-import { logSupabaseKeyDiagnostic } from "@/lib/leads/key-diagnostic";
 import { readFoundingStatus } from "@/lib/leads/store";
 import {
   FOUNDING_CAP,
@@ -12,7 +11,6 @@ export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 export async function GET() {
-  logSupabaseKeyDiagnostic("startup");
   const status = await readFoundingStatus();
   return Response.json(
     {

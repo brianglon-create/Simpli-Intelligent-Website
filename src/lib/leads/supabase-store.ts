@@ -142,7 +142,7 @@ export function createSupabaseStore(): LeadStore {
       });
 
       if (error) {
-        logSupabaseKeyDiagnostic("failure");
+        logSupabaseKeyDiagnostic();
         logServerError("Supabase submit_lead failed", error);
         throw error;
       }
@@ -161,7 +161,7 @@ export function createSupabaseStore(): LeadStore {
         .select("id", { count: "exact", head: true })
         .not("founding_spot", "is", null);
       if (error) {
-        logSupabaseKeyDiagnostic("failure");
+        logSupabaseKeyDiagnostic();
         logServerError("Supabase founding count failed", error);
         throw error;
       }
@@ -172,7 +172,7 @@ export function createSupabaseStore(): LeadStore {
         .from("founding_alerts")
         .select("threshold");
       if (error) {
-        logSupabaseKeyDiagnostic("failure");
+        logSupabaseKeyDiagnostic();
         logServerError("Supabase alert read failed", error);
         throw error;
       }
@@ -186,7 +186,7 @@ export function createSupabaseStore(): LeadStore {
         .insert({ threshold });
       if (!error) return true;
       if (error.code === "23505") return false;
-      logSupabaseKeyDiagnostic("failure");
+      logSupabaseKeyDiagnostic();
       logServerError("Supabase alert claim failed", error);
       throw error;
     },
@@ -196,7 +196,7 @@ export function createSupabaseStore(): LeadStore {
         .delete()
         .eq("threshold", threshold);
       if (error) {
-        logSupabaseKeyDiagnostic("failure");
+        logSupabaseKeyDiagnostic();
         logServerError("Supabase alert release failed", error);
         throw error;
       }

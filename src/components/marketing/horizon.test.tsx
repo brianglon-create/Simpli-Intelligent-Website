@@ -36,6 +36,7 @@ describe("Horizon landing", () => {
     expect(screen.getAllByRole("link", { name: /protect my report history/i }).length).toBeGreaterThan(1);
     expect(screen.queryByText(/your findings and your wording/i)).not.toBeInTheDocument();
     expect(screen.queryByText(/address, client, or date/i)).not.toBeInTheDocument();
+    expect(screen.queryByRole("link", { name: /book 15 minutes with brian/i })).not.toBeInTheDocument();
     expect(screen.queryByText(/\bAI\b/)).not.toBeInTheDocument();
   });
 

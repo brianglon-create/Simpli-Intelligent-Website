@@ -260,11 +260,14 @@ export function HorizonLanding({
 
       <Section id="join" title="Tell us what you need" tone="white">
         <p className={`${lede} mb-8`}>
-          One form. Choose Archive, Check, or both. Prefer to talk instead?
+          One form. Choose Archive, Check, or both.
+          {bookingUrl ? " Prefer to talk instead?" : ""}
         </p>
-        <div className="mb-8">
-          <BookingLink bookingUrl={bookingUrl} />
-        </div>
+        {bookingUrl ? (
+          <div className="mb-8">
+            <BookingLink bookingUrl={bookingUrl} />
+          </div>
+        ) : null}
         <LeadForm
           page="/horizon"
           bookingUrl={bookingUrl}

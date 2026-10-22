@@ -29,6 +29,33 @@ export function priceForSpot(spot: number | null): 49 | 69 | null {
   return null;
 }
 
+/** Position inside the $49 tier (1–50) or the $69 tier (1–50 of spots 51–100). */
+export function tierPosition(spot: number): number | null {
+  if (spot >= 1 && spot <= TIER_49_CAP) return spot;
+  if (spot > TIER_49_CAP && spot <= FOUNDING_CAP) return spot - TIER_49_CAP;
+  return null;
+}
+
+/** Thank-you screen and the inspector's confirmation email. */
+export function foundingSpotSentence(spot: number): string | null {
+  const position = tierPosition(spot);
+  if (position == null) return null;
+  if (spot <= TIER_49_CAP) {
+    return `You're spot ${position} of the first ${TIER_49_CAP}, locked in line for the $${FOUNDING_PRICE_49}/month founding rate.`;
+  }
+  return `You're spot ${position} of the next ${TIER_69_CAP} (spots ${TIER_49_CAP + 1}-${FOUNDING_CAP}), in line for the $${FOUNDING_PRICE_69}/month founding rate.`;
+}
+
+/** Compact line for Brian's notification and threshold emails. */
+export function foundingSpotLabel(spot: number): string | null {
+  const position = tierPosition(spot);
+  if (position == null) return null;
+  if (spot <= TIER_49_CAP) {
+    return `${position} of the first ${TIER_49_CAP} ($${FOUNDING_PRICE_49}/month)`;
+  }
+  return `${position} of the next ${TIER_69_CAP} (spots ${TIER_49_CAP + 1}-${FOUNDING_CAP}) ($${FOUNDING_PRICE_69}/month)`;
+}
+
 export function foundingSnapshot(
   count: number,
   configured: boolean,

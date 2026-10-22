@@ -89,7 +89,7 @@ export async function readFoundingStatus(): Promise<FoundingSnapshot> {
   try {
     return await getLeadStore().status();
   } catch (error) {
-    logSupabaseKeyDiagnostic("failure");
+    logSupabaseKeyDiagnostic();
     logServerError("Founding status unavailable", error);
     return foundingSnapshot(0, false);
   }

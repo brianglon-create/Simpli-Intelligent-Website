@@ -5,11 +5,12 @@ import {
   mailingAddress,
   resendApiKey,
 } from "@/lib/env";
+import { formatIndianapolis } from "@/lib/datetime";
 import {
-  FOUNDING_CAP,
   FOUNDING_PRICE_49,
   FOUNDING_PRICE_69,
-  priceForSpot,
+  foundingSpotLabel,
+  foundingSpotSentence,
 } from "@/lib/leads/founding";
 import type { Interest, StoredLead } from "@/lib/leads/types";
 import { ARCHIVE_FIRST_MONTH_USD, ARCHIVE_MONTHLY_USD, SHUTDOWN_LABEL } from "@/lib/offers";
@@ -54,7 +55,6 @@ export function signupNotification(args: {
   foundingCount: number;
 }): OutboundEmail {
   const { lead } = args;
-  const price = priceForSpot(lead.foundingSpot);
   const subject = args.duplicate
     ? `Repeat signup: ${lead.name} (${interestLabel[lead.productInterest]})`
     : `New signup: ${lead.name} (${interestLabel[lead.productInterest]})`;
@@ -78,12 +78,7 @@ export function signupNotification(args: {
     ),
     line("Horizon reports (approx.)", lead.reportCount),
     line("Lead status", lead.leadStatus),
-    line(
-      "Founding spot",
-      lead.foundingSpot
-        ? `${lead.foundingSpot} of ${FOUNDING_CAP} ($${price}/month)`
-        : null,
-    ),
+    line("Founding spot", lead.foundingSpot ? foundingSpotLabel(lead.foundingSpot) : null),
     line("Founding spots claimed", args.foundingCount),
     line("Source", lead.source),
     line("UTM source", lead.utmSource),
@@ -92,7 +87,7 @@ export function signupNotification(args: {
     line("UTM content", lead.utmContent),
     line("UTM term", lead.utmTerm),
     line("Page", lead.page),
-    line("Signed up", lead.createdAt),
+    line("Signed up", formatIndianapolis(lead.createdAt)),
     "",
     "This form does not charge a card.",
   ].join("\n");
@@ -108,8 +103,9 @@ export function thresholdNotification(
   threshold: number,
   count: number,
 ): OutboundEmail {
+  const label = foundingSpotLabel(threshold) ?? String(threshold);
   const remaining49 = Math.max(0, 50 - count);
-  const remaining69 = Math.max(0, FOUNDING_CAP - Math.max(count, 50));
+  const remaining69 = Math.max(0, 100 - Math.max(count, 50));
   let detail = "";
   if (threshold === 40) {
     detail = `${remaining49} spots remain at $${FOUNDING_PRICE_49}/month. The next 50 are $${FOUNDING_PRICE_69}/month. The site is still offering founding pricing.`;
@@ -123,27 +119,28 @@ export function thresholdNotification(
 
   return {
     to: leadNotifyEmail(),
-    subject: `Simpli Check founding spots: ${threshold} of ${FOUNDING_CAP}`,
+    subject: `Simpli Check founding spots: ${label}`,
     text: [
-      `${count} inspectors have claimed a Simpli Check founding spot (alert threshold ${threshold}).`,
+      `${count} inspectors have claimed a Simpli Check founding spot.`,
+      `Alert threshold: ${label}.`,
       detail,
+      `Sent: ${formatIndianapolis(new Date())}`,
       "This is an automatic alert from simpliintelligent.com.",
     ].join("\n\n"),
   };
 }
 
 export function leadConfirmation(lead: StoredLead): OutboundEmail {
-  const price = priceForSpot(lead.foundingSpot);
   const lines = [
     `Hi ${lead.name.split(" ")[0]},`,
     "",
     `Thanks for signing up. I'm Brian, a home inspector at ${SITE.inspectionBusiness} since ${SITE.inspectingSince}, and the founder of ${SITE.name}.`,
   ];
 
-  if (lead.foundingSpot && price) {
+  if (lead.foundingSpot && foundingSpotSentence(lead.foundingSpot)) {
     lines.push(
       "",
-      `You are number ${lead.foundingSpot} of ${FOUNDING_CAP}, in line for the $${price}/month Simpli Check founding rate. That includes personal support from me and Simpli Archive. If you leave Simpli Check, Archive storage resumes at $${ARCHIVE_MONTHLY_USD}/month.`,
+      `${foundingSpotSentence(lead.foundingSpot)} That includes personal support from me and Simpli Archive. If you leave Simpli Check, Archive storage resumes at $${ARCHIVE_MONTHLY_USD}/month.`,
       "This email does not start billing.",
     );
   } else if (lead.productInterest === "archive") {

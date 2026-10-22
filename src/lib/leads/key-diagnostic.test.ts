@@ -3,7 +3,6 @@ import { supabaseServiceKey } from "@/lib/env";
 import {
   describeSupabaseServiceKey,
   logSupabaseKeyDiagnostic,
-  resetSupabaseKeyDiagnosticForTests,
 } from "@/lib/leads/key-diagnostic";
 
 const ref = "abcdefghijklmnopqrst";
@@ -23,7 +22,6 @@ describe("supabase service key diagnostic", () => {
     else process.env.SUPABASE_SERVICE_ROLE_KEY = originalKey;
     if (originalUrl === undefined) delete process.env.SUPABASE_URL;
     else process.env.SUPABASE_URL = originalUrl;
-    resetSupabaseKeyDiagnosticForTests();
   });
 
   it("reads SUPABASE_SERVICE_ROLE_KEY and strips wrapping quotes", () => {
@@ -52,19 +50,18 @@ describe("supabase service key diagnostic", () => {
     expect(info.prefix).toHaveLength(4);
 
     const error = vi.spyOn(console, "error").mockImplementation(() => {});
-    logSupabaseKeyDiagnostic("startup");
-    logSupabaseKeyDiagnostic("startup");
-    logSupabaseKeyDiagnostic("failure");
+    logSupabaseKeyDiagnostic();
     const text = error.mock.calls.flat().join(" ");
     expect(text).toContain("env=SUPABASE_SERVICE_ROLE_KEY");
     expect(text).toContain("role=anon");
     expect(text).toContain(`jwtRef=${ref}`);
     expect(text).toContain(`urlRef=${ref}`);
+    expect(text).toContain("reason=failure");
     expect(text).toContain("refsMatch=true");
     expect(text).toContain(`prefix=${token.slice(0, 4)}`);
     expect(text).not.toContain(token);
     expect(text).not.toContain("super-secret-signature");
-    expect(error).toHaveBeenCalledTimes(2);
+    expect(error).toHaveBeenCalledTimes(1);
     error.mockRestore();
   });
 

@@ -1,7 +1,7 @@
 import {
-  FOUNDING_CAP,
   FOUNDING_PRICE_49,
   FOUNDING_PRICE_69,
+  foundingSpotSentence,
 } from "@/lib/leads/founding";
 import type { SuccessBody } from "@/lib/leads/types";
 import {
@@ -32,7 +32,7 @@ export function thankYouCopy(result: SuccessBody): {
     return {
       title: "You're on the list.",
       paragraphs: [
-        `${added}You are number ${result.foundingSpot} of ${FOUNDING_CAP}, in line for the $${result.foundingPrice}/month founding rate.`,
+        `${added}${foundingSpotSentence(result.foundingSpot)}`,
         `That includes personal support from Brian and Simpli Archive. If you leave Simpli Check, Archive storage resumes at $${ARCHIVE_MONTHLY_USD}/month.`,
         noBill,
         exportLine,
