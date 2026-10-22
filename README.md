@@ -1,15 +1,16 @@
 # Simpli Intelligent Website
 
-Public one-page landing site for **Simpli Intelligent** (`simpliintelligent.com`).
+Public site for **Simpli Intelligent** (`simpliintelligent.com`).
 
-This is a standalone Next.js application. It is not connected to Simpli Operate, Simpli Reach, Supabase, authentication, analytics, or any backend services.
+Simpli Intelligent is the platform. Simpli Check, Simpli Operate, Simpli Archive, and Simpli Reach each have their own page. `/horizon` is the campaign page for Horizon inspectors ahead of the December 15, 2026 shutdown.
 
 ## Stack
 
 - Next.js App Router
 - TypeScript
 - Tailwind CSS
-- Static-first architecture (no database, no CMS, no paid services)
+- Supabase Postgres for signup storage (service role, server only)
+- Resend for signup notifications and founding-spot alerts
 
 ## Local setup
 
@@ -35,20 +36,41 @@ Open [http://localhost:3000](http://localhost:3000).
 
 ## Configuration
 
-Site identity, SEO copy, product listings, and the contact email live in one place:
+Site identity, SEO copy, product listings, and the contact email live in `src/lib/site.ts`.
 
-`src/lib/site.ts`
+To change the public contact address later (for example to a `@simpliintelligent.com` inbox), update `SITE.contactEmail` there. Signup alerts go to `LEAD_NOTIFY_EMAIL` when that is set, and otherwise to the same contact address.
 
-To change the contact address later (for example to a `@simpliintelligent.com` inbox), update only `SITE.contactEmail` in that file.
+Copy `.env.example` to `.env.local`. Without Supabase credentials, `npm run dev` keeps signups in memory and they disappear when the server restarts. Production without those credentials does not pretend a signup was saved. The form tells the visitor to email Brian instead.
+
+## Supabase setup
+
+Use the same Supabase project planned for Simpli Operate. The `leads` table is the shared inbox.
+
+1. Create or open the Supabase project.
+2. In the SQL editor, run `supabase/migrations/20261022160000_create_leads.sql`. The script creates `leads` and `founding_alerts`, turns on row level security with no public policies, and grants `submit_lead` to `service_role` only.
+3. In Project Settings → API, copy the project URL to `SUPABASE_URL`.
+4. Copy the `service_role` key to `SUPABASE_SERVICE_ROLE_KEY`. This key bypasses row level security. Put it only in server environment variables. Do not use the anon key for writes, and do not prefix the service key with `NEXT_PUBLIC_`.
+5. Redeploy. The first signup should appear in `public.leads` with `lead_status` = `New`.
+
+Founding spots are counted from `leads.founding_spot` in that database. Spots 1–50 are the $49/month Check tier. Spots 51–100 are the $69/month tier. Archive, Operate, and Reach signups do not take a spot. At 100 the site stops offering the founding tiers. Brian gets an email at 40, 50, 90, and 100 when Resend is configured.
+
+## Email setup
+
+1. Create a Resend account and verify the sending domain.
+2. Set `RESEND_API_KEY` and `EMAIL_FROM` (the verified from address).
+3. Set `LEAD_NOTIFY_EMAIL` to the inbox that should receive signup and threshold mail.
+4. Set `POSTAL_ADDRESS` to the street address that should appear on the privacy page and on confirmation email. CASL and CAN-SPAM expect that address before commercial email goes out.
+5. Set `NEXT_PUBLIC_BOOKING_URL` to the Cal.com or Calendly link. Until then, "Book 15 minutes with Brian" opens an email to the contact address.
+
+Campaign links should point at `/horizon` and keep their query string, for example `/horizon?utm_source=linkedin&utm_medium=post&utm_campaign=dec15&source=cahpi`. Those values are stored on the lead.
 
 ## Deployment (manual)
 
 1. Push this repository to GitHub.
 2. Import the repo into Vercel as a new project.
-3. Use the default Next.js settings (no environment variables required for V1).
-4. Connect `simpliintelligent.com` only when authorized.
-
-Do not deploy automatically from this local sprint unless explicitly approved.
+3. Add the environment variables from `.env.example`.
+4. Run the SQL migration before sending traffic.
+5. Connect `simpliintelligent.com` only when authorized.
 
 ## Project docs
 

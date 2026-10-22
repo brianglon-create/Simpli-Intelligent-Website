@@ -1,4 +1,4 @@
-import { SITE } from "@/lib/site";
+import { FOOTER_LINKS, SITE } from "@/lib/site";
 
 export function Footer() {
   return (
@@ -7,7 +7,21 @@ export function Footer() {
         <p className="font-display text-sm font-semibold tracking-[0.12em] text-navy">
           {SITE.wordmark}
         </p>
-        <p className="mt-4 text-sm text-muted">
+        <nav aria-label="Footer" className="mt-6">
+          <ul className="flex flex-wrap gap-x-6 gap-y-2">
+            {FOOTER_LINKS.map((link) => (
+              <li key={link.href}>
+                <a
+                  href={link.href}
+                  className="text-sm font-medium text-navy hover:text-blue"
+                >
+                  {link.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+        <p className="mt-6 text-sm text-muted">
           © {SITE.copyrightYear} {SITE.name}
         </p>
         <p className="mt-1 text-sm text-muted">

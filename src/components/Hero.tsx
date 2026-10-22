@@ -20,6 +20,10 @@ export function Hero() {
           help owner-operated businesses grow, organize, and operate with
           confidence.
         </p>
+        <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted sm:text-lg">
+          Simpli Intelligent is the platform behind Simpli Check, Operate,
+          Archive, and Reach.
+        </p>
         <div className="mt-10 flex flex-col gap-5 sm:flex-row sm:items-center sm:gap-8">
           <a
             href="#products"

@@ -10,6 +10,7 @@
   --text: #1a2332;
   --muted: #5a6577;
   --border: #d8dee8;
+  --danger: #8f2d2d;
   --white: #ffffff;
   --background: var(--blue-mist);
   --foreground: var(--text);
@@ -24,6 +25,7 @@
   --color-neutral: var(--neutral);
   --color-muted: var(--muted);
   --color-border: var(--border);
+  --color-danger: var(--danger);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-source-sans);

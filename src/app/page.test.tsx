@@ -69,14 +69,18 @@ describe("Simpli Intelligent homepage", () => {
       ).toBeInTheDocument();
       expect(screen.getByText(product.status)).toBeInTheDocument();
       expect(screen.getByText(product.category)).toBeInTheDocument();
+      expect(
+        screen.getByRole("link", { name: `View ${product.name}` }),
+      ).toHaveAttribute("href", product.href);
     }
   });
 
-  it("uses the shared contact email for the mailto CTA", () => {
+  it("uses the shared contact email beside the signup form", () => {
     render(<Home />);
 
+    expect(screen.getByRole("button", { name: /join the list/i })).toBeInTheDocument();
     expect(
-      screen.getByRole("link", { name: /contact simpli intelligent/i }),
+      screen.getByRole("link", { name: SITE.contactEmail }),
     ).toHaveAttribute("href", `mailto:${SITE.contactEmail}`);
   });
 
