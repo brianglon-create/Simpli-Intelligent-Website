@@ -72,12 +72,19 @@ export function resetSupabaseUrlWarningForTests(): void {
   warnedNormalizedSupabaseUrl = false;
 }
 
+/** The only env var the server uses as the Supabase admin key. */
+export const SUPABASE_SERVICE_ROLE_KEY_NAME = "SUPABASE_SERVICE_ROLE_KEY";
+
 /**
  * Service role key. Bypasses row level security. Never prefix with
  * NEXT_PUBLIC_ and never send it to the browser.
+ * Surrounding quotes are removed so a pasted `"eyJ..."` still works.
  */
 export function supabaseServiceKey(): string | undefined {
-  return read("SUPABASE_SERVICE_ROLE_KEY");
+  const value = read(SUPABASE_SERVICE_ROLE_KEY_NAME);
+  if (!value) return undefined;
+  const unquoted = value.replace(/^['"]+|['"]+$/g, "").trim();
+  return unquoted || undefined;
 }
 
 export function hasSupabase(): boolean {

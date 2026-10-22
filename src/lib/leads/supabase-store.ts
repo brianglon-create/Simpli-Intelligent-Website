@@ -1,6 +1,7 @@
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 import { supabaseServiceKey, supabaseUrl } from "@/lib/env";
 import { logServerError } from "@/lib/leads/error-log";
+import { logSupabaseKeyDiagnostic } from "@/lib/leads/key-diagnostic";
 import {
   foundingSnapshot,
   pendingAlerts,
@@ -19,12 +20,12 @@ let client: SupabaseClient | null = null;
 
 export function getSupabaseAdmin(): SupabaseClient {
   const url = supabaseUrl();
-  const key = supabaseServiceKey();
-  if (!url || !key) {
+  const serviceRoleKey = supabaseServiceKey();
+  if (!url || !serviceRoleKey) {
     throw new Error("Supabase is not configured.");
   }
   if (!client) {
-    client = createClient(url, key, {
+    client = createClient(url, serviceRoleKey, {
       auth: { persistSession: false, autoRefreshToken: false },
       global: {
         fetch: (input, init) => fetch(input, { ...init, cache: "no-store" }),
@@ -141,6 +142,7 @@ export function createSupabaseStore(): LeadStore {
       });
 
       if (error) {
+        logSupabaseKeyDiagnostic("failure");
         logServerError("Supabase submit_lead failed", error);
         throw error;
       }
@@ -159,6 +161,7 @@ export function createSupabaseStore(): LeadStore {
         .select("id", { count: "exact", head: true })
         .not("founding_spot", "is", null);
       if (error) {
+        logSupabaseKeyDiagnostic("failure");
         logServerError("Supabase founding count failed", error);
         throw error;
       }
@@ -169,6 +172,7 @@ export function createSupabaseStore(): LeadStore {
         .from("founding_alerts")
         .select("threshold");
       if (error) {
+        logSupabaseKeyDiagnostic("failure");
         logServerError("Supabase alert read failed", error);
         throw error;
       }
@@ -182,6 +186,7 @@ export function createSupabaseStore(): LeadStore {
         .insert({ threshold });
       if (!error) return true;
       if (error.code === "23505") return false;
+      logSupabaseKeyDiagnostic("failure");
       logServerError("Supabase alert claim failed", error);
       throw error;
     },
@@ -191,6 +196,7 @@ export function createSupabaseStore(): LeadStore {
         .delete()
         .eq("threshold", threshold);
       if (error) {
+        logSupabaseKeyDiagnostic("failure");
         logServerError("Supabase alert release failed", error);
         throw error;
       }

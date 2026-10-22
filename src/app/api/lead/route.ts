@@ -1,4 +1,5 @@
 import { logServerError } from "@/lib/leads/error-log";
+import { logSupabaseKeyDiagnostic } from "@/lib/leads/key-diagnostic";
 import { submitLead } from "@/lib/leads/submit";
 import { clientAddress, rateLimit } from "@/lib/leads/rate-limit";
 import { SITE } from "@/lib/site";
@@ -18,6 +19,7 @@ function sameOrigin(request: Request): boolean {
 }
 
 export async function POST(request: Request) {
+  logSupabaseKeyDiagnostic("startup");
   if (!sameOrigin(request)) {
     return Response.json({ ok: false, error: "origin" }, { status: 403 });
   }
@@ -59,6 +61,7 @@ export async function POST(request: Request) {
       headers: { "Cache-Control": "no-store" },
     });
   } catch (error) {
+    logSupabaseKeyDiagnostic("failure");
     logServerError("Lead route failed", error);
     return Response.json(
       {
