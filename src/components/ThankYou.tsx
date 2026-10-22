@@ -28,10 +28,14 @@ export function ThankYou({
           <p key={paragraph}>{paragraph}</p>
         ))}
       </div>
-      <p className="mt-8 text-base font-medium text-navy">Prefer to talk?</p>
-      <div className="mt-4">
-        <BookingLink bookingUrl={bookingUrl} />
-      </div>
+      {bookingUrl ? (
+        <>
+          <p className="mt-8 text-base font-medium text-navy">Prefer to talk?</p>
+          <div className="mt-4">
+            <BookingLink bookingUrl={bookingUrl} />
+          </div>
+        </>
+      ) : null}
       <p className="mt-6 text-sm text-muted">
         <a href="/privacy" className="font-medium text-navy underline-offset-2 hover:underline">
           Privacy policy
