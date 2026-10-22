@@ -1,4 +1,5 @@
 import { hasSupabase } from "@/lib/env";
+import { logServerError } from "@/lib/leads/error-log";
 import { foundingSnapshot } from "@/lib/leads/founding";
 import { createMemoryStore } from "@/lib/leads/memory-store";
 import { createSupabaseStore } from "@/lib/leads/supabase-store";
@@ -87,10 +88,7 @@ export async function readFoundingStatus(): Promise<FoundingSnapshot> {
   try {
     return await getLeadStore().status();
   } catch (error) {
-    console.error(
-      "Founding status unavailable",
-      error instanceof Error ? error.message : "unknown",
-    );
+    logServerError("Founding status unavailable", error);
     return foundingSnapshot(0, false);
   }
 }

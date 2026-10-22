@@ -3,7 +3,7 @@ import { NAV_LINKS, PRODUCTS, SITE } from "@/lib/site";
 
 describe("site configuration", () => {
   it("keeps contact email in a single configurable constant", () => {
-    expect(SITE.contactEmail).toBe("brianglon@gmail.com");
+    expect(SITE.contactEmail).toBe("brian@simpliintelligent.com");
     expect(SITE.url).toBe("https://simpliintelligent.com");
   });
 

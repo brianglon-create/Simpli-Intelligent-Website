@@ -140,6 +140,6 @@ describe("submitLead", () => {
     const outcome = await submitLead(base, { store: createUnconfiguredStore() });
     expect(outcome.status).toBe(503);
     if (outcome.status !== 503) return;
-    expect(outcome.body.message).toMatch(/brianglon@gmail.com/);
+    expect(outcome.body.message).toMatch(/brian@simpliintelligent.com/);
   });
 });

@@ -1,5 +1,6 @@
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 import { supabaseServiceKey, supabaseUrl } from "@/lib/env";
+import { logServerError } from "@/lib/leads/error-log";
 import {
   foundingSnapshot,
   pendingAlerts,
@@ -140,7 +141,7 @@ export function createSupabaseStore(): LeadStore {
       });
 
       if (error) {
-        console.error("Supabase submit_lead failed", error.code, error.message);
+        logServerError("Supabase submit_lead failed", error);
         throw error;
       }
 
@@ -158,7 +159,7 @@ export function createSupabaseStore(): LeadStore {
         .select("id", { count: "exact", head: true })
         .not("founding_spot", "is", null);
       if (error) {
-        console.error("Supabase founding count failed", error.code, error.message);
+        logServerError("Supabase founding count failed", error);
         throw error;
       }
       return foundingSnapshot(count ?? 0, true);
@@ -168,7 +169,7 @@ export function createSupabaseStore(): LeadStore {
         .from("founding_alerts")
         .select("threshold");
       if (error) {
-        console.error("Supabase alert read failed", error.code, error.message);
+        logServerError("Supabase alert read failed", error);
         throw error;
       }
       return (data ?? [])
@@ -181,7 +182,7 @@ export function createSupabaseStore(): LeadStore {
         .insert({ threshold });
       if (!error) return true;
       if (error.code === "23505") return false;
-      console.error("Supabase alert claim failed", error.code, error.message);
+      logServerError("Supabase alert claim failed", error);
       throw error;
     },
     async unmarkAlertSent(threshold) {
@@ -190,7 +191,7 @@ export function createSupabaseStore(): LeadStore {
         .delete()
         .eq("threshold", threshold);
       if (error) {
-        console.error("Supabase alert release failed", error.code, error.message);
+        logServerError("Supabase alert release failed", error);
         throw error;
       }
     },

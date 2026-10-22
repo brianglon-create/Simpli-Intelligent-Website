@@ -1,4 +1,5 @@
 import { canSendEmail } from "@/lib/env";
+import { logServerError } from "@/lib/leads/error-log";
 import { pendingAlerts, priceForSpot } from "@/lib/leads/founding";
 import {
   leadConfirmation,
@@ -68,10 +69,7 @@ export async function flushFoundingAlerts(send: SendFn = sendEmail): Promise<voi
     if (!status.configured || status.count < 40) return;
     await deliverAlerts(store, status.count, send);
   } catch (error) {
-    console.error(
-      "Founding alert flush failed",
-      error instanceof Error ? error.message : "unknown",
-    );
+    logServerError("Founding alert flush failed", error);
   }
 }
 
@@ -91,17 +89,28 @@ export async function submitLead(
     return { status: 200, body: blandSuccess(interest) };
   }
 
-  const store = deps?.store ?? getLeadStore();
   const send = deps?.send ?? sendEmail;
+
+  let store: LeadStore;
+  try {
+    store = deps?.store ?? getLeadStore();
+  } catch (error) {
+    logServerError("Lead store setup failed", error);
+    return {
+      status: 503,
+      body: {
+        ok: false,
+        error: "storage_unconfigured",
+        message: storageUnconfiguredMessage(),
+      },
+    };
+  }
 
   let saved;
   try {
     saved = await store.save(parsed.lead);
   } catch (error) {
-    console.error(
-      "Lead save failed",
-      error instanceof Error ? error.message : "unknown",
-    );
+    logServerError("Lead save failed", error);
     return {
       status: 503,
       body: {

@@ -38,7 +38,7 @@ Open [http://localhost:3000](http://localhost:3000).
 
 Site identity, SEO copy, product listings, and the contact email live in `src/lib/site.ts`.
 
-To change the public contact address later (for example to a `@simpliintelligent.com` inbox), update `SITE.contactEmail` there. Signup alerts go to `LEAD_NOTIFY_EMAIL` when that is set, and otherwise to the same contact address.
+The public contact address is `brian@simpliintelligent.com` (`SITE.contactEmail` in `src/lib/site.ts`). Signup alerts go to `LEAD_NOTIFY_EMAIL` when that is set, and otherwise to the same address.
 
 Copy `.env.example` to `.env.local`. Without Supabase credentials, `npm run dev` keeps signups in memory and they disappear when the server restarts. Production without those credentials does not pretend a signup was saved. The form tells the visitor to email Brian instead.
 
@@ -48,7 +48,7 @@ Use the same Supabase project planned for Simpli Operate. The `leads` table is t
 
 1. Create or open the Supabase project.
 2. In the SQL editor, run `supabase/migrations/20261022160000_create_leads.sql`. The script creates `leads` and `founding_alerts`, turns on row level security with no public policies, and grants `submit_lead` to `service_role` only.
-3. In Project Settings → API, copy the project URL to `SUPABASE_URL`.
+3. In Project Settings → API, copy the Project URL to `SUPABASE_URL`. Use `https://<project-ref>.supabase.co` with no `/rest/v1` path. A bare 20-character project ref, a missing `https://`, or a trailing `/rest/v1/` is rewritten to that origin. Do not paste the database connection string.
 4. Copy the `service_role` key to `SUPABASE_SERVICE_ROLE_KEY`. This key bypasses row level security. Put it only in server environment variables. Do not use the anon key for writes, and do not prefix the service key with `NEXT_PUBLIC_`.
 5. Redeploy. The first signup should appear in `public.leads` with `lead_status` = `New`.
 

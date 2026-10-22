@@ -1,3 +1,4 @@
+import { logServerError } from "@/lib/leads/error-log";
 import { submitLead } from "@/lib/leads/submit";
 import { clientAddress, rateLimit } from "@/lib/leads/rate-limit";
 import { SITE } from "@/lib/site";
@@ -58,10 +59,7 @@ export async function POST(request: Request) {
       headers: { "Cache-Control": "no-store" },
     });
   } catch (error) {
-    console.error(
-      "Lead route failed",
-      error instanceof Error ? error.message : "unknown",
-    );
+    logServerError("Lead route failed", error);
     return Response.json(
       {
         ok: false,

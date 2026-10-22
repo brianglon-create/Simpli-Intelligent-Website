@@ -1,12 +1,12 @@
 /**
  * Site-wide configuration.
- * Update contactEmail here when switching to a @simpliintelligent.com address.
+ * contactEmail is the public address shown on the site and in fallback messages.
  */
 export const SITE = {
   name: "Simpli Intelligent",
   wordmark: "SIMPLI INTELLIGENT",
   url: "https://simpliintelligent.com",
-  contactEmail: "brianglon@gmail.com",
+  contactEmail: "brian@simpliintelligent.com",
   legalEntity: "Polaris Intelligence LLC",
   location: "South Bend, Indiana",
   copyrightYear: 2026,
