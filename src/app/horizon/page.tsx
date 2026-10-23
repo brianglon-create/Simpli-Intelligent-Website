@@ -9,7 +9,7 @@ export const dynamic = "force-dynamic";
 export const metadata = pageMetadata({
   title: "Horizon shuts down December 15 | Simpli Intelligent",
   description:
-    "Horizon export tools stop December 15, 2026. Simpli Archive keeps inspection report history searchable. Simpli Check is the inspector-built waitlist for shorter report writing.",
+    "Horizon export tools stop December 15, 2026. Simpli Archive keeps inspection report history searchable. Join the Simpli Check waitlist for our expected November launch.",
   path: "/horizon",
 });
 

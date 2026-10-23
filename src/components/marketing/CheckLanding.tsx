@@ -4,7 +4,7 @@ import { LeadForm } from "@/components/LeadForm";
 import { Section } from "@/components/Section";
 import { primaryButtonClass, secondaryButtonClass } from "@/components/classes";
 import type { FoundingSnapshot } from "@/lib/leads/types";
-import { INSPECTOR_BYLINE, OFFER_INSPECTORS } from "@/lib/offer-copy";
+import { CHECK_FEATURES_INTRO, CHECK_HERO } from "@/lib/offer-copy";
 import { CHECK_PERKS } from "@/lib/offers";
 
 export function CheckLanding({ status }: { status: FoundingSnapshot }) {
@@ -19,10 +19,7 @@ export function CheckLanding({ status }: { status: FoundingSnapshot }) {
             Cut the time you spend writing the report.
           </h1>
           <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted">
-            {INSPECTOR_BYLINE} Simpli Check is inspection software from that work,
-            not a sales team. It is on the waitlist. Photo recognition, report
-            narratives, and client defect notes are coming to {OFFER_INSPECTORS} as
-            Check launches.
+            {CHECK_HERO}
           </p>
           <div className="mt-10 flex flex-col gap-3 sm:flex-row">
             <a href="#signup" className={primaryButtonClass}>
@@ -34,10 +31,9 @@ export function CheckLanding({ status }: { status: FoundingSnapshot }) {
           </div>
         </div>
       </section>
-      <Section id="check-features" title={`Coming to ${OFFER_INSPECTORS}`} tone="white">
+      <Section id="check-features" title="Launching in November" tone="white">
         <p className="max-w-3xl text-lg leading-relaxed text-muted">
-          The writing is what eats the evening. These are coming to {OFFER_INSPECTORS}{" "}
-          as Check launches. They are not available to use today.
+          {CHECK_FEATURES_INTRO}
         </p>
         <CheckPillars />
         <ul className="mt-8 max-w-3xl space-y-3 text-base leading-relaxed text-muted">

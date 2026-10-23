@@ -6,7 +6,6 @@ import {
 import {
   FOUNDER_SUPPORT,
   INSPECTOR_BYLINE,
-  OFFER_INSPECTOR,
   OFFER_INSPECTORS,
   OFFER_NAME,
   offerRateLine,
@@ -49,7 +48,7 @@ export const TIMELINE = [
   },
   {
     title: "Switch when you choose",
-    body: "Move to Spectora, Mach One, or something else, or join the Simpli Check waitlist and decide later. Archive does not choose your next inspection tool.",
+    body: "Move to Spectora, Mach One, or something else, or join the Simpli Check waitlist and decide later. Simpli Archive does not choose your next inspection tool.",
   },
 ] as const;
 
@@ -60,11 +59,11 @@ export const ARCHIVE_BULLETS = [
   },
   {
     title: "Works with any next step.",
-    body: "Switching to Spectora, Mach One, or something else? Archive sits alongside it. No lock-in.",
+    body: "Switching to Spectora, Mach One, or something else? Simpli Archive sits alongside it. No lock-in.",
   },
   {
     title: "Built because an inspector needed it.",
-    body: "Old reports get pulled for claims, disputes, and repeat clients. Archive is being built for that moment.",
+    body: "Old reports get pulled for claims, disputes, and repeat clients. Simpli Archive is being built for that moment.",
   },
 ] as const;
 
@@ -94,7 +93,7 @@ export const EXPORT_STEPS = [
 export const CHECK_PILLARS = [
   {
     title: "Real-time photo recognition",
-    body: "Snap a photo and Check identifies the defect as you go.",
+    body: "Snap a photo and Simpli Check identifies the defect as you go.",
   },
   {
     title: "Automatic narrative generation",
@@ -108,17 +107,16 @@ export const CHECK_PILLARS = [
 
 export const CHECK_PERKS = [
   INSPECTOR_BYLINE,
-  `${offerRateLine(FOUNDING_PRICE_49, FOUNDING_PRICE_69)} It covers the first ${FOUNDING_CAP} Check signups. Then those tiers close.`,
+  `${offerRateLine(FOUNDING_PRICE_49, FOUNDING_PRICE_69)} It covers the first ${FOUNDING_CAP} Simpli Check signups. Then those tiers close.`,
   FOUNDER_SUPPORT,
   "First access to new products and features at discounted rates.",
-  `Simpli Archive included while you are an ${OFFER_INSPECTOR}. If you leave Simpli Check, Archive storage resumes at $${ARCHIVE_MONTHLY_USD}/month.`,
 ] as const;
 
 export const HORIZON_FAQS = [
   {
     question: "Do I need to leave Spectora or Mach One to use Simpli Archive?",
     answer:
-      "No. Archive is meant to sit alongside the software you use next. It does not lock you in, and it does not replace that software.",
+      "No. Simpli Archive is meant to sit alongside the software you use next. It does not lock you in, and it does not replace that software.",
   },
   {
     question: "What does Spectora's one-click migration leave behind?",
@@ -131,18 +129,18 @@ export const HORIZON_FAQS = [
       "Export tools stop that day. Horizon has said the data will no longer be accessible after that, and Carson Dunlop deletes it. Export before the window closes.",
   },
   {
-    question: "What file types can Archive take?",
+    question: "What file types can Simpli Archive take?",
     answer:
-      "Tell us what Horizon exported and we will confirm what Archive can store before you upload anything.",
+      "Tell us what Horizon exported and we will confirm what Simpli Archive can store before you upload anything.",
   },
   {
     question: "Where is my data stored, and who owns the reports?",
     answer:
-      "Your reports stay yours. This form stores the contact details in our Supabase database, described in the privacy policy. A hosting location for report files will be stated before Archive accepts uploads.",
+      "Your reports stay yours. This form stores the contact details in our Supabase database, described in the privacy policy. A hosting location for report files will be stated before Simpli Archive accepts uploads.",
   },
   {
     question: "What happens if I cancel?",
-    answer: `This form does not start billing. Archive is $${ARCHIVE_FIRST_MONTH_USD} for the first month, then $${ARCHIVE_MONTHLY_USD}/month. It is included for Simpli Check ${OFFER_INSPECTORS}. If you leave Simpli Check, Archive storage resumes at $${ARCHIVE_MONTHLY_USD}/month unless you cancel that too. How long uploaded reports are kept after you cancel will be stated before uploads open.`,
+    answer: `This form does not start billing. Simpli Archive is $${ARCHIVE_FIRST_MONTH_USD} for the first month, then $${ARCHIVE_MONTHLY_USD}/month. How long uploaded reports are kept after you cancel will be stated before uploads open.`,
   },
   {
     question: "Do you serve Canadian inspectors?",
@@ -151,17 +149,17 @@ export const HORIZON_FAQS = [
   },
   {
     question: `What do ${OFFER_INSPECTORS} get?`,
-    answer: `${offerRateLine(FOUNDING_PRICE_49, FOUNDING_PRICE_69)} ${OFFER_INSPECTORS} get personal onboarding and support directly from the founder, first access to new products and features at discounted rates, and Simpli Archive included. If you leave Check, Archive storage resumes at $${ARCHIVE_MONTHLY_USD}/month. After ${FOUNDING_CAP} ${OFFER_NAME} signups, those tiers close on this site. The form does not charge a card.`,
+    answer: `${offerRateLine(FOUNDING_PRICE_49, FOUNDING_PRICE_69)} ${OFFER_INSPECTORS} get personal onboarding and support directly from the founder, and first access to new products and features at discounted rates. After ${FOUNDING_CAP} ${OFFER_NAME} signups, those tiers close on this site. The form does not charge a card.`,
   },
   {
     question: "What can Simpli Check do?",
     answer:
-      `Simpli Check is on the waitlist, built by a home inspector with 10 years of hands-on industry experience, to cut the time you spend writing the report. Coming to ${OFFER_INSPECTORS} as Check launches: snap a photo and Check identifies the defect as you go; report-ready narratives from your photos and notes, which you review and edit; and plain-language education for the client on each defect, what it is and why it matters. It is not available to use today.`,
+      `${INSPECTOR_BYLINE} Simpli Check is inspection software designed around how inspectors actually work, not a sales team. Join the waitlist for our expected November launch. Snap a photo and Simpli Check identifies the defect as you go; report-ready narratives from your photos and notes, which you review and edit; and plain-language education for the client on each defect, what it is and why it matters. These features launch with Simpli Check in November, and ${OFFER_INSPECTORS} get them first.`,
   },
   {
     question: "How will I search old reports?",
     answer:
-      "Archive is being built so past reports live in one searchable place instead of a folder of exports.",
+      "Simpli Archive is being built so past reports live in one searchable place instead of a folder of exports.",
   },
   {
     question: "Does joining the list bill me?",

@@ -34,7 +34,9 @@ export function thankYouCopy(result: SuccessBody): {
       title: "You're on the list.",
       paragraphs: [
         `${added}${publicFoundingLine(result.foundingPrice)}`,
-        `That includes personal onboarding and support directly from the founder, and Simpli Archive. If you leave Simpli Check, Archive storage resumes at $${ARCHIVE_MONTHLY_USD}/month.`,
+        result.interest === "check"
+          ? "That includes personal onboarding and support directly from the founder."
+          : `That includes personal onboarding and support directly from the founder, and Simpli Archive. If you leave Simpli Check, Simpli Archive storage resumes at $${ARCHIVE_MONTHLY_USD}/month.`,
         noBill,
         exportLine,
       ],

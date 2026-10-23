@@ -34,8 +34,8 @@ export function ArchivePricing({
           </p>
           <p className="mt-3 text-base leading-relaxed text-muted">
             {closed
-              ? `${OFFER_NAME} Archive inclusion is closed with the ${OFFER_NAME} tiers.`
-              : `Included for Simpli Check ${OFFER_INSPECTORS}. If an ${OFFER_INSPECTOR} leaves Check, storage resumes at this rate.`}
+              ? `${OFFER_NAME} Simpli Archive inclusion is closed with the ${OFFER_NAME} tiers.`
+              : `Included for Simpli Check ${OFFER_INSPECTORS}. If an ${OFFER_INSPECTOR} leaves Simpli Check, storage resumes at this rate.`}
           </p>
         </li>
       </ul>

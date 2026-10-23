@@ -1,4 +1,4 @@
-import { INSPECTOR_BYLINE, OFFER_INSPECTORS } from "@/lib/offer-copy";
+import { CHECK_HERO } from "@/lib/offer-copy";
 
 /**
  * Site-wide configuration.
@@ -20,9 +20,9 @@ export const SITE = {
 } as const;
 
 export const NAV_LINKS = [
-  { href: "/check", label: "Check" },
+  { href: "/check", label: "Simpli Check" },
   { href: "/operate", label: "Operate" },
-  { href: "/archive", label: "Archive" },
+  { href: "/archive", label: "Simpli Archive" },
   { href: "/reach", label: "Reach" },
   { href: "/horizon", label: "Horizon" },
   { href: "/#about", label: "About" },
@@ -31,9 +31,9 @@ export const NAV_LINKS = [
 
 export const FOOTER_LINKS = [
   { href: "/horizon", label: "Horizon" },
-  { href: "/check", label: "Check" },
+  { href: "/check", label: "Simpli Check" },
   { href: "/operate", label: "Operate" },
-  { href: "/archive", label: "Archive" },
+  { href: "/archive", label: "Simpli Archive" },
   { href: "/reach", label: "Reach" },
   { href: "/privacy", label: "Privacy" },
   { href: "/#contact", label: "Contact" },
@@ -44,8 +44,7 @@ export const PRODUCTS = [
     id: "check",
     name: "SIMPLI CHECK",
     category: "Inspection Software",
-    description:
-      `Inspection software on the waitlist. ${INSPECTOR_BYLINE} Built to cut report-writing time. Coming to ${OFFER_INSPECTORS}: photo recognition, narratives you review and edit, and plain-language defect notes for clients.`,
+    description: CHECK_HERO,
     status: "Waitlist",
     href: "/check",
   },

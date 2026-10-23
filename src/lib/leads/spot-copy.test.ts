@@ -75,6 +75,29 @@ describe("founding spot wording", () => {
       "Prefer to talk? Reply to this email or email brian@simpliintelligent.com.",
     );
     expect(confirmation.text).not.toMatch(/book 15 minutes/i);
+    expect(confirmation.text).toContain("Simpli Archive storage resumes at $9/month.");
+
+    const checkOnly = leadConfirmation({ ...lead(12), productInterest: "check" });
+    expect(checkOnly.text).toContain(
+      "You're in line for an Early Access spot at $49/month (first 50). That includes personal onboarding and support directly from the founder.",
+    );
+    expect(checkOnly.text).not.toContain("Archive storage resumes");
+    expect(checkOnly.text).not.toContain("Simpli Archive storage resumes");
+
+    const checkThankYou = thankYouCopy({
+      ok: true,
+      duplicate: false,
+      upgraded: false,
+      interest: "check",
+      foundingSpot: null,
+      foundingPrice: 49,
+      foundingClosed: false,
+      notified: true,
+    });
+    expect(checkThankYou.paragraphs.join(" ")).toContain(
+      "That includes personal onboarding and support directly from the founder.",
+    );
+    expect(checkThankYou.paragraphs.join(" ")).not.toMatch(/archive storage resumes/i);
 
     const notice = signupNotification({
       lead: lead(1),

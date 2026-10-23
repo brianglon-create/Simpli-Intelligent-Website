@@ -29,7 +29,7 @@ export default function PrivacyPage() {
             <p className="mt-3">
               {SITE.brandLine}, {SITE.location}. This policy covers the signup form
               on {SITE.url}. It does not yet cover report files, because Simpli
-              Archive is not accepting uploads.
+              Simpli Archive is not accepting uploads.
             </p>
           </section>
           <section>

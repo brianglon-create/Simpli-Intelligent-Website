@@ -31,7 +31,7 @@ export function ArchiveLanding({ status }: { status: FoundingSnapshot }) {
           </div>
         </div>
       </section>
-      <Section id="archive-details" title="What Archive is for" tone="white">
+      <Section id="archive-details" title="What Simpli Archive is for" tone="white">
         <ul className="grid gap-4 lg:grid-cols-3">
           {ARCHIVE_BULLETS.map((bullet) => (
             <li key={bullet.title} className="border border-border bg-neutral p-6">

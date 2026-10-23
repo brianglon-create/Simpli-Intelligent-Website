@@ -21,8 +21,8 @@ export function Hero() {
           confidence.
         </p>
         <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted sm:text-lg">
-          Simpli Intelligent is the platform behind Simpli Check, Operate,
-          Archive, and Reach.
+          Simpli Intelligent is the platform behind Simpli Check, Simpli Operate,
+          Simpli Archive, and Simpli Reach.
         </p>
         <div className="mt-10 flex flex-col gap-5 sm:flex-row sm:items-center sm:gap-8">
           <a

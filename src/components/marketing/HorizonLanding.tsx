@@ -11,7 +11,6 @@ import { primaryButtonClass } from "@/components/classes";
 import type { FoundingSnapshot } from "@/lib/leads/types";
 import {
   ARCHIVE_BULLETS,
-  ARCHIVE_MONTHLY_USD,
   CHECK_PERKS,
   EXPORT_STEPS,
   HORIZON_FAQS,
@@ -20,7 +19,11 @@ import {
   SHUTDOWN_LABEL,
   TIMELINE,
 } from "@/lib/offers";
-import { INSPECTOR_BYLINE, OFFER_INSPECTORS } from "@/lib/offer-copy";
+import {
+  CHECK_FEATURES_INTRO,
+  CHECK_WAITLIST_STATUS,
+  INSPECTOR_BYLINE,
+} from "@/lib/offer-copy";
 import { SITE } from "@/lib/site";
 
 const lede = "max-w-3xl text-lg leading-relaxed text-muted";
@@ -41,9 +44,8 @@ export function HorizonLanding({ status }: { status: FoundingSnapshot }) {
           </h1>
           <p className={`${lede} mt-6`}>
             Historical reports, PDFs, photos, and work orders stay behind when you
-            switch. Simpli Archive keeps that history. Simpli Check is the waitlist
-            for inspection software, built by a working inspector, that cuts the
-            time you spend writing the report.
+            switch. Simpli Archive keeps that history. Simpli Check is inspection
+            software designed around how inspectors actually work. {CHECK_WAITLIST_STATUS}
           </p>
           <Countdown />
           <SignupLinks />
@@ -134,10 +136,10 @@ export function HorizonLanding({ status }: { status: FoundingSnapshot }) {
           ))}
         </ul>
         <div className={`${lede} mt-8 space-y-4`}>
-          <p>How it works, once Archive is open:</p>
+          <p>How it works, once Simpli Archive is open:</p>
           <ol className="list-decimal space-y-2 pl-5">
             <li>Export your Horizon history before {SHUTDOWN_LABEL}.</li>
-            <li>Tell us what you exported. We confirm how those files come into Archive before you pay.</li>
+            <li>Tell us what you exported. We confirm how those files come into Simpli Archive before you pay.</li>
             <li>Find a past report later without digging through a folder.</li>
           </ol>
         </div>
@@ -145,10 +147,7 @@ export function HorizonLanding({ status }: { status: FoundingSnapshot }) {
       </Section>
 
       <Section id="check-offer" title="Simpli Check cuts the time you spend writing the report" tone="white" eyebrow="Simpli Check">
-        <p className={lede}>
-          {INSPECTOR_BYLINE} Join the waitlist. The tools below are coming to{" "}
-          {OFFER_INSPECTORS} as Check launches. They are not available to use today.
-        </p>
+        <p className={lede}>{CHECK_FEATURES_INTRO}</p>
         <CheckPillars />
         <ul className="mt-8 max-w-3xl space-y-3 text-base leading-relaxed text-muted">
           {CHECK_PERKS.map((perk) => (
@@ -158,18 +157,14 @@ export function HorizonLanding({ status }: { status: FoundingSnapshot }) {
         <FoundingOffer status={status} showCta />
       </Section>
 
-      <Section id="together" title="Archive and Check, under one platform" tone="navy" eyebrow={SITE.wordmark}>
+      <Section id="together" title="Simpli Archive and Simpli Check, under one platform" tone="navy" eyebrow={SITE.wordmark}>
         <div className="max-w-3xl space-y-4 text-lg leading-relaxed">
           <p>
             Simpli Intelligent is the platform. Simpli Archive and Simpli Check are
-            two products on it. Archive is the history problem every switcher has,
-            whichever software they choose next. Check is the inspection product on
-            the waitlist, built to cut the time a working inspector spends writing
-            the report.
-          </p>
-          <p>
-            {OFFER_INSPECTORS} include Archive while they stay on Check. If
-            they leave, Archive storage continues at ${ARCHIVE_MONTHLY_USD}/month.
+            two products on it. Simpli Archive is the history problem every switcher
+            has, whichever software they choose next. Simpli Check is the inspection
+            product built to cut the time a working inspector spends writing the
+            report. {CHECK_WAITLIST_STATUS}
           </p>
           <p>
             The long-term aim is for Simpli products to share data into one
@@ -229,7 +224,7 @@ export function HorizonLanding({ status }: { status: FoundingSnapshot }) {
 
       <Section id="join" title="Tell us what you need" tone="white">
         <p className={`${lede} mb-8`}>
-          One form. Choose Archive, Check, or both.
+          One form. Choose Simpli Archive, Simpli Check, or both.
         </p>
         <PersonalFollowUp />
         <LeadForm

@@ -116,7 +116,7 @@ export function thresholdNotification(
   } else if (threshold === 90) {
     detail = `${remaining69} spots remain at $${FOUNDING_PRICE_69}/month.`;
   } else {
-    detail = `${OFFER_NAME} pricing is now closed on the site. New Check signups join the waitlist without an ${OFFER_NAME} rate. Archive remains $${ARCHIVE_FIRST_MONTH_USD} for the first month, then $${ARCHIVE_MONTHLY_USD}/month.`;
+    detail = `${OFFER_NAME} pricing is now closed on the site. New Simpli Check signups join the waitlist without an ${OFFER_NAME} rate. Simpli Archive remains $${ARCHIVE_FIRST_MONTH_USD} for the first month, then $${ARCHIVE_MONTHLY_USD}/month.`;
   }
 
   return {
@@ -143,7 +143,9 @@ export function leadConfirmation(lead: StoredLead): OutboundEmail {
   if (foundingPrice) {
     lines.push(
       "",
-      `${publicFoundingLine(foundingPrice)} That includes personal onboarding and support directly from the founder, and Simpli Archive. If you leave Simpli Check, Archive storage resumes at $${ARCHIVE_MONTHLY_USD}/month.`,
+      lead.productInterest === "check"
+        ? `${publicFoundingLine(foundingPrice)} That includes personal onboarding and support directly from the founder.`
+        : `${publicFoundingLine(foundingPrice)} That includes personal onboarding and support directly from the founder, and Simpli Archive. If you leave Simpli Check, Simpli Archive storage resumes at $${ARCHIVE_MONTHLY_USD}/month.`,
       "This email does not start billing.",
     );
   } else if (lead.productInterest === "archive") {

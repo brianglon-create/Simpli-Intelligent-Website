@@ -39,9 +39,13 @@ describe("Horizon landing", () => {
     expect(screen.getByRole("heading", { name: /real-time photo recognition/i })).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: /automatic narrative generation/i })).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: /inspector reference library/i })).toBeInTheDocument();
-    expect(screen.getAllByText(/coming to early access inspectors/i).length).toBeGreaterThan(0);
+    expect(screen.getAllByText(/launching november/i).length).toBeGreaterThan(0);
+    expect(screen.getAllByText(/join the waitlist for our expected november launch/i).length).toBeGreaterThan(0);
+    expect(screen.getByText(/report writing is what eats your evenings/i)).toBeInTheDocument();
+    expect(screen.queryByText(/it is on the waitlist/i)).not.toBeInTheDocument();
+    expect(screen.queryByText(/coming to early access inspectors/i)).not.toBeInTheDocument();
     expect(screen.getAllByText(/early access rate: \$49\/month \(first 50\), \$69\/month \(next 50\)/i).length).toBeGreaterThan(0);
-    expect(screen.getAllByText(/not available to use today/i).length).toBeGreaterThan(0);
+    expect(screen.getByText(/not something you can use today/i)).toBeInTheDocument();
     expect(screen.getAllByRole("link", { name: /protect my report history/i }).length).toBeGreaterThan(1);
     expect(screen.queryByText(/your findings and your wording/i)).not.toBeInTheDocument();
     expect(screen.queryByText(/address, client, or date/i)).not.toBeInTheDocument();
@@ -90,7 +94,16 @@ describe("product pages", () => {
     expect(screen.queryByText(/north star/i)).not.toBeInTheDocument();
     expect(screen.queryByText(/\bBrian\b/)).not.toBeInTheDocument();
     expect(screen.getByRole("heading", { name: /real-time photo recognition/i })).toBeInTheDocument();
-    expect(screen.getByText(/identifies the defect as you go/i)).toBeInTheDocument();
+    expect(
+      screen.getByText(
+        /built by a home inspector with 10 years of hands-on industry experience\. simpli check is inspection software designed around how inspectors actually work, not a sales team\. join the waitlist for our expected november launch\./i,
+      ),
+    ).toBeInTheDocument();
+    expect(screen.getByText(/report writing is what eats your evenings/i)).toBeInTheDocument();
+    expect(screen.getAllByText(/launching november/i).length).toBeGreaterThan(0);
+    expect(screen.getByText(/snap a photo and simpli check identifies the defect as you go/i)).toBeInTheDocument();
+    expect(screen.queryByText(/it is on the waitlist/i)).not.toBeInTheDocument();
+    expect(screen.queryByText(/archive storage resumes/i)).not.toBeInTheDocument();
     expect(screen.getByText(/you review and edit them/i)).toBeInTheDocument();
     expect(screen.getByText(/what it is, and why it matters/i)).toBeInTheDocument();
     expect(screen.queryByText(/save \d+%/i)).not.toBeInTheDocument();

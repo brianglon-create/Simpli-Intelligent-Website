@@ -16,12 +16,12 @@ const INTEREST_OPTIONS: { value: Interest; label: string; hint: string }[] = [
   {
     value: "check",
     label: "Simpli Check",
-    hint: "Join the inspection software waitlist",
+    hint: "Join the waitlist for our expected November launch",
   },
   {
     value: "both",
-    label: "Archive and Check",
-    hint: "History now, and the Check waitlist",
+    label: "Simpli Archive and Simpli Check",
+    hint: "Simpli Archive now. Join the waitlist for our expected November launch",
   },
   {
     value: "operate",

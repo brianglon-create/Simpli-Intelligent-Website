@@ -56,7 +56,7 @@ export function FoundingOffer({
             ${FOUNDING_PRICE_49}/month
           </p>
           <p className="mt-3 text-base leading-relaxed text-muted">
-            Locked at this rate for the first 50 Check signups.
+            Locked at this rate for the first 50 Simpli Check signups.
           </p>
         </li>
         <li className="border border-border bg-white p-6">
@@ -67,17 +67,13 @@ export function FoundingOffer({
             ${FOUNDING_PRICE_69}/month
           </p>
           <p className="mt-3 text-base leading-relaxed text-muted">
-            Locked at this rate for the following 50 Check signups.
+            Locked at this rate for the following 50 Simpli Check signups.
           </p>
         </li>
       </ul>
       <ul className="mt-6 max-w-3xl space-y-2 text-base leading-relaxed text-muted">
         <li>{FOUNDER_SUPPORT}</li>
         <li>First access to new products and features at discounted rates.</li>
-        <li>
-          Simpli Archive is included. If you leave Simpli Check, Archive storage
-          resumes at ${ARCHIVE_MONTHLY_USD}/month.
-        </li>
       </ul>
       {showCta ? (
         <a href="#signup" className={`${primaryButtonClass} mt-8`}>
