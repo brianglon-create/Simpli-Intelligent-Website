@@ -1,3 +1,4 @@
+import { OFFER_INSPECTORS } from "@/lib/offer-copy";
 import { CHECK_PILLARS } from "@/lib/offers";
 
 export function CheckPillars() {
@@ -6,7 +7,7 @@ export function CheckPillars() {
       {CHECK_PILLARS.map((pillar) => (
         <li key={pillar.title} className="border border-border bg-neutral p-6">
           <p className="text-xs font-semibold uppercase tracking-[0.12em] text-blue">
-            Coming to founding members
+            Coming to {OFFER_INSPECTORS}
           </p>
           <h3 className="font-display mt-3 text-lg font-semibold text-navy">{pillar.title}</h3>
           <p className="mt-3 text-base leading-relaxed text-muted">{pillar.body}</p>

@@ -40,7 +40,7 @@ Site identity, SEO copy, product listings, and the contact email live in `src/li
 
 The public contact address is `brian@simpliintelligent.com` (`SITE.contactEmail` in `src/lib/site.ts`). Signup alerts go to `LEAD_NOTIFY_EMAIL` when that is set, and otherwise to the same address.
 
-Copy `.env.example` to `.env.local`. Without Supabase credentials, `npm run dev` keeps signups in memory and they disappear when the server restarts. Production without those credentials does not pretend a signup was saved. The form tells the visitor to email Brian instead.
+Copy `.env.example` to `.env.local`. Without Supabase credentials, `npm run dev` keeps signups in memory and they disappear when the server restarts. Production without those credentials does not pretend a signup was saved. The form tells the visitor to email the public contact address instead.
 
 ## Supabase setup
 
@@ -52,7 +52,7 @@ Use the same Supabase project planned for Simpli Operate. The `leads` table is t
 4. Copy the `service_role` key to `SUPABASE_SERVICE_ROLE_KEY`. This key bypasses row level security. Put it only in server environment variables. Do not use the anon key for writes, and do not prefix the service key with `NEXT_PUBLIC_`.
 5. Redeploy. The first signup should appear in `public.leads` with `lead_status` = `New`.
 
-Founding spots are counted from `leads.founding_spot` in that database. Spots 1–50 are the $49/month Check tier. Spots 51–100 are the $69/month tier. Archive, Operate, and Reach signups do not take a spot. At 100 the site stops offering the founding tiers. Brian gets an email at 40, 50, 90, and 100 when Resend is configured.
+Early Access spots are counted from `leads.founding_spot` in that database. The column name stays `founding_spot`. Spots 1–50 are the $49/month Check tier. Spots 51–100 are the $69/month tier. Archive, Operate, and Reach signups do not take a spot. At 100 the site stops offering the Early Access tiers. The notify inbox gets an email at 40, 50, 90, and 100 when Resend is configured.
 
 ## Email setup
 

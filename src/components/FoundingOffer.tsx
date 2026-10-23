@@ -7,6 +7,12 @@ import {
   TIER_69_CAP,
 } from "@/lib/leads/founding";
 import type { FoundingSnapshot } from "@/lib/leads/types";
+import {
+  FOUNDER_SUPPORT,
+  OFFER_NAME,
+  OFFER_SPOTS_AVAILABLE,
+  offerRateLine,
+} from "@/lib/offer-copy";
 import { ARCHIVE_FIRST_MONTH_USD, ARCHIVE_MONTHLY_USD } from "@/lib/offers";
 
 export function FoundingOffer({
@@ -20,11 +26,11 @@ export function FoundingOffer({
     return (
       <div className="mt-8 max-w-3xl border border-border bg-white p-6 sm:p-8">
         <h3 className="font-display text-2xl font-semibold text-navy">
-          Founding-member pricing is closed
+          {OFFER_NAME} pricing is closed
         </h3>
         <p className="mt-4 text-base leading-relaxed text-muted">
-          The first {FOUNDING_CAP} founding spots are taken. The ${FOUNDING_PRICE_49}{" "}
-          and ${FOUNDING_PRICE_69} founding tiers are no longer offered. You can
+          The first {FOUNDING_CAP} {OFFER_NAME} spots are taken. The ${FOUNDING_PRICE_49}{" "}
+          and ${FOUNDING_PRICE_69} {OFFER_NAME} rates are no longer offered. You can
           still join the Simpli Check waitlist. Simpli Archive remains $
           {ARCHIVE_FIRST_MONTH_USD} for the first month, then ${ARCHIVE_MONTHLY_USD}
           /month.
@@ -36,8 +42,11 @@ export function FoundingOffer({
   return (
     <div className="mt-8">
       {status.configured ? (
-        <p className="text-base font-medium text-navy">Founding spots are available.</p>
+        <p className="text-base font-medium text-navy">{OFFER_SPOTS_AVAILABLE}</p>
       ) : null}
+      <p className="mt-2 text-base text-muted">
+        {offerRateLine(FOUNDING_PRICE_49, FOUNDING_PRICE_69)}
+      </p>
       <ul className="mt-6 grid gap-4 md:grid-cols-2">
         <li className="border border-border bg-white p-6">
           <p className="text-xs font-semibold uppercase tracking-[0.12em] text-blue">
@@ -63,7 +72,7 @@ export function FoundingOffer({
         </li>
       </ul>
       <ul className="mt-6 max-w-3xl space-y-2 text-base leading-relaxed text-muted">
-        <li>Personal support from Brian.</li>
+        <li>{FOUNDER_SUPPORT}</li>
         <li>First access to new products and features at discounted rates.</li>
         <li>
           Simpli Archive is included. If you leave Simpli Check, Archive storage

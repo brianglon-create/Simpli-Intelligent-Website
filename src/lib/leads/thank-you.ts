@@ -3,6 +3,7 @@ import {
   FOUNDING_PRICE_69,
   publicFoundingLine,
 } from "@/lib/leads/founding";
+import { OFFER_NAME } from "@/lib/offer-copy";
 import type { SuccessBody } from "@/lib/leads/types";
 import {
   ARCHIVE_FIRST_MONTH_USD,
@@ -33,7 +34,7 @@ export function thankYouCopy(result: SuccessBody): {
       title: "You're on the list.",
       paragraphs: [
         `${added}${publicFoundingLine(result.foundingPrice)}`,
-        `That includes personal support from Brian and Simpli Archive. If you leave Simpli Check, Archive storage resumes at $${ARCHIVE_MONTHLY_USD}/month.`,
+        `That includes personal onboarding and support directly from the founder, and Simpli Archive. If you leave Simpli Check, Archive storage resumes at $${ARCHIVE_MONTHLY_USD}/month.`,
         noBill,
         exportLine,
       ],
@@ -48,7 +49,7 @@ export function thankYouCopy(result: SuccessBody): {
     return {
       title: "You're on the list.",
       paragraphs: [
-        `${added}You're on the Simpli Check waitlist. Founding-member pricing is full, so this signup does not lock a $${FOUNDING_PRICE_49} or $${FOUNDING_PRICE_69} rate.`,
+        `${added}You're on the Simpli Check waitlist. ${OFFER_NAME} pricing is full, so this signup does not lock a $${FOUNDING_PRICE_49} or $${FOUNDING_PRICE_69} ${OFFER_NAME} rate.`,
         noBill,
         exportLine,
       ],

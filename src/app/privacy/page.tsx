@@ -1,5 +1,6 @@
 import { SiteFrame } from "@/components/SiteFrame";
 import { mailingAddress } from "@/lib/env";
+import { OFFER_NAME } from "@/lib/offer-copy";
 import { pageMetadata } from "@/lib/metadata";
 import { SITE } from "@/lib/site";
 
@@ -42,7 +43,7 @@ export default function PrivacyPage() {
               used, and campaign details from the link that brought you here
               (source, utm_source, utm_medium, utm_campaign, utm_content, and
               utm_term when those are present). We also store that you checked the
-              consent box, the time you signed up, and, for Simpli Check founding
+              consent box, the time you signed up, and, for Simpli Check {OFFER_NAME}{" "}
               spots, the spot number.
             </p>
           </section>
@@ -52,7 +53,7 @@ export default function PrivacyPage() {
             </h2>
             <p className="mt-3">
               We use this information to reply about the product you chose, to count
-              Simpli Check founding spots, and to see which campaign a signup came
+              Simpli Check {OFFER_NAME} spots, and to see which campaign a signup came
               from. We do not sell personal information. We do not send third-party
               marketing.
             </p>

@@ -1,5 +1,6 @@
 import { primaryButtonClass } from "@/components/classes";
 import type { FoundingSnapshot } from "@/lib/leads/types";
+import { OFFER_INSPECTOR, OFFER_INSPECTORS, OFFER_NAME } from "@/lib/offer-copy";
 import { ARCHIVE_FIRST_MONTH_USD, ARCHIVE_MONTHLY_USD } from "@/lib/offers";
 
 export function ArchivePricing({
@@ -33,8 +34,8 @@ export function ArchivePricing({
           </p>
           <p className="mt-3 text-base leading-relaxed text-muted">
             {closed
-              ? "Founding-member Archive inclusion is closed with the founding tiers."
-              : "Included for Simpli Check founding members. If a founding member leaves Check, storage resumes at this rate."}
+              ? `${OFFER_NAME} Archive inclusion is closed with the ${OFFER_NAME} tiers.`
+              : `Included for Simpli Check ${OFFER_INSPECTORS}. If an ${OFFER_INSPECTOR} leaves Check, storage resumes at this rate.`}
           </p>
         </li>
       </ul>

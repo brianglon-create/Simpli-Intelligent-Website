@@ -14,6 +14,7 @@ import {
   publicFoundingLine,
 } from "@/lib/leads/founding";
 import type { Interest, StoredLead } from "@/lib/leads/types";
+import { FOUNDER_FOLLOW_UP, INSPECTOR_BYLINE, OFFER_NAME } from "@/lib/offer-copy";
 import { ARCHIVE_FIRST_MONTH_USD, ARCHIVE_MONTHLY_USD, SHUTDOWN_LABEL } from "@/lib/offers";
 import { SITE } from "@/lib/site";
 
@@ -62,7 +63,7 @@ export function signupNotification(args: {
 
   const text = [
     args.duplicate
-      ? "This email is already on the list. No new founding spot was assigned."
+      ? `This email is already on the list. No new ${OFFER_NAME} spot was assigned.`
       : args.upgraded
         ? "An existing lead updated their product interest."
         : "A new lead signed up on simpliintelligent.com.",
@@ -79,8 +80,8 @@ export function signupNotification(args: {
     ),
     line("Horizon reports (approx.)", lead.reportCount),
     line("Lead status", lead.leadStatus),
-    line("Founding spot", lead.foundingSpot ? foundingSpotLabel(lead.foundingSpot) : null),
-    line("Founding spots claimed", args.foundingCount),
+    line(`${OFFER_NAME} spot`, lead.foundingSpot ? foundingSpotLabel(lead.foundingSpot) : null),
+    line(`${OFFER_NAME} spots claimed`, args.foundingCount),
     line("Source", lead.source),
     line("UTM source", lead.utmSource),
     line("UTM medium", lead.utmMedium),
@@ -109,20 +110,20 @@ export function thresholdNotification(
   const remaining69 = Math.max(0, 100 - Math.max(count, 50));
   let detail = "";
   if (threshold === 40) {
-    detail = `${remaining49} spots remain at $${FOUNDING_PRICE_49}/month. The next 50 are $${FOUNDING_PRICE_69}/month. The site is still offering founding pricing.`;
+    detail = `${remaining49} spots remain at $${FOUNDING_PRICE_49}/month. The next 50 are $${FOUNDING_PRICE_69}/month. The site is still offering the ${OFFER_NAME} rate.`;
   } else if (threshold === 50) {
     detail = `The $${FOUNDING_PRICE_49}/month tier is full. The $${FOUNDING_PRICE_69}/month tier is open.`;
   } else if (threshold === 90) {
     detail = `${remaining69} spots remain at $${FOUNDING_PRICE_69}/month.`;
   } else {
-    detail = `Founding pricing is now closed on the site. New Check signups join the waitlist without a founding rate. Archive remains $${ARCHIVE_FIRST_MONTH_USD} for the first month, then $${ARCHIVE_MONTHLY_USD}/month.`;
+    detail = `${OFFER_NAME} pricing is now closed on the site. New Check signups join the waitlist without an ${OFFER_NAME} rate. Archive remains $${ARCHIVE_FIRST_MONTH_USD} for the first month, then $${ARCHIVE_MONTHLY_USD}/month.`;
   }
 
   return {
     to: leadNotifyEmail(),
-    subject: `Simpli Check founding spots: ${label}`,
+    subject: `Simpli Check ${OFFER_NAME} spots: ${label}`,
     text: [
-      `${count} inspectors have claimed a Simpli Check founding spot.`,
+      `${count} inspectors have claimed a Simpli Check ${OFFER_NAME} spot.`,
       `Alert threshold: ${label}.`,
       detail,
       `Sent: ${formatIndianapolis(new Date())}`,
@@ -135,14 +136,14 @@ export function leadConfirmation(lead: StoredLead): OutboundEmail {
   const lines = [
     `Hi ${lead.name.split(" ")[0]},`,
     "",
-    `Thanks for signing up. I'm Brian, a home inspector at ${SITE.inspectionBusiness} since ${SITE.inspectingSince}, and the founder of ${SITE.name}.`,
+    `Thanks for signing up. I'm the founder of ${SITE.name}. ${INSPECTOR_BYLINE}`,
   ];
 
   const foundingPrice = priceForSpot(lead.foundingSpot);
   if (foundingPrice) {
     lines.push(
       "",
-      `${publicFoundingLine(foundingPrice)} That includes personal support from me and Simpli Archive. If you leave Simpli Check, Archive storage resumes at $${ARCHIVE_MONTHLY_USD}/month.`,
+      `${publicFoundingLine(foundingPrice)} That includes personal onboarding and support directly from the founder, and Simpli Archive. If you leave Simpli Check, Archive storage resumes at $${ARCHIVE_MONTHLY_USD}/month.`,
       "This email does not start billing.",
     );
   } else if (lead.productInterest === "archive") {
@@ -153,7 +154,7 @@ export function leadConfirmation(lead: StoredLead): OutboundEmail {
   } else if (lead.productInterest === "check" || lead.productInterest === "both") {
     lines.push(
       "",
-      "You're on the Simpli Check waitlist. Founding-member pricing is full, so this signup does not lock a founding rate. This email does not start billing.",
+      `You're on the Simpli Check waitlist. ${OFFER_NAME} pricing is full, so this signup does not lock an ${OFFER_NAME} rate. This email does not start billing.`,
     );
   } else if (lead.productInterest === "operate") {
     lines.push(
@@ -180,10 +181,10 @@ export function leadConfirmation(lead: StoredLead): OutboundEmail {
 
   lines.push(
     "",
-    "Brian will follow up personally.",
+    FOUNDER_FOLLOW_UP,
     `Prefer to talk? Reply to this email or email ${SITE.contactEmail}.`,
     "",
-    "Brian",
+    "The founder",
     mailingAddress(),
     SITE.contactEmail,
     SITE.url,

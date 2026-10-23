@@ -1,3 +1,4 @@
+import { OFFER_NAME } from "@/lib/offer-copy";
 import type { FoundingSnapshot, Interest } from "@/lib/leads/types";
 
 export const FOUNDING_CAP = 100;
@@ -14,7 +15,7 @@ export type FoundingDecision = {
 };
 
 /**
- * Founding spots are only for Simpli Check interest (`check` or `both`).
+ * The first 100 Check spots are only for Simpli Check interest (`check` or `both`).
  * Keep this in sync with submit_lead() in
  * supabase/migrations/20261022160000_create_leads.sql.
  */
@@ -42,12 +43,12 @@ export function tierPosition(spot: number): number | null {
  */
 export function publicFoundingLine(price: 49 | 69): string {
   if (price === FOUNDING_PRICE_49) {
-    return `You're in line for a founding spot at $${FOUNDING_PRICE_49}/month (first ${TIER_49_CAP}).`;
+    return `You're in line for an ${OFFER_NAME} spot at $${FOUNDING_PRICE_49}/month (first ${TIER_49_CAP}).`;
   }
-  return `You're in line for a founding spot at $${FOUNDING_PRICE_69}/month (next ${TIER_69_CAP}).`;
+  return `You're in line for an ${OFFER_NAME} spot at $${FOUNDING_PRICE_69}/month (next ${TIER_69_CAP}).`;
 }
 
-/** Compact line for Brian's notification and threshold emails. */
+/** Compact line for internal notification and threshold emails. */
 export function foundingSpotLabel(spot: number): string | null {
   const position = tierPosition(spot);
   if (position == null) return null;

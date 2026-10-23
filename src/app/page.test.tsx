@@ -44,8 +44,9 @@ describe("Simpli Intelligent homepage", () => {
     expect(
       screen.getByText(/your software shouldn't make it harder\./i),
     ).toBeInTheDocument();
-    expect(screen.getByText(/— Brian Glon/i)).toBeInTheDocument();
-    expect(screen.getByText(/founder, simpli intelligent/i)).toBeInTheDocument();
+    expect(screen.getByText(/— the founder/i)).toBeInTheDocument();
+    expect(screen.queryByText(/\bBrian\b/)).not.toBeInTheDocument();
+    expect(screen.queryByText(/north star/i)).not.toBeInTheDocument();
   });
 
   it("exposes primary navigation anchors for each section", () => {

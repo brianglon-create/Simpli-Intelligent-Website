@@ -4,8 +4,8 @@ import { LeadForm } from "@/components/LeadForm";
 import { Section } from "@/components/Section";
 import { primaryButtonClass, secondaryButtonClass } from "@/components/classes";
 import type { FoundingSnapshot } from "@/lib/leads/types";
+import { INSPECTOR_BYLINE, OFFER_INSPECTORS } from "@/lib/offer-copy";
 import { CHECK_PERKS } from "@/lib/offers";
-import { SITE } from "@/lib/site";
 
 export function CheckLanding({ status }: { status: FoundingSnapshot }) {
   return (
@@ -19,10 +19,10 @@ export function CheckLanding({ status }: { status: FoundingSnapshot }) {
             Cut the time you spend writing the report.
           </h1>
           <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted">
-            Simpli Check is inspection software from a working home inspector at{" "}
-            {SITE.inspectionBusiness}, not a sales team. It is on the waitlist.
-            Photo recognition, report narratives, and client defect notes are
-            coming to founding members as Check launches.
+            {INSPECTOR_BYLINE} Simpli Check is inspection software from that work,
+            not a sales team. It is on the waitlist. Photo recognition, report
+            narratives, and client defect notes are coming to {OFFER_INSPECTORS} as
+            Check launches.
           </p>
           <div className="mt-10 flex flex-col gap-3 sm:flex-row">
             <a href="#signup" className={primaryButtonClass}>
@@ -34,10 +34,10 @@ export function CheckLanding({ status }: { status: FoundingSnapshot }) {
           </div>
         </div>
       </section>
-      <Section id="check-features" title="Coming to founding members" tone="white">
+      <Section id="check-features" title={`Coming to ${OFFER_INSPECTORS}`} tone="white">
         <p className="max-w-3xl text-lg leading-relaxed text-muted">
-          The writing is what eats the evening. These are coming to founding
-          members as Check launches. They are not available to use today.
+          The writing is what eats the evening. These are coming to {OFFER_INSPECTORS}{" "}
+          as Check launches. They are not available to use today.
         </p>
         <CheckPillars />
         <ul className="mt-8 max-w-3xl space-y-3 text-base leading-relaxed text-muted">

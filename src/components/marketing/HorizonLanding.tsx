@@ -20,6 +20,7 @@ import {
   SHUTDOWN_LABEL,
   TIMELINE,
 } from "@/lib/offers";
+import { INSPECTOR_BYLINE, OFFER_INSPECTORS } from "@/lib/offer-copy";
 import { SITE } from "@/lib/site";
 
 const lede = "max-w-3xl text-lg leading-relaxed text-muted";
@@ -145,9 +146,8 @@ export function HorizonLanding({ status }: { status: FoundingSnapshot }) {
 
       <Section id="check-offer" title="Simpli Check cuts the time you spend writing the report" tone="white" eyebrow="Simpli Check">
         <p className={lede}>
-          Built by a working home inspector at {SITE.inspectionBusiness}. Join the
-          waitlist. The tools below are coming to founding members as Check
-          launches. They are not available to use today.
+          {INSPECTOR_BYLINE} Join the waitlist. The tools below are coming to{" "}
+          {OFFER_INSPECTORS} as Check launches. They are not available to use today.
         </p>
         <CheckPillars />
         <ul className="mt-8 max-w-3xl space-y-3 text-base leading-relaxed text-muted">
@@ -168,7 +168,7 @@ export function HorizonLanding({ status }: { status: FoundingSnapshot }) {
             the report.
           </p>
           <p>
-            Founding Check members include Archive while they stay on Check. If
+            {OFFER_INSPECTORS} include Archive while they stay on Check. If
             they leave, Archive storage continues at ${ARCHIVE_MONTHLY_USD}/month.
           </p>
           <p>
@@ -209,15 +209,12 @@ export function HorizonLanding({ status }: { status: FoundingSnapshot }) {
 
       <Section id="founder" title="Built by an inspector" eyebrow="Who's behind this">
         <div className={`${lede} space-y-4`}>
-          <p>
-            I&apos;m {SITE.founder}. I&apos;ve run {SITE.inspectionBusiness} in{" "}
-            {SITE.location} since {SITE.inspectingSince}, and I founded {SITE.name}.
-          </p>
+          <p>{INSPECTOR_BYLINE}</p>
           <p>
             Old reports get pulled for claims, disputes, and repeat clients.
-            I&apos;m building Simpli Archive because I need that history too. Simpli
-            Check is the inspection product I&apos;m building for inspectors who want
-            software shaped by the same work.
+            Simpli Archive is being built for that moment. Simpli Check is the
+            inspection product for inspectors who want software shaped by the same
+            work.
           </p>
           <p>
             {SITE.name} is not affiliated with Carson Dunlop, Horizon, Spectora, or
@@ -225,12 +222,8 @@ export function HorizonLanding({ status }: { status: FoundingSnapshot }) {
           </p>
         </div>
         <p className="mt-8 text-base leading-relaxed text-navy">
-          <span className="block font-medium">— {SITE.founder}</span>
-          <span className="mt-1 block text-muted">
-            Founder, {SITE.name}
-            <br />
-            {SITE.inspectionBusiness}, since {SITE.inspectingSince}
-          </span>
+          <span className="block font-medium">— The founder</span>
+          <span className="mt-1 block text-muted">{SITE.name}</span>
         </p>
       </Section>
 

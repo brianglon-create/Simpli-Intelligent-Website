@@ -71,7 +71,7 @@ create table if not exists public.founding_alerts (
 );
 
 comment on table public.founding_alerts is
-  'Thresholds already emailed to Brian: 40, 50, 90, and 100 founding spots.';
+  'Thresholds already emailed: 40, 50, 90, and 100.';
 
 alter table public.leads enable row level security;
 alter table public.founding_alerts enable row level security;

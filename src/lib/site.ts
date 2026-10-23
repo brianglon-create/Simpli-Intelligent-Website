@@ -1,3 +1,5 @@
+import { INSPECTOR_BYLINE, OFFER_INSPECTORS } from "@/lib/offer-copy";
+
 /**
  * Site-wide configuration.
  * contactEmail is the public address shown on the site and in fallback messages.
@@ -12,9 +14,6 @@ export const SITE = {
   brandLine: "Simpli Intelligent, a brand of Polaris Intelligence LLC",
   location: "South Bend, Indiana",
   copyrightYear: 2026,
-  founder: "Brian Glon",
-  inspectionBusiness: "North Star Inspection Services",
-  inspectingSince: 2017,
   title: "Simpli Intelligent | Simple Software for Owner-Operated Businesses",
   description:
     "Simpli Intelligent is the platform behind a family of products that help owner-operated businesses grow, organize, and operate with confidence.",
@@ -46,7 +45,7 @@ export const PRODUCTS = [
     name: "SIMPLI CHECK",
     category: "Inspection Software",
     description:
-      "Inspection software on the waitlist, built by a working home inspector to cut report-writing time. Coming to founding members: photo recognition, narratives you review and edit, and plain-language defect notes for clients.",
+      `Inspection software on the waitlist. ${INSPECTOR_BYLINE} Built to cut report-writing time. Coming to ${OFFER_INSPECTORS}: photo recognition, narratives you review and edit, and plain-language defect notes for clients.`,
     status: "Waitlist",
     href: "/check",
   },

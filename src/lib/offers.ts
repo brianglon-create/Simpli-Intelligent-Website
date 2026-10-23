@@ -3,6 +3,14 @@ import {
   FOUNDING_PRICE_49,
   FOUNDING_PRICE_69,
 } from "@/lib/leads/founding";
+import {
+  FOUNDER_SUPPORT,
+  INSPECTOR_BYLINE,
+  OFFER_INSPECTOR,
+  OFFER_INSPECTORS,
+  OFFER_NAME,
+  offerRateLine,
+} from "@/lib/offer-copy";
 
 export const SHUTDOWN_LABEL = "December 15, 2026";
 
@@ -99,11 +107,11 @@ export const CHECK_PILLARS = [
 ] as const;
 
 export const CHECK_PERKS = [
-  "Built by Brian Glon, a working inspector at North Star Inspection Services since 2017.",
-  `Founding rates for the first ${FOUNDING_CAP} Check signups. The first 50 are locked at $${FOUNDING_PRICE_49}/month. The next 50 are locked at $${FOUNDING_PRICE_69}/month. Then those tiers close.`,
-  "Personal support from Brian.",
+  INSPECTOR_BYLINE,
+  `${offerRateLine(FOUNDING_PRICE_49, FOUNDING_PRICE_69)} It covers the first ${FOUNDING_CAP} Check signups. Then those tiers close.`,
+  FOUNDER_SUPPORT,
   "First access to new products and features at discounted rates.",
-  `Simpli Archive included while you are a founding member. If you leave Simpli Check, Archive storage resumes at $${ARCHIVE_MONTHLY_USD}/month.`,
+  `Simpli Archive included while you are an ${OFFER_INSPECTOR}. If you leave Simpli Check, Archive storage resumes at $${ARCHIVE_MONTHLY_USD}/month.`,
 ] as const;
 
 export const HORIZON_FAQS = [
@@ -134,7 +142,7 @@ export const HORIZON_FAQS = [
   },
   {
     question: "What happens if I cancel?",
-    answer: `This form does not start billing. Archive is $${ARCHIVE_FIRST_MONTH_USD} for the first month, then $${ARCHIVE_MONTHLY_USD}/month. It is included for Simpli Check founding members. If you leave Simpli Check, Archive storage resumes at $${ARCHIVE_MONTHLY_USD}/month unless you cancel that too. How long uploaded reports are kept after you cancel will be stated before uploads open.`,
+    answer: `This form does not start billing. Archive is $${ARCHIVE_FIRST_MONTH_USD} for the first month, then $${ARCHIVE_MONTHLY_USD}/month. It is included for Simpli Check ${OFFER_INSPECTORS}. If you leave Simpli Check, Archive storage resumes at $${ARCHIVE_MONTHLY_USD}/month unless you cancel that too. How long uploaded reports are kept after you cancel will be stated before uploads open.`,
   },
   {
     question: "Do you serve Canadian inspectors?",
@@ -142,13 +150,13 @@ export const HORIZON_FAQS = [
       "Yes. The form asks for your province, and the consent checkbox is express consent for CASL. We also serve inspectors in the United States. Simpli Intelligent is not affiliated with CAHPI, ASHI, InterNACHI, Carson Dunlop, Spectora, or Mach One.",
   },
   {
-    question: "What do founding members get?",
-    answer: `The first 50 Check signups are locked at $${FOUNDING_PRICE_49}/month. The next 50 are locked at $${FOUNDING_PRICE_69}/month. Founding members get personal support from Brian, first access to new products and features at discounted rates, and Simpli Archive included. If you leave Check, Archive storage resumes at $${ARCHIVE_MONTHLY_USD}/month. After ${FOUNDING_CAP} founding signups, those tiers close on this site. The form does not charge a card.`,
+    question: `What do ${OFFER_INSPECTORS} get?`,
+    answer: `${offerRateLine(FOUNDING_PRICE_49, FOUNDING_PRICE_69)} ${OFFER_INSPECTORS} get personal onboarding and support directly from the founder, first access to new products and features at discounted rates, and Simpli Archive included. If you leave Check, Archive storage resumes at $${ARCHIVE_MONTHLY_USD}/month. After ${FOUNDING_CAP} ${OFFER_NAME} signups, those tiers close on this site. The form does not charge a card.`,
   },
   {
     question: "What can Simpli Check do?",
     answer:
-      "Simpli Check is on the waitlist, built by a working home inspector to cut the time you spend writing the report. Coming to founding members as Check launches: snap a photo and Check identifies the defect as you go; report-ready narratives from your photos and notes, which you review and edit; and plain-language education for the client on each defect, what it is and why it matters. It is not available to use today.",
+      `Simpli Check is on the waitlist, built by a home inspector with 10 years of hands-on industry experience, to cut the time you spend writing the report. Coming to ${OFFER_INSPECTORS} as Check launches: snap a photo and Check identifies the defect as you go; report-ready narratives from your photos and notes, which you review and edit; and plain-language education for the client on each defect, what it is and why it matters. It is not available to use today.`,
   },
   {
     question: "How will I search old reports?",
@@ -158,6 +166,6 @@ export const HORIZON_FAQS = [
   {
     question: "Does joining the list bill me?",
     answer:
-      "No. The form reserves your place and tells Brian which product you asked about. It does not charge a card.",
+      "No. The form reserves your place and tells us which product you asked about. It does not charge a card.",
   },
 ] as const;
