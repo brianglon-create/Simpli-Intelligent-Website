@@ -16,12 +16,12 @@ export function Products() {
             Our products
           </h2>
           <p className="mt-4 text-lg leading-relaxed text-muted">
-            A focused family of applications for the work of running and
-            growing an owner-operated business.
+            Simpli Intelligent is the platform. Each product does one job. Open
+            one to see where it stands and join its list.
           </p>
         </div>
 
-        <ul className="mt-12 grid gap-6 lg:grid-cols-3">
+        <ul className="mt-12 grid gap-6 md:grid-cols-2">
           {PRODUCTS.map((product) => (
             <li
               key={product.id}
@@ -41,6 +41,12 @@ export function Products() {
               <p className="mt-4 flex-1 text-base leading-relaxed text-muted">
                 {product.description}
               </p>
+              <a
+                href={product.href}
+                className="mt-6 inline-flex text-sm font-semibold text-blue hover:text-navy"
+              >
+                View {product.name}
+              </a>
             </li>
           ))}
         </ul>

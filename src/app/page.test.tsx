@@ -44,8 +44,9 @@ describe("Simpli Intelligent homepage", () => {
     expect(
       screen.getByText(/your software shouldn't make it harder\./i),
     ).toBeInTheDocument();
-    expect(screen.getByText(/— Brian Glon/i)).toBeInTheDocument();
-    expect(screen.getByText(/founder, simpli intelligent/i)).toBeInTheDocument();
+    expect(screen.getByText(/— the founder/i)).toBeInTheDocument();
+    expect(screen.queryByText(/\bBrian\b/)).not.toBeInTheDocument();
+    expect(screen.queryByText(/north star/i)).not.toBeInTheDocument();
   });
 
   it("exposes primary navigation anchors for each section", () => {
@@ -69,14 +70,18 @@ describe("Simpli Intelligent homepage", () => {
       ).toBeInTheDocument();
       expect(screen.getByText(product.status)).toBeInTheDocument();
       expect(screen.getByText(product.category)).toBeInTheDocument();
+      expect(
+        screen.getByRole("link", { name: `View ${product.name}` }),
+      ).toHaveAttribute("href", product.href);
     }
   });
 
-  it("uses the shared contact email for the mailto CTA", () => {
+  it("uses the shared contact email beside the signup form", () => {
     render(<Home />);
 
+    expect(screen.getByRole("button", { name: /join the list/i })).toBeInTheDocument();
     expect(
-      screen.getByRole("link", { name: /contact simpli intelligent/i }),
+      screen.getByRole("link", { name: SITE.contactEmail }),
     ).toHaveAttribute("href", `mailto:${SITE.contactEmail}`);
   });
 
@@ -87,7 +92,7 @@ describe("Simpli Intelligent homepage", () => {
       screen.getByText(`© ${SITE.copyrightYear} ${SITE.name}`),
     ).toBeInTheDocument();
     expect(
-      screen.getByText(`Operated by ${SITE.legalEntity}`),
+      screen.getByText(SITE.brandLine),
     ).toBeInTheDocument();
     expect(screen.getAllByText(SITE.location).length).toBeGreaterThanOrEqual(1);
   });

@@ -51,10 +51,8 @@ export function About() {
           </div>
 
           <p className="mt-10 text-base leading-relaxed text-navy">
-            <span className="block font-medium">— Brian Glon</span>
-            <span className="mt-1 block text-muted">
-              Founder, Simpli Intelligent
-            </span>
+            <span className="block font-medium">— The founder</span>
+            <span className="mt-1 block text-muted">Simpli Intelligent</span>
           </p>
         </div>
       </div>
