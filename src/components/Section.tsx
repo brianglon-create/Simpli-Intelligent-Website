@@ -3,19 +3,35 @@ export function Section({
   title,
   eyebrow,
   tone = "plain",
+  accent = "brand",
   children,
 }: {
   id: string;
   title: string;
   eyebrow?: string;
   tone?: "plain" | "white" | "navy";
+  accent?: "brand" | "check" | "operate" | "archive" | "reach";
   children: React.ReactNode;
 }) {
   const headingId = `${id}-heading`;
   const toneClass =
     tone === "white" ? "bg-white" : tone === "navy" ? "border-navy bg-navy text-white" : "";
   const titleClass = tone === "navy" ? "text-white" : "text-navy";
-  const eyebrowClass = tone === "navy" ? "text-blue-soft" : "text-blue";
+  const onLight = {
+    brand: "text-blue",
+    check: "text-check-ink",
+    operate: "text-operate-ink",
+    archive: "text-archive-ink",
+    reach: "text-reach-ink",
+  } as const;
+  const onNavy = {
+    brand: "text-blue-soft",
+    check: "text-check",
+    operate: "text-operate",
+    archive: "text-archive",
+    reach: "text-reach",
+  } as const;
+  const eyebrowClass = tone === "navy" ? onNavy[accent] : onLight[accent];
 
   return (
     <section

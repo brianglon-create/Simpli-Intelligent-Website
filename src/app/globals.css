@@ -1,17 +1,27 @@
 @import "tailwindcss";
 
 :root {
-  --navy: #0b1f3a;
-  --navy-mid: #143357;
-  --blue: #2b5ea7;
-  --blue-soft: #e8f0fa;
-  --blue-mist: #f0f5fb;
-  --neutral: #f7f8fa;
-  --text: #1a2332;
-  --muted: #5a6577;
-  --border: #d8dee8;
+  --navy: #0d1b2a;
+  --navy-mid: #1a3358;
+  --blue: #2563eb;
+  --blue-soft: #dbeaff;
+  --blue-mist: #f8fafc;
+  --neutral: #f1f5f9;
+  --gray: #6b7280;
+  --text: #0d1b2a;
+  /* Cool gray #6B7280 is 4.41:1 on Soft Gray. This ink clears 4.5:1. */
+  --muted: #69707d;
+  --border: #e5e7eb;
   --danger: #8f2d2d;
   --white: #ffffff;
+  --check: #22e06b;
+  --check-ink: #13853f;
+  --operate: #6366f1;
+  --operate-ink: #4f46e5;
+  --archive: #fb923c;
+  --archive-ink: #bd5704;
+  --reach: #06b6d4;
+  --reach-ink: #047f94;
   --background: var(--blue-mist);
   --foreground: var(--text);
 }
@@ -23,9 +33,18 @@
   --color-blue-soft: var(--blue-soft);
   --color-blue-mist: var(--blue-mist);
   --color-neutral: var(--neutral);
+  --color-gray: var(--gray);
   --color-muted: var(--muted);
   --color-border: var(--border);
   --color-danger: var(--danger);
+  --color-check: var(--check);
+  --color-check-ink: var(--check-ink);
+  --color-operate: var(--operate);
+  --color-operate-ink: var(--operate-ink);
+  --color-archive: var(--archive);
+  --color-archive-ink: var(--archive-ink);
+  --color-reach: var(--reach);
+  --color-reach-ink: var(--reach-ink);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-source-sans);
@@ -73,8 +92,8 @@ body {
   background-image:
     radial-gradient(
       ellipse 80% 50% at 50% -10%,
-      rgba(43, 94, 167, 0.12),
+      rgba(37, 99, 235, 0.1),
       transparent 55%
     ),
-    linear-gradient(180deg, #f4f7fb 0%, #eef3f9 40%, #f7f8fa 100%);
+    linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
 }

@@ -1,3 +1,4 @@
+import { Lockup } from "@/components/brand/Lockup";
 import { ArchivePricing } from "@/components/ArchivePricing";
 import { CheckPillars } from "@/components/CheckPillars";
 import { Countdown } from "@/components/Countdown";
@@ -33,7 +34,8 @@ export function HorizonLanding({ status }: { status: FoundingSnapshot }) {
     <>
       <section aria-labelledby="horizon-hero-heading" className="relative overflow-hidden">
         <div className="mx-auto max-w-6xl px-5 pb-16 pt-16 sm:px-8 sm:pb-20 sm:pt-24">
-          <p className="font-display text-xs font-semibold tracking-[0.18em] text-blue">
+          <Lockup product="intelligent" surface="light" size="md" />
+          <p className="font-display mt-6 text-xs font-semibold tracking-[0.18em] text-blue">
             FOR HORIZON INSPECTORS
           </p>
           <h1
@@ -120,7 +122,7 @@ export function HorizonLanding({ status }: { status: FoundingSnapshot }) {
         <SignupLinks />
       </Section>
 
-      <Section id="archive-offer" title="Simpli Archive keeps the history" eyebrow="Simpli Archive">
+      <Section id="archive-offer" title="Simpli Archive keeps the history" eyebrow="Simpli Archive" accent="archive">
         <p className={lede}>
           Whatever software you switch to, your Horizon report history does not
           come with you. Simpli Archive is being built to keep every past report
@@ -146,7 +148,7 @@ export function HorizonLanding({ status }: { status: FoundingSnapshot }) {
         <ArchivePricing status={status} showCta />
       </Section>
 
-      <Section id="check-offer" title="Simpli Check cuts the time you spend writing the report" tone="white" eyebrow="Simpli Check">
+      <Section id="check-offer" title="Simpli Check cuts the time you spend writing the report" tone="white" eyebrow="Simpli Check" accent="check">
         <p className={lede}>{CHECK_FEATURES_INTRO}</p>
         <CheckPillars />
         <ul className="mt-8 max-w-3xl space-y-3 text-base leading-relaxed text-muted">

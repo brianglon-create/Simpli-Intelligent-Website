@@ -5,7 +5,7 @@ export function CheckPillars() {
     <ul className="mt-8 grid gap-4 lg:grid-cols-3">
       {CHECK_PILLARS.map((pillar) => (
         <li key={pillar.title} className="border border-border bg-neutral p-6">
-          <p className="text-xs font-semibold uppercase tracking-[0.12em] text-blue">
+          <p className="text-xs font-semibold uppercase tracking-[0.12em] text-check-ink">
             Launching November
           </p>
           <h3 className="font-display mt-3 text-lg font-semibold text-navy">{pillar.title}</h3>

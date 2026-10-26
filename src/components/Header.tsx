@@ -3,7 +3,8 @@
 import { useEffect, useId, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { NAV_LINKS, SITE } from "@/lib/site";
+import { Lockup } from "@/components/brand/Lockup";
+import { NAV_LINKS } from "@/lib/site";
 
 export function Header() {
   const [open, setOpen] = useState(false);
@@ -24,11 +25,8 @@ export function Header() {
   return (
     <header className="sticky top-0 z-50 border-b border-border/80 bg-white/90 backdrop-blur-md">
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-4 sm:px-8">
-        <Link
-          href="/"
-          className="font-display text-sm font-semibold tracking-[0.14em] text-navy sm:text-base"
-        >
-          {SITE.wordmark}
+        <Link href="/" aria-label="Simpli Intelligent" className="shrink-0">
+          <Lockup product="intelligent" surface="light" size="sm" />
         </Link>
 
         <nav

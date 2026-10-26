@@ -117,7 +117,6 @@ describe("product pages", () => {
     render(
       <ComingSoonLanding
         productName="Simpli Operate"
-        eyebrow="SIMPLI OPERATE"
         description="A practical operating platform."
         interest="operate"
         page="/operate"

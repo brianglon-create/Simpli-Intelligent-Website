@@ -49,7 +49,7 @@ export function FoundingOffer({
       </p>
       <ul className="mt-6 grid gap-4 md:grid-cols-2">
         <li className="border border-border bg-white p-6">
-          <p className="text-xs font-semibold uppercase tracking-[0.12em] text-blue">
+          <p className="text-xs font-semibold uppercase tracking-[0.12em] text-check-ink">
             First {TIER_49_CAP} inspectors
           </p>
           <p className="font-display mt-4 text-4xl font-semibold tracking-tight text-navy">
@@ -60,7 +60,7 @@ export function FoundingOffer({
           </p>
         </li>
         <li className="border border-border bg-white p-6">
-          <p className="text-xs font-semibold uppercase tracking-[0.12em] text-blue">
+          <p className="text-xs font-semibold uppercase tracking-[0.12em] text-check-ink">
             Next {TIER_69_CAP} inspectors
           </p>
           <p className="font-display mt-4 text-4xl font-semibold tracking-tight text-navy">

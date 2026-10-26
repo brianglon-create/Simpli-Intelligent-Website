@@ -1,10 +1,12 @@
+import { Mark } from "@/components/brand/Mark";
 import { FOOTER_LINKS, SITE } from "@/lib/site";
 
 export function Footer() {
   return (
     <footer className="border-t border-border/70 bg-white">
       <div className="mx-auto max-w-6xl px-5 py-10 sm:px-8">
-        <p className="font-display text-sm font-semibold tracking-[0.12em] text-navy">
+        <p className="flex items-center gap-2.5 font-display text-sm font-semibold tracking-[0.12em] text-navy">
+          <Mark product="intelligent" surface="light" className="h-7 w-[22px]" />
           {SITE.wordmark}
         </p>
         <nav aria-label="Footer" className="mt-6">

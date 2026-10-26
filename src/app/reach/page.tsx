@@ -17,7 +17,6 @@ export default function ReachPage() {
     <SiteFrame>
       <ComingSoonLanding
         productName="Simpli Reach"
-        eyebrow="SIMPLI REACH"
         description={
           product?.description ??
           "A marketing and growth workspace for owner-operated businesses."

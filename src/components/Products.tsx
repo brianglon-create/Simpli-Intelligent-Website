@@ -1,5 +1,12 @@
 import { PRODUCTS } from "@/lib/site";
 
+const categoryInk = {
+  check: "text-check-ink",
+  operate: "text-operate-ink",
+  archive: "text-archive-ink",
+  reach: "text-reach-ink",
+} as const;
+
 export function Products() {
   return (
     <section
@@ -28,7 +35,7 @@ export function Products() {
               className="flex flex-col border border-border bg-white p-6 sm:p-7"
             >
               <div className="flex items-start justify-between gap-3">
-                <p className="text-xs font-semibold uppercase tracking-[0.12em] text-blue">
+                <p className={`text-xs font-semibold uppercase tracking-[0.12em] ${categoryInk[product.id]}`}>
                   {product.category}
                 </p>
                 <span className="shrink-0 rounded-sm bg-blue-soft px-2.5 py-1 text-xs font-medium text-navy-mid">

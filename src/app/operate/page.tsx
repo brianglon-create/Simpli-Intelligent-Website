@@ -17,7 +17,6 @@ export default function OperatePage() {
     <SiteFrame>
       <ComingSoonLanding
         productName="Simpli Operate"
-        eyebrow="SIMPLI OPERATE"
         description={
           product?.description ??
           "A practical operating platform for the day-to-day work of running a business."

@@ -15,7 +15,7 @@ export function ArchivePricing({
     <div className="mt-8">
       <ul className="grid gap-4 md:grid-cols-2">
         <li className="border border-border bg-white p-6">
-          <p className="text-xs font-semibold uppercase tracking-[0.12em] text-blue">
+          <p className="text-xs font-semibold uppercase tracking-[0.12em] text-archive-ink">
             First month
           </p>
           <p className="font-display mt-4 text-4xl font-semibold tracking-tight text-navy">
@@ -26,7 +26,7 @@ export function ArchivePricing({
           </p>
         </li>
         <li className="border border-border bg-white p-6">
-          <p className="text-xs font-semibold uppercase tracking-[0.12em] text-blue">
+          <p className="text-xs font-semibold uppercase tracking-[0.12em] text-archive-ink">
             After the first month
           </p>
           <p className="font-display mt-4 text-4xl font-semibold tracking-tight text-navy">

@@ -1,3 +1,4 @@
+import { Lockup } from "@/components/brand/Lockup";
 import { CheckPillars } from "@/components/CheckPillars";
 import { FoundingOffer } from "@/components/FoundingOffer";
 import { LeadForm } from "@/components/LeadForm";
@@ -12,9 +13,7 @@ export function CheckLanding({ status }: { status: FoundingSnapshot }) {
     <>
       <section className="relative overflow-hidden">
         <div className="mx-auto max-w-6xl px-5 pb-16 pt-16 sm:px-8 sm:pt-24">
-          <p className="font-display text-xs font-semibold tracking-[0.18em] text-blue">
-            SIMPLI CHECK
-          </p>
+          <Lockup product="check" surface="light" size="lg" />
           <h1 className="font-display mt-6 max-w-4xl text-4xl font-semibold leading-tight tracking-tight text-navy sm:text-5xl">
             Cut the time you spend writing the report.
           </h1>
@@ -31,7 +30,7 @@ export function CheckLanding({ status }: { status: FoundingSnapshot }) {
           </div>
         </div>
       </section>
-      <Section id="check-features" title="Launching in November" tone="white">
+      <Section id="check-features" title="Launching in November" tone="white" accent="check">
         <p className="max-w-3xl text-lg leading-relaxed text-muted">
           {CHECK_FEATURES_INTRO}
         </p>
@@ -43,7 +42,7 @@ export function CheckLanding({ status }: { status: FoundingSnapshot }) {
         </ul>
         <FoundingOffer status={status} />
       </Section>
-      <Section id="check-join" title="Join the Simpli Check waitlist">
+      <Section id="check-join" title="Join the Simpli Check waitlist" accent="check">
         <LeadForm
           page="/check"
           interests={["check", "archive", "both"]}
