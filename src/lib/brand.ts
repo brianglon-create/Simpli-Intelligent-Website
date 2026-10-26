@@ -21,10 +21,13 @@ export const BRAND = {
   operateOnNavy: "#7174F2",
 } as const;
 
-export const MARK_PATH =
-  "M70 20C70 8 52 2 34 4C14 6 4 18 6 34C8 48 22 54 42 56C62 58 76 66 74 82C72 98 54 106 34 104C14 102 4 90 10 78";
-
-export const MARK_VIEWBOX = "-10 -8 100 128";
+/** Interlocking dual-ribbon S. Upper bowl, then a separate lower bowl with a gap in the spine. */
+export const MARK_VIEWBOX = "0 0 90 86";
+export const MARK_STROKE = 17;
+export const MARK_UPPER =
+  "M63.5 16.6C42.1 13.1 26.5 14.6 17.1 26.1C12 42.5 26 50.5 33.6 42.1";
+export const MARK_LOWER =
+  "M56 43.4C73 31 76.2 45.9 73 55.5C66.9 71 42.1 68.9 26 67.6";
 
 export type BrandProduct = "intelligent" | "check" | "operate" | "archive" | "reach";
 

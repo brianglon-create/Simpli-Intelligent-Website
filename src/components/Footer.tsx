@@ -6,7 +6,7 @@ export function Footer() {
     <footer className="border-t border-border/70 bg-white">
       <div className="mx-auto max-w-6xl px-5 py-10 sm:px-8">
         <p className="flex items-center gap-2.5 font-display text-sm font-semibold tracking-[0.12em] text-navy">
-          <Mark product="intelligent" surface="light" className="h-7 w-[22px]" />
+          <Mark product="intelligent" surface="light" className="h-7 w-7" />
           {SITE.wordmark}
         </p>
         <nav aria-label="Footer" className="mt-6">

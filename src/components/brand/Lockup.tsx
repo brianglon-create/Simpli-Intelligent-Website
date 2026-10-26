@@ -3,19 +3,19 @@ import { productLineColor, PRODUCT_LINE, type BrandProduct } from "@/lib/brand";
 
 const sizeClass = {
   sm: {
-    mark: "h-8 w-[26px]",
+    mark: "h-8 w-8",
     word: "text-[15px] tracking-[0.04em]",
     line: "mt-1 text-[8px] tracking-[0.22em]",
     gap: "gap-2",
   },
   md: {
-    mark: "h-12 w-10",
+    mark: "h-12 w-12",
     word: "text-[22px] tracking-[0.04em]",
     line: "mt-1.5 text-[10px] tracking-[0.26em]",
     gap: "gap-2.5",
   },
   lg: {
-    mark: "h-16 w-[52px]",
+    mark: "h-16 w-16",
     word: "text-3xl tracking-[0.04em]",
     line: "mt-2 text-xs tracking-[0.28em]",
     gap: "gap-3",

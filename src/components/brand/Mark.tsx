@@ -1,10 +1,18 @@
 import { useId } from "react";
-import { BRAND, MARK_PATH, MARK_VIEWBOX, productAccent, type BrandProduct } from "@/lib/brand";
+import {
+  BRAND,
+  MARK_LOWER,
+  MARK_STROKE,
+  MARK_UPPER,
+  MARK_VIEWBOX,
+  productAccent,
+  type BrandProduct,
+} from "@/lib/brand";
 
 export function Mark({
   product = "intelligent",
   surface = "light",
-  className = "h-10 w-8",
+  className = "h-10 w-10",
   title,
 }: {
   product?: BrandProduct;
@@ -15,6 +23,9 @@ export function Mark({
   const gradientId = `mark-${useId().replace(/:/g, "")}`;
   const accent = productAccent(product);
   const onDark = surface === "dark";
+  const upper = onDark ? BRAND.white : BRAND.navy;
+  const lowerSolid = onDark || product === "intelligent";
+  const lower = onDark ? accent : BRAND.navy;
 
   return (
     <svg
@@ -24,35 +35,28 @@ export function Mark({
       aria-hidden={title ? undefined : true}
       aria-label={title}
     >
-      <defs>
-        <linearGradient id={gradientId} x1="0" y1="0" x2="0" y2="1">
-          {onDark ? (
-            <>
-              <stop offset="0" stopColor={BRAND.white} />
-              <stop offset="0.47" stopColor={BRAND.white} />
-              <stop offset="0.54" stopColor={BRAND.navy} />
-              <stop offset="0.74" stopColor={accent} />
-              <stop offset="1" stopColor={accent} />
-            </>
-          ) : product === "intelligent" ? (
-            <>
-              <stop offset="0" stopColor={BRAND.navy} />
-              <stop offset="1" stopColor={BRAND.navy} />
-            </>
-          ) : (
-            <>
-              <stop offset="0" stopColor={BRAND.navy} />
-              <stop offset="0.42" stopColor={BRAND.navy} />
-              <stop offset="1" stopColor={accent} />
-            </>
-          )}
-        </linearGradient>
-      </defs>
+      {lowerSolid ? null : (
+        <defs>
+          <linearGradient id={gradientId} x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stopColor={BRAND.navy} />
+            <stop offset="0.42" stopColor={BRAND.navy} />
+            <stop offset="1" stopColor={accent} />
+          </linearGradient>
+        </defs>
+      )}
       <path
-        d={MARK_PATH}
+        d={MARK_UPPER}
         fill="none"
-        stroke={`url(#${gradientId})`}
-        strokeWidth="18"
+        stroke={upper}
+        strokeWidth={MARK_STROKE}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d={MARK_LOWER}
+        fill="none"
+        stroke={lowerSolid ? lower : `url(#${gradientId})`}
+        strokeWidth={MARK_STROKE}
         strokeLinecap="round"
         strokeLinejoin="round"
       />

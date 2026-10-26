@@ -1,5 +1,5 @@
 import { ImageResponse } from "next/og";
-import { BRAND, MARK_PATH, MARK_VIEWBOX } from "@/lib/brand";
+import { BRAND, MARK_LOWER, MARK_STROKE, MARK_UPPER, MARK_VIEWBOX } from "@/lib/brand";
 
 export const ogSize = { width: 1200, height: 630 };
 
@@ -20,21 +20,20 @@ export function ogImage(title: string, subtitle: string) {
         }}
       >
         <div style={{ display: "flex", alignItems: "center", marginBottom: 36 }}>
-          <svg viewBox={MARK_VIEWBOX} width="84" height="108" style={{ display: "flex" }}>
-            <defs>
-              <linearGradient id="ogmark" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0" stopColor={BRAND.white} />
-                <stop offset="0.47" stopColor={BRAND.white} />
-                <stop offset="0.54" stopColor={BRAND.navy} />
-                <stop offset="0.74" stopColor={BRAND.blue} />
-                <stop offset="1" stopColor={BRAND.blue} />
-              </linearGradient>
-            </defs>
+          <svg viewBox={MARK_VIEWBOX} width="92" height="88" style={{ display: "flex" }}>
             <path
-              d={MARK_PATH}
+              d={MARK_UPPER}
               fill="none"
-              stroke="url(#ogmark)"
-              strokeWidth="18"
+              stroke={BRAND.white}
+              strokeWidth={MARK_STROKE}
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+            <path
+              d={MARK_LOWER}
+              fill="none"
+              stroke={BRAND.blue}
+              strokeWidth={MARK_STROKE}
               strokeLinecap="round"
               strokeLinejoin="round"
             />
