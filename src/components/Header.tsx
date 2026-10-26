@@ -1,11 +1,15 @@
 "use client";
 
 import { useEffect, useId, useState } from "react";
-import { NAV_LINKS, SITE } from "@/lib/site";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { Lockup } from "@/components/brand/Lockup";
+import { NAV_LINKS } from "@/lib/site";
 
 export function Header() {
   const [open, setOpen] = useState(false);
   const menuId = useId();
+  const pathname = usePathname();
 
   useEffect(() => {
     if (!open) return;
@@ -21,31 +25,32 @@ export function Header() {
   return (
     <header className="sticky top-0 z-50 border-b border-border/80 bg-white/90 backdrop-blur-md">
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-4 sm:px-8">
-        <a
-          href="#top"
-          className="font-display text-sm font-semibold tracking-[0.14em] text-navy sm:text-base"
-        >
-          {SITE.wordmark}
-        </a>
+        <Link href="/" aria-label="Simpli Intelligent" className="shrink-0">
+          <Lockup product="intelligent" surface="light" size="sm" />
+        </Link>
 
         <nav
           aria-label="Primary"
-          className="hidden items-center gap-8 md:flex"
+          className="hidden items-center gap-5 lg:flex"
         >
-          {NAV_LINKS.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className="text-sm font-medium text-muted transition-colors hover:text-navy"
-            >
-              {link.label}
-            </a>
-          ))}
+          {NAV_LINKS.map((link) => {
+            const active = link.href === pathname;
+            return (
+              <a
+                key={link.href}
+                href={link.href}
+                aria-current={active ? "page" : undefined}
+                className={`text-sm font-medium transition-colors hover:text-navy ${active ? "text-navy" : "text-muted"}`}
+              >
+                {link.label}
+              </a>
+            );
+          })}
         </nav>
 
         <button
           type="button"
-          className="inline-flex items-center justify-center rounded-md border border-border bg-white px-3 py-2 text-sm font-medium text-navy md:hidden"
+          className="inline-flex items-center justify-center rounded-md border border-border bg-white px-3 py-2 text-sm font-medium text-navy lg:hidden"
           aria-expanded={open}
           aria-controls={menuId}
           onClick={() => setOpen((value) => !value)}
@@ -58,7 +63,7 @@ export function Header() {
         <nav
           id={menuId}
           aria-label="Mobile"
-          className="border-t border-border bg-white px-5 py-4 md:hidden"
+          className="border-t border-border bg-white px-5 py-4 lg:hidden"
         >
           <ul className="flex flex-col gap-1">
             {NAV_LINKS.map((link) => (

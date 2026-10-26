@@ -1,5 +1,12 @@
 import { PRODUCTS } from "@/lib/site";
 
+const categoryInk = {
+  check: "text-check-ink",
+  operate: "text-operate-ink",
+  archive: "text-archive-ink",
+  reach: "text-reach-ink",
+} as const;
+
 export function Products() {
   return (
     <section
@@ -16,19 +23,19 @@ export function Products() {
             Our products
           </h2>
           <p className="mt-4 text-lg leading-relaxed text-muted">
-            A focused family of applications for the work of running and
-            growing an owner-operated business.
+            Simpli Intelligent is the platform. Each product does one job. Open
+            one to see where it stands and join its list.
           </p>
         </div>
 
-        <ul className="mt-12 grid gap-6 lg:grid-cols-3">
+        <ul className="mt-12 grid gap-6 md:grid-cols-2">
           {PRODUCTS.map((product) => (
             <li
               key={product.id}
               className="flex flex-col border border-border bg-white p-6 sm:p-7"
             >
               <div className="flex items-start justify-between gap-3">
-                <p className="text-xs font-semibold uppercase tracking-[0.12em] text-blue">
+                <p className={`text-xs font-semibold uppercase tracking-[0.12em] ${categoryInk[product.id]}`}>
                   {product.category}
                 </p>
                 <span className="shrink-0 rounded-sm bg-blue-soft px-2.5 py-1 text-xs font-medium text-navy-mid">
@@ -41,6 +48,12 @@ export function Products() {
               <p className="mt-4 flex-1 text-base leading-relaxed text-muted">
                 {product.description}
               </p>
+              <a
+                href={product.href}
+                className="mt-6 inline-flex text-sm font-semibold text-blue hover:text-navy"
+              >
+                View {product.name}
+              </a>
             </li>
           ))}
         </ul>

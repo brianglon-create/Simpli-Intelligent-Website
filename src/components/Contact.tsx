@@ -1,3 +1,4 @@
+import { LeadForm } from "@/components/LeadForm";
 import { SITE } from "@/lib/site";
 
 export function Contact() {
@@ -21,12 +22,20 @@ export function Contact() {
             Simpli Intelligent is currently developing and internally testing
             its first products.
           </p>
-          <a
-            href={mailtoHref}
-            className="mt-8 inline-flex items-center justify-center rounded-md bg-blue px-6 py-3.5 text-base font-semibold text-white transition-colors hover:bg-navy"
-          >
-            Contact Simpli Intelligent
-          </a>
+          <p className="mt-4 text-lg leading-relaxed text-muted">
+            Leave your name if you want to hear about one of them. This form
+            reserves your place. It does not charge a card.
+          </p>
+          <div className="mt-8">
+            <LeadForm page="/" id="contact-form" />
+          </div>
+          <p className="mt-8 text-base text-muted">
+            Or email{" "}
+            <a href={mailtoHref} className="font-medium text-navy">
+              {SITE.contactEmail}
+            </a>
+            .
+          </p>
         </div>
       </div>
     </section>
