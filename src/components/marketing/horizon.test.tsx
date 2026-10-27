@@ -60,6 +60,11 @@ describe("Horizon landing", () => {
     ).toBeInTheDocument();
     expect(screen.queryByRole("link", { name: /book 15 minutes/i })).not.toBeInTheDocument();
     expect(screen.queryByText(/\bAI\b/)).not.toBeInTheDocument();
+    expect(
+      screen.queryByRole("img", {
+        name: "Simpli Check workflow: capture, recognize, narrative, explain.",
+      }),
+    ).not.toBeInTheDocument();
   });
 
   it("stops offering founding tiers when 100 spots are claimed", () => {
@@ -106,6 +111,22 @@ describe("product pages", () => {
     expect(screen.queryByText(/archive storage resumes/i)).not.toBeInTheDocument();
     expect(screen.getByText(/you review and edit them/i)).toBeInTheDocument();
     expect(screen.getByText(/what it is, and why it matters/i)).toBeInTheDocument();
+    const storyboard = screen.getByRole("img", {
+      name: "Simpli Check workflow: capture, recognize, narrative, explain.",
+    });
+    expect(storyboard).toHaveAttribute("src", expect.stringContaining("simpli-check-storyboard.png"));
+    expect(storyboard).toHaveAttribute("width", "1280");
+    expect(storyboard).toHaveAttribute("height", "720");
+    const referenceLibrary = screen.getByRole("heading", { name: /inspector reference library/i });
+    const founderLine = screen.getByText(
+      "Built by a home inspector with 10 years of hands-on industry experience.",
+    );
+    expect(
+      referenceLibrary.compareDocumentPosition(storyboard) & Node.DOCUMENT_POSITION_FOLLOWING,
+    ).toBeTruthy();
+    expect(
+      storyboard.compareDocumentPosition(founderLine) & Node.DOCUMENT_POSITION_FOLLOWING,
+    ).toBeTruthy();
     expect(screen.queryByText(/save \d+%/i)).not.toBeInTheDocument();
     expect(screen.queryByText(/not published yet/i)).not.toBeInTheDocument();
     expect(screen.getByText(/early access spots are available/i)).toBeInTheDocument();
