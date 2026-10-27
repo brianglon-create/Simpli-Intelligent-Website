@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Lockup } from "@/components/brand/Lockup";
 import { CheckPillars } from "@/components/CheckPillars";
 import { FoundingOffer } from "@/components/FoundingOffer";
@@ -35,6 +36,16 @@ export function CheckLanding({ status }: { status: FoundingSnapshot }) {
           {CHECK_FEATURES_INTRO}
         </p>
         <CheckPillars />
+        <figure className="mt-8">
+          <Image
+            src="/images/simpli-check-storyboard.png"
+            alt="Simpli Check workflow: capture, recognize, narrative, explain."
+            width={1280}
+            height={720}
+            sizes="(min-width: 72rem) 68rem, (min-width: 40rem) calc(100vw - 4rem), calc(100vw - 2.5rem)"
+            className="h-auto w-full"
+          />
+        </figure>
         <ul className="mt-8 max-w-3xl space-y-3 text-base leading-relaxed text-muted">
           {CHECK_PERKS.map((perk) => (
             <li key={perk}>{perk}</li>
