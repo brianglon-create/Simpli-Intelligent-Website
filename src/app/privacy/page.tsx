@@ -29,7 +29,7 @@ export default function PrivacyPage() {
             <p className="mt-3">
               {SITE.brandLine}, {SITE.location}. This policy covers the signup form
               on {SITE.url}. It does not yet cover report files, because Simpli
-              Simpli Archive is not accepting uploads.
+              Archive is not accepting uploads.
             </p>
           </section>
           <section>
@@ -109,8 +109,6 @@ export default function PrivacyPage() {
           <section>
             <h2 className="font-display text-2xl font-semibold text-navy">Contact</h2>
             <p className="mt-3">
-              {SITE.brandLine}
-              <br />
               {address}
               <br />
               <a className="font-medium text-navy" href={`mailto:${SITE.contactEmail}`}>

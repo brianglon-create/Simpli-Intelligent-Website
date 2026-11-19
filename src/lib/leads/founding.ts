@@ -1,4 +1,3 @@
-import { OFFER_NAME } from "@/lib/offer-copy";
 import type { FoundingSnapshot, Interest } from "@/lib/leads/types";
 
 export const FOUNDING_CAP = 100;
@@ -35,17 +34,6 @@ export function tierPosition(spot: number): number | null {
   if (spot >= 1 && spot <= TIER_49_CAP) return spot;
   if (spot > TIER_49_CAP && spot <= FOUNDING_CAP) return spot - TIER_49_CAP;
   return null;
-}
-
-/**
- * Public thank-you screen and the inspector's confirmation email.
- * Names the tier the lead received. Never includes their spot number.
- */
-export function publicFoundingLine(price: 49 | 69): string {
-  if (price === FOUNDING_PRICE_49) {
-    return `You're in line for an ${OFFER_NAME} spot at $${FOUNDING_PRICE_49}/month (first ${TIER_49_CAP}).`;
-  }
-  return `You're in line for an ${OFFER_NAME} spot at $${FOUNDING_PRICE_69}/month (next ${TIER_69_CAP}).`;
 }
 
 /** Compact line for internal notification and threshold emails. */

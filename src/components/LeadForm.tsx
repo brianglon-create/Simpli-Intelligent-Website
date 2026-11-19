@@ -16,12 +16,12 @@ const INTEREST_OPTIONS: { value: Interest; label: string; hint: string }[] = [
   {
     value: "check",
     label: "Simpli Check",
-    hint: "Join the waitlist for our expected November launch",
+    hint: "Home inspection software",
   },
   {
     value: "both",
     label: "Simpli Archive and Simpli Check",
-    hint: "Simpli Archive now. Join the waitlist for our expected November launch",
+    hint: "Report history and home inspection software",
   },
   {
     value: "operate",
@@ -37,7 +37,7 @@ const INTEREST_OPTIONS: { value: Interest; label: string; hint: string }[] = [
 
 const SUBMIT_LABEL: Record<Interest, string> = {
   archive: "Protect my report history",
-  check: "Join the Simpli Check waitlist",
+  check: "Send me Simpli Check updates",
   both: "Join the list",
   operate: "Join the Simpli Operate list",
   reach: "Join the Simpli Reach list",
@@ -380,9 +380,7 @@ export function LeadForm({
         </p>
       ) : null}
 
-      <p className="text-sm text-muted">This reserves your place. It does not charge a card.</p>
-
-      <button type="submit" className={primaryButtonClass} disabled={pending}>
+      <button type="submit" className={`${primaryButtonClass} w-full sm:w-auto`} disabled={pending}>
         {pending ? "Sending..." : submitLabel}
       </button>
     </form>

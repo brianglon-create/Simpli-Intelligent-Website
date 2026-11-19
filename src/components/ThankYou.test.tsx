@@ -15,13 +15,12 @@ const result: SuccessBody = {
 };
 
 describe("ThankYou", () => {
-  it("names the tier price and points people to email instead of a booking link", () => {
+  it("states the public price and points people to email instead of a booking link", () => {
     render(<ThankYou result={result} />);
 
     expect(screen.getByRole("heading", { name: /you're on the list/i })).toBeInTheDocument();
-    expect(
-      screen.getByText(/you're in line for an early access spot at \$49\/month \(first 50\)/i),
-    ).toBeInTheDocument();
+    expect(screen.getByText(/\$49 per user per month/i)).toBeInTheDocument();
+    expect(screen.queryByText(/\$69/)).not.toBeInTheDocument();
     expect(screen.queryByText(/you're spot \d/i)).not.toBeInTheDocument();
     expect(screen.queryByText(/\bspot 2\b/i)).not.toBeInTheDocument();
     expect(screen.getByText(/the founder will follow up personally/i)).toBeInTheDocument();
@@ -29,21 +28,20 @@ describe("ThankYou", () => {
     expect(
       screen.getByText(/prefer to talk\? reply to the confirmation email or email/i),
     ).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: /brian@simpliintelligent.com/i })).toHaveAttribute(
+    expect(screen.getByRole("link", { name: /hello@simpliintelligent.com/i })).toHaveAttribute(
       "href",
-      "mailto:brian@simpliintelligent.com",
+      "mailto:hello@simpliintelligent.com",
     );
     expect(screen.queryByRole("link", { name: /book 15 minutes/i })).not.toBeInTheDocument();
     expect(screen.queryByText(/cal\.com|calendly/i)).not.toBeInTheDocument();
     expect(screen.getByRole("link", { name: /privacy policy/i })).toBeInTheDocument();
+    expect(screen.getByText(/this signup does not buy the product/i)).toBeInTheDocument();
   });
 
-  it("places a later signup in the $69 tier without a spot number", () => {
+  it("does not quote a second price when the database spot is later", () => {
     render(<ThankYou result={{ ...result, foundingSpot: 51, foundingPrice: 69 }} />);
-    expect(
-      screen.getByText(/you're in line for an early access spot at \$69\/month \(next 50\)/i),
-    ).toBeInTheDocument();
-    expect(screen.queryByText(/you're spot \d/i)).not.toBeInTheDocument();
+    expect(screen.getByText(/\$49 per user per month/i)).toBeInTheDocument();
+    expect(screen.queryByText(/\$69/)).not.toBeInTheDocument();
     expect(screen.queryByText(/\b51\b/)).not.toBeInTheDocument();
     expect(screen.queryByRole("link", { name: /book 15 minutes/i })).not.toBeInTheDocument();
   });

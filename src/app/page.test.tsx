@@ -68,7 +68,7 @@ describe("Simpli Intelligent homepage", () => {
       expect(
         screen.getByRole("heading", { level: 3, name: product.name }),
       ).toBeInTheDocument();
-      expect(screen.getByText(product.status)).toBeInTheDocument();
+      expect(screen.getAllByText(product.status).length).toBeGreaterThan(0);
       expect(screen.getByText(product.category)).toBeInTheDocument();
       expect(
         screen.getByRole("link", { name: `View ${product.name}` }),
@@ -79,9 +79,12 @@ describe("Simpli Intelligent homepage", () => {
   it("uses the shared contact email beside the signup form", () => {
     render(<Home />);
 
-    expect(screen.getByRole("button", { name: /join the list/i })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /send me launch updates/i })).toBeInTheDocument();
     expect(
-      screen.getByRole("link", { name: SITE.contactEmail }),
+      screen.getAllByRole("link", { name: SITE.contactEmail }).length,
+    ).toBeGreaterThan(0);
+    expect(
+      screen.getAllByRole("link", { name: SITE.contactEmail })[0],
     ).toHaveAttribute("href", `mailto:${SITE.contactEmail}`);
   });
 

@@ -1,14 +1,8 @@
 import {
-  FOUNDING_CAP,
-  FOUNDING_PRICE_49,
-  FOUNDING_PRICE_69,
-} from "@/lib/leads/founding";
-import {
-  FOUNDER_SUPPORT,
+  CHECK_HEADLINE,
+  CHECK_PRICE_LINE,
+  FOUNDER_ONBOARDING,
   INSPECTOR_BYLINE,
-  OFFER_INSPECTORS,
-  OFFER_NAME,
-  offerRateLine,
 } from "@/lib/offer-copy";
 
 export const SHUTDOWN_LABEL = "December 15, 2026";
@@ -16,8 +10,16 @@ export const SHUTDOWN_LABEL = "December 15, 2026";
 /** End of December 15, 2026, Eastern Time (EST, UTC−5). */
 export const SHUTDOWN_DEADLINE_ISO = "2026-12-16T05:00:00.000Z";
 
-export const ARCHIVE_FIRST_MONTH_USD = 19;
-export const ARCHIVE_MONTHLY_USD = 9;
+export const ARCHIVE_SETUP_USD = 29;
+export const ARCHIVE_MONTHLY_USD = 9.99;
+
+export function usd(amount: number): string {
+  return Number.isInteger(amount) ? `$${amount}` : `$${amount.toFixed(2)}`;
+}
+
+export const ARCHIVE_STANDALONE_PRICE = `${usd(ARCHIVE_SETUP_USD)} setup fee, then ${usd(ARCHIVE_MONTHLY_USD)} per month.`;
+
+export const ARCHIVE_ADDON_PRICE = `${usd(ARCHIVE_MONTHLY_USD)} per month for Simpli Check customers. No setup fee.`;
 
 export const MIGRATION_INCLUDED = [
   "Comments",
@@ -44,37 +46,56 @@ export const TIMELINE = [
   },
   {
     title: "Store it",
-    body: "Keep your own copies. Reserve Simpli Archive if you want that history in one searchable place beside whatever software you use next.",
+    body: "Keep your own copies. Simpli Archive is a searchable place for that history, beside whatever software you use next.",
   },
   {
     title: "Switch when you choose",
-    body: "Move to Spectora, Mach One, or something else, or join the Simpli Check waitlist and decide later. Simpli Archive does not choose your next inspection tool.",
+    body: "Move to the inspection software you choose next, or write new reports in Simpli Check. Simpli Archive does not choose your next inspection tool.",
   },
 ] as const;
 
 export const ARCHIVE_BULLETS = [
   {
-    title: "Your history, still findable.",
-    body: "Keep past reports in one place you can search, instead of a folder of exported files.",
+    title: "Search, don't dig",
+    body: "Find a past report instead of opening a folder of exports.",
   },
   {
-    title: "Works with any next step.",
-    body: "Switching to Spectora, Mach One, or something else? Simpli Archive sits alongside it. No lock-in.",
+    title: "Open the history",
+    body: "Open a past report when a client, agent, insurer, or attorney asks for it.",
   },
   {
-    title: "Built because an inspector needed it.",
-    body: "Old reports get pulled for claims, disputes, and repeat clients. Simpli Archive is being built for that moment.",
+    title: "Works with any next step",
+    body: "Spectora, Mach One, or Simpli Check: Simpli Archive sits alongside. No lock-in.",
+  },
+] as const;
+
+export const ARCHIVE_STEPS = [
+  {
+    title: `Export from Horizon before ${SHUTDOWN_LABEL}`,
+    body: "Follow the export checklist on the Horizon page.",
+  },
+  {
+    title: "Get Simpli Archive",
+    body: "Buy it on its own, or add it to Simpli Check.",
+  },
+  {
+    title: "Bring the export when that step is ready",
+    body: "This page does not describe how files are added. It does not describe storage.",
+  },
+  {
+    title: "Find it when someone asks",
+    body: "Search your past reports instead of digging through the export folder.",
   },
 ] as const;
 
 export const EXPORT_STEPS = [
   {
     title: `Export before ${SHUTDOWN_LABEL}`,
-    body: "Horizon's export tools stop that day. After that, Horizon has said the data will no longer be accessible, and Carson Dunlop deletes it. Export before you debate which software to use next.",
+    body: "Horizon's export tools stop that day. After that, Horizon has said the data will no longer be accessible, and Carson Dunlop deletes it. Export before you choose your next software.",
   },
   {
     title: "Export the history a migration does not carry",
-    body: "Take historical inspection reports, report PDFs, photos, work orders, bookings, and payment records. Spectora's one-click migration does not move those, and it does not move ISN integrations. A comment-library export is not your report history.",
+    body: "Take historical inspection reports, report PDFs, photos, work orders, bookings, and payment records. A one-click migration does not move those. A comment-library export is not your report history.",
   },
   {
     title: "Keep more than one copy",
@@ -82,39 +103,147 @@ export const EXPORT_STEPS = [
   },
   {
     title: "Write down what you actually received",
-    body: "Note the date range and the kinds of files Horizon gave you, then tell us. We confirm how those files can come into Simpli Archive before you pay.",
-  },
-  {
-    title: "Tell us what you have",
-    body: "Use the form on this page. We will confirm how those files can come into Simpli Archive before you pay. This checklist is the sequence to follow. It is not a click-by-click tour of Horizon's screens.",
+    body: "Note the date range and the kinds of files Horizon gave you. The migration-help form on this page is where you can tell us about your narratives and how many Horizon reports you have.",
   },
 ] as const;
 
-export const CHECK_PILLARS = [
+export const CHECK_BENEFITS = [
   {
-    title: "Real-time photo recognition",
-    body: "Snap a photo and Simpli Check identifies the defect as you go.",
+    title: "Write reports faster",
+    body: "Saved narratives and photo captions cut the retyping, so the evening isn't spent at the laptop.",
   },
   {
-    title: "Automatic narrative generation",
-    body: "Report-ready narratives written from your photos and notes. You review and edit them before they go in the report.",
+    title: "Keep your narratives",
+    body: "Your established narratives, writing style, and preferred wording come with you. Your reports still sound like you.",
   },
   {
-    title: "Inspector reference library",
-    body: "Plain-language education for the client on each defect: what it is, and why it matters.",
+    title: "An inspection workflow that makes sense",
+    body: "Work order to published report in one place, laid out in the order you inspect a house.",
+  },
+  {
+    title: "Simpli Assist",
+    body: "Simpli-generated narratives from your photos and notes. You edit and approve every one.",
   },
 ] as const;
 
-export const CHECK_PERKS = [
-  INSPECTOR_BYLINE,
-  `${offerRateLine(FOUNDING_PRICE_49, FOUNDING_PRICE_69)} It covers the first ${FOUNDING_CAP} Simpli Check signups. Then those tiers close.`,
-  FOUNDER_SUPPORT,
-  "First access to new products and features at discounted rates.",
+export const CHECK_STEPS = [
+  {
+    title: "Open the work order",
+    body: "Client, address, and inspection details are waiting on your dashboard.",
+  },
+  {
+    title: "Capture on site",
+    body: "Photos and notes go straight onto the observation. Mark up and caption as you go.",
+  },
+  {
+    title: "Write with your narratives and Simpli Assist",
+    body: "Pick a saved narrative or ask Simpli Assist for a suggestion. Edit it, then approve it.",
+  },
+  {
+    title: "Preview and publish",
+    body: "See what your client sees, then publish.",
+  },
+] as const;
+
+export const CHECK_OBJECTIONS = [
+  {
+    question: "“My comment library is my life's work.”",
+    answer:
+      "Bring it. Your established narratives, writing style, and preferred wording come with you from the software you use now. Review them and keep writing like you.",
+  },
+  {
+    question: "“My current software already writes narratives for me.”",
+    answer:
+      "Simpli Assist starts from your photo, your notes, and your saved wording, and you approve every line.",
+  },
+  {
+    question: "“I'm not running two systems.”",
+    answer:
+      "Simpli Check runs work order to published report. Anything not built yet is listed under Coming soon.",
+  },
+  {
+    question: "“Generated narratives on my license? No thanks.”",
+    answer:
+      "Simpli-generated narratives are suggestions. Nothing goes in the report until you approve it. Your name, your call, your words.",
+  },
+  {
+    question: "“Switching mid-season is a hassle.”",
+    answer:
+      "Early Adopters get founder-led onboarding. No response time is guaranteed. Keep your old software until your first Simpli Check report goes out.",
+  },
+  {
+    question: "“I'm on Horizon.”",
+    answer:
+      "Past reports, PDFs, and photos do not have to move into the software you write with next. Simpli Archive keeps that history. Simpli Check is where you write next.",
+  },
+  {
+    question: "“InterNACHI gives me software for free.”",
+    answer:
+      "Free tools still cost your evenings. $49 per user per month. Simpli Assist is included.",
+  },
+] as const;
+
+export const CHECK_FAQS = [
+  {
+    question: "Is Simpli Check $49 per user or per company?",
+    answer: "Per user. Simpli Check is $49 per user per month.",
+  },
+  {
+    question: "Is Simpli Assist extra?",
+    answer: "No. Simpli Assist is included in the $49 per user price.",
+  },
+  {
+    question: "Can I bring my narratives from my current software?",
+    answer:
+      "Yes. Bring your established narratives, writing style, and preferred wording from the software you use now.",
+  },
+  {
+    question: "How long does Early Adopter pricing last?",
+    answer: "Early Adopter pricing is a limited-time offer.",
+  },
+  {
+    question: "What does onboarding look like?",
+    answer: FOUNDER_ONBOARDING,
+  },
+  {
+    question: "I'm on Horizon. What about my old reports?",
+    answer: `Export them before ${SHUTDOWN_LABEL}. Simpli Archive keeps them searchable.`,
+  },
+  {
+    question: "Does Simpli Check work on my phone or tablet in the field?",
+    answer: "Yes. Capture photos and notes on site and finish anywhere.",
+  },
+  {
+    question: "Do you serve Canadian inspectors?",
+    answer: "US only for now. Canada later.",
+  },
+] as const;
+
+export const CHECK_COMING_SOON = [
+  "Client reference library, with plain-language explanations of what you found",
+  "Simpli Operate",
+  "Simpli Reach",
+] as const;
+
+export const ARCHIVE_FAQS = [
+  {
+    question: "Do I need to leave my current inspection software?",
+    answer:
+      "No. Simpli Archive is meant to sit alongside the software you use next. It does not replace that software.",
+  },
+  {
+    question: "What files can Simpli Archive take?",
+    answer: "This page does not list accepted file types.",
+  },
+  {
+    question: "Do you serve Canadian inspectors?",
+    answer: "US only for now. Canada later.",
+  },
 ] as const;
 
 export const HORIZON_FAQS = [
   {
-    question: "Do I need to leave Spectora or Mach One to use Simpli Archive?",
+    question: "Do I need to leave my current inspection software to use Simpli Archive?",
     answer:
       "No. Simpli Archive is meant to sit alongside the software you use next. It does not lock you in, and it does not replace that software.",
   },
@@ -130,40 +259,24 @@ export const HORIZON_FAQS = [
   },
   {
     question: "What file types can Simpli Archive take?",
-    answer:
-      "Tell us what Horizon exported and we will confirm what Simpli Archive can store before you upload anything.",
-  },
-  {
-    question: "Where is my data stored, and who owns the reports?",
-    answer:
-      "Your reports stay yours. This form stores the contact details in our Supabase database, described in the privacy policy. A hosting location for report files will be stated before Simpli Archive accepts uploads.",
-  },
-  {
-    question: "What happens if I cancel?",
-    answer: `This form does not start billing. Simpli Archive is $${ARCHIVE_FIRST_MONTH_USD} for the first month, then $${ARCHIVE_MONTHLY_USD}/month. How long uploaded reports are kept after you cancel will be stated before uploads open.`,
+    answer: "This page does not list accepted file types.",
   },
   {
     question: "Do you serve Canadian inspectors?",
     answer:
-      "Yes. The form asks for your province, and the consent checkbox is express consent for CASL. We also serve inspectors in the United States. Simpli Intelligent is not affiliated with CAHPI, ASHI, InterNACHI, Carson Dunlop, Spectora, or Mach One.",
+      "US only for now. Canada later. Simpli Intelligent is not affiliated with CAHPI, ASHI, InterNACHI, Carson Dunlop, Spectora, or Mach One.",
   },
   {
-    question: `What do ${OFFER_INSPECTORS} get?`,
-    answer: `${offerRateLine(FOUNDING_PRICE_49, FOUNDING_PRICE_69)} ${OFFER_INSPECTORS} get personal onboarding and support directly from the founder, and first access to new products and features at discounted rates. After ${FOUNDING_CAP} ${OFFER_NAME} signups, those tiers close on this site. The form does not charge a card.`,
+    question: "What do Early Adopters get?",
+    answer: `${CHECK_PRICE_LINE} ${FOUNDER_ONBOARDING}`,
   },
   {
     question: "What can Simpli Check do?",
-    answer:
-      `${INSPECTOR_BYLINE} Simpli Check is inspection software designed around how inspectors actually work, not a sales team. Join the waitlist for our expected November launch. Snap a photo and Simpli Check identifies the defect as you go; report-ready narratives from your photos and notes, which you review and edit; and plain-language education for the client on each defect, what it is and why it matters. These features launch with Simpli Check in November, and ${OFFER_INSPECTORS} get them first.`,
+    answer: `${INSPECTOR_BYLINE} ${CHECK_HEADLINE} Bring your established narratives, preferred wording, and writing style from the software you use now. Simpli Assist drafts Simpli-generated narratives from your photos and notes, and you approve every line. Simpli Check can read equipment data plates from a photo.`,
   },
   {
     question: "How will I search old reports?",
     answer:
-      "Simpli Archive is being built so past reports live in one searchable place instead of a folder of exports.",
-  },
-  {
-    question: "Does joining the list bill me?",
-    answer:
-      "No. The form reserves your place and tells us which product you asked about. It does not charge a card.",
+      "Simpli Archive keeps past reports in one searchable place instead of a folder of exports.",
   },
 ] as const;

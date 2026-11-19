@@ -6,16 +6,24 @@ import {
   resendApiKey,
 } from "@/lib/env";
 import { formatIndianapolis } from "@/lib/datetime";
-import {
-  FOUNDING_PRICE_49,
-  FOUNDING_PRICE_69,
-  foundingSpotLabel,
-  priceForSpot,
-  publicFoundingLine,
-} from "@/lib/leads/founding";
+import { EMAIL_ONLY_NAME, sourceFormKind } from "@/lib/leads/form-kind";
+import { foundingSpotLabel } from "@/lib/leads/founding";
 import type { Interest, StoredLead } from "@/lib/leads/types";
-import { FOUNDER_FOLLOW_UP, INSPECTOR_BYLINE, OFFER_NAME } from "@/lib/offer-copy";
-import { ARCHIVE_FIRST_MONTH_USD, ARCHIVE_MONTHLY_USD, SHUTDOWN_LABEL } from "@/lib/offers";
+import {
+  CHECK_PRICE_LINE,
+  FOUNDER_FOLLOW_UP,
+  INSPECTOR_BYLINE,
+  NOT_A_PURCHASE,
+  OFFER_NAME,
+} from "@/lib/offer-copy";
+import {
+  ARCHIVE_ADDON_PRICE,
+  ARCHIVE_STANDALONE_PRICE,
+  SHUTDOWN_LABEL,
+  usd,
+  ARCHIVE_MONTHLY_USD,
+  ARCHIVE_SETUP_USD,
+} from "@/lib/offers";
 import { SITE } from "@/lib/site";
 
 export type OutboundEmail = {
@@ -110,13 +118,13 @@ export function thresholdNotification(
   const remaining69 = Math.max(0, 100 - Math.max(count, 50));
   let detail = "";
   if (threshold === 40) {
-    detail = `${remaining49} spots remain at $${FOUNDING_PRICE_49}/month. The next 50 are $${FOUNDING_PRICE_69}/month. The site is still offering the ${OFFER_NAME} rate.`;
+    detail = `${remaining49} database spots remain in the first group. The public site shows one Simpli Check price, $49 per user per month, and does not show seat counts.`;
   } else if (threshold === 50) {
-    detail = `The $${FOUNDING_PRICE_49}/month tier is full. The $${FOUNDING_PRICE_69}/month tier is open.`;
+    detail = `The first 50 database spots are full. The public site still shows $49 per user per month and does not show a second price.`;
   } else if (threshold === 90) {
-    detail = `${remaining69} spots remain at $${FOUNDING_PRICE_69}/month.`;
+    detail = `${remaining69} database spots remain before the database cap of 100. The public site does not show this cap.`;
   } else {
-    detail = `${OFFER_NAME} pricing is now closed on the site. New Simpli Check signups join the waitlist without an ${OFFER_NAME} rate. Simpli Archive remains $${ARCHIVE_FIRST_MONTH_USD} for the first month, then $${ARCHIVE_MONTHLY_USD}/month.`;
+    detail = `The database cap of 100 spots is full. Public pages show Simpli Check at $49 per user per month. Simpli Archive is a ${usd(ARCHIVE_SETUP_USD)} setup fee, then ${usd(ARCHIVE_MONTHLY_USD)} per month.`;
   }
 
   return {
@@ -132,41 +140,58 @@ export function thresholdNotification(
   };
 }
 
+function greeting(name: string): string {
+  if (name === EMAIL_ONLY_NAME) return "Hi,";
+  const first = name.split(" ")[0]?.trim();
+  return first ? `Hi ${first},` : "Hi,";
+}
+
 export function leadConfirmation(lead: StoredLead): OutboundEmail {
+  const kind = sourceFormKind(lead.source);
   const lines = [
-    `Hi ${lead.name.split(" ")[0]},`,
+    greeting(lead.name),
     "",
-    `Thanks for signing up. I'm the founder of ${SITE.name}. ${INSPECTOR_BYLINE}`,
+    `Thanks for writing to ${SITE.name}. ${INSPECTOR_BYLINE}`,
   ];
 
-  const foundingPrice = priceForSpot(lead.foundingSpot);
-  if (foundingPrice) {
+  if (kind === "updates") {
     lines.push(
       "",
-      lead.productInterest === "check"
-        ? `${publicFoundingLine(foundingPrice)} That includes personal onboarding and support directly from the founder.`
-        : `${publicFoundingLine(foundingPrice)} That includes personal onboarding and support directly from the founder, and Simpli Archive. If you leave Simpli Check, Simpli Archive storage resumes at $${ARCHIVE_MONTHLY_USD}/month.`,
-      "This email does not start billing.",
+      "You're signed up for updates.",
+      `Simpli Check: ${SITE.url}/check`,
+      CHECK_PRICE_LINE,
+      NOT_A_PURCHASE,
+    );
+  } else if (kind === "migration") {
+    lines.push(
+      "",
+      "You asked for help bringing your narratives into Simpli Check. We'll reply by email.",
+      NOT_A_PURCHASE,
     );
   } else if (lead.productInterest === "archive") {
     lines.push(
       "",
-      `You asked to hear about Simpli Archive. The price is $${ARCHIVE_FIRST_MONTH_USD} for the first month, then $${ARCHIVE_MONTHLY_USD}/month. This email does not start billing.`,
+      `You asked to hear about Simpli Archive. ${ARCHIVE_STANDALONE_PRICE} ${ARCHIVE_ADDON_PRICE}`,
+      NOT_A_PURCHASE,
     );
   } else if (lead.productInterest === "check" || lead.productInterest === "both") {
     lines.push(
       "",
-      `You're on the Simpli Check waitlist. ${OFFER_NAME} pricing is full, so this signup does not lock an ${OFFER_NAME} rate. This email does not start billing.`,
+      `You asked to hear about ${interestLabel[lead.productInterest]}. ${CHECK_PRICE_LINE}`,
+      `Simpli Check: ${SITE.url}/check`,
+      NOT_A_PURCHASE,
     );
   } else if (lead.productInterest === "operate") {
     lines.push(
       "",
-      "You're on the list for Simpli Operate. I'll write when there is a public next step.",
+      "You're on the list for Simpli Operate. We'll write when there is a public next step.",
+      NOT_A_PURCHASE,
     );
   } else {
     lines.push(
       "",
-      "You're on the list for Simpli Reach. I'll write when there is a public next step.",
+      "You're on the list for Simpli Reach. We'll write when there is a public next step.",
+      NOT_A_PURCHASE,
     );
   }
 
@@ -181,9 +206,12 @@ export function leadConfirmation(lead: StoredLead): OutboundEmail {
     );
   }
 
+  if (kind !== "updates") {
+    lines.push("", FOUNDER_FOLLOW_UP);
+  }
+
   lines.push(
     "",
-    FOUNDER_FOLLOW_UP,
     `Prefer to talk? Reply to this email or email ${SITE.contactEmail}.`,
     "",
     "The founder",
@@ -198,7 +226,12 @@ export function leadConfirmation(lead: StoredLead): OutboundEmail {
   return {
     to: lead.email,
     replyTo: leadNotifyEmail(),
-    subject: "You're on the Simpli list",
+    subject:
+      kind === "updates"
+        ? "Your Simpli updates"
+        : kind === "migration"
+          ? "Help bringing your narratives"
+          : "You're on the Simpli list",
     text: lines.join("\n"),
     headers: {
       "List-Unsubscribe": `<mailto:${leadNotifyEmail()}?subject=Unsubscribe>`,

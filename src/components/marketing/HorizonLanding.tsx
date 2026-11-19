@@ -1,35 +1,57 @@
-import { Lockup } from "@/components/brand/Lockup";
-import { ArchivePricing } from "@/components/ArchivePricing";
-import { CheckPillars } from "@/components/CheckPillars";
+import { CheckoutLink, CheckoutPlaceholderNote } from "@/components/CheckoutLink";
 import { Countdown } from "@/components/Countdown";
+import { EmailUpdatesForm } from "@/components/forms/EmailUpdatesForm";
+import { MigrationHelpForm } from "@/components/forms/MigrationHelpForm";
 import { FaqList } from "@/components/FaqList";
-import { FoundingOffer } from "@/components/FoundingOffer";
-import { LeadForm } from "@/components/LeadForm";
+import { Lockup } from "@/components/brand/Lockup";
 import { PersonalFollowUp } from "@/components/PersonalFollowUp";
 import { Section } from "@/components/Section";
-import { SignupLinks } from "@/components/SignupLinks";
-import { primaryButtonClass } from "@/components/classes";
-import type { FoundingSnapshot } from "@/lib/leads/types";
+import { primaryButtonClass, secondaryButtonClass } from "@/components/classes";
+import { CHECKOUT } from "@/lib/checkout";
+import {
+  CHECK_HEADLINE,
+  CHECK_PRICE_LINE,
+  INSPECTOR_BYLINE,
+  NARRATIVE_MIGRATION_BODY,
+} from "@/lib/offer-copy";
 import {
   ARCHIVE_BULLETS,
-  CHECK_PERKS,
   EXPORT_STEPS,
   HORIZON_FAQS,
   MIGRATION_EXCLUDED,
   MIGRATION_INCLUDED,
   SHUTDOWN_LABEL,
   TIMELINE,
+  usd,
+  ARCHIVE_MONTHLY_USD,
+  ARCHIVE_SETUP_USD,
 } from "@/lib/offers";
-import {
-  CHECK_FEATURES_INTRO,
-  CHECK_WAITLIST_STATUS,
-  INSPECTOR_BYLINE,
-} from "@/lib/offer-copy";
 import { SITE } from "@/lib/site";
 
 const lede = "max-w-3xl text-lg leading-relaxed text-muted";
+const buyClass = `${primaryButtonClass} w-full justify-center sm:w-auto`;
+const secondaryClass = `${secondaryButtonClass} w-full justify-center sm:w-auto`;
 
-export function HorizonLanding({ status }: { status: FoundingSnapshot }) {
+function ProductButtons({
+  archiveLabel = "Simpli Archive keeps your history",
+  checkLabel = "Simpli Check is where you write next",
+}: {
+  archiveLabel?: string;
+  checkLabel?: string;
+}) {
+  return (
+    <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
+      <CheckoutLink href={CHECKOUT.archiveStandaloneUrl} className={buyClass}>
+        {archiveLabel}
+      </CheckoutLink>
+      <CheckoutLink href={CHECKOUT.simpliCheckUrl} className={secondaryClass}>
+        {checkLabel}
+      </CheckoutLink>
+    </div>
+  );
+}
+
+export function HorizonLanding() {
   return (
     <>
       <section aria-labelledby="horizon-hero-heading" className="relative overflow-hidden">
@@ -46,12 +68,14 @@ export function HorizonLanding({ status }: { status: FoundingSnapshot }) {
           </h1>
           <p className={`${lede} mt-6`}>
             Historical reports, PDFs, photos, and work orders stay behind when you
-            switch. Simpli Archive keeps that history. Simpli Check is inspection
-            software designed around how inspectors actually work. {CHECK_WAITLIST_STATUS}
+            switch. Simpli Archive keeps that history. Simpli Check is where you write
+            the next report. {CHECK_HEADLINE}
           </p>
           <Countdown />
-          <SignupLinks />
-          <p className="mt-4 text-sm text-muted">This page does not charge a card.</p>
+          <ProductButtons />
+          <div className="mt-4">
+            <CheckoutPlaceholderNote />
+          </div>
         </div>
       </section>
 
@@ -72,7 +96,7 @@ export function HorizonLanding({ status }: { status: FoundingSnapshot }) {
             shut off, whatever you decide about your next software.
           </p>
         </div>
-        <SignupLinks primary="Get on the list before the deadline" secondary="See the export checklist" secondaryHref="#export-checklist" />
+        <ProductButtons archiveLabel="Get Simpli Archive" checkLabel="Get Simpli Check" />
       </Section>
 
       <Section id="migration" title="What a one-click migration does not carry" eyebrow="Spectora">
@@ -104,7 +128,6 @@ export function HorizonLanding({ status }: { status: FoundingSnapshot }) {
           Source: Carson Dunlop&apos;s Horizon shutdown notice, and Spectora&apos;s
           public migration FAQ.
         </p>
-        <SignupLinks secondary="See your options" secondaryHref="#timeline" />
       </Section>
 
       <Section id="timeline" title="Export now. Store it. Switch when you choose." tone="white" eyebrow="Your options">
@@ -119,15 +142,14 @@ export function HorizonLanding({ status }: { status: FoundingSnapshot }) {
             </li>
           ))}
         </ol>
-        <SignupLinks />
+        <ProductButtons archiveLabel="Get Simpli Archive" checkLabel="Get Simpli Check" />
       </Section>
 
       <Section id="archive-offer" title="Simpli Archive keeps the history" eyebrow="Simpli Archive" accent="archive">
         <p className={lede}>
           Whatever software you switch to, your Horizon report history does not
-          come with you. Simpli Archive is being built to keep every past report
-          searchable and ready when a client, agent, insurer, or attorney comes
-          asking.
+          come with you. Simpli Archive keeps every past report searchable for the
+          day a client, agent, insurer, or attorney comes asking.
         </p>
         <ul className="mt-8 grid gap-4 lg:grid-cols-3">
           {ARCHIVE_BULLETS.map((bullet) => (
@@ -137,36 +159,65 @@ export function HorizonLanding({ status }: { status: FoundingSnapshot }) {
             </li>
           ))}
         </ul>
-        <div className={`${lede} mt-8 space-y-4`}>
-          <p>How it works, once Simpli Archive is open:</p>
-          <ol className="list-decimal space-y-2 pl-5">
-            <li>Export your Horizon history before {SHUTDOWN_LABEL}.</li>
-            <li>Tell us what you exported. We confirm how those files come into Simpli Archive before you pay.</li>
-            <li>Find a past report later without digging through a folder.</li>
-          </ol>
+        <div className="mt-8 grid gap-4 md:grid-cols-2">
+          <div className="border border-border bg-white p-6">
+            <p className="text-xs font-semibold uppercase tracking-[0.12em] text-archive-ink">
+              Standalone
+            </p>
+            <p className="font-display mt-4 text-4xl font-semibold text-navy">
+              {usd(ARCHIVE_SETUP_USD)}
+            </p>
+            <p className="mt-3 text-base leading-relaxed text-muted">
+              Setup fee, then {usd(ARCHIVE_MONTHLY_USD)} per month.
+            </p>
+            <CheckoutLink href={CHECKOUT.archiveStandaloneUrl} className={`${buyClass} mt-6`}>
+              Get Simpli Archive
+            </CheckoutLink>
+          </div>
+          <div className="border border-border bg-white p-6">
+            <p className="text-xs font-semibold uppercase tracking-[0.12em] text-archive-ink">
+              Simpli Check add-on
+            </p>
+            <p className="font-display mt-4 text-4xl font-semibold text-navy">
+              {usd(ARCHIVE_MONTHLY_USD)}
+            </p>
+            <p className="mt-3 text-base leading-relaxed text-muted">
+              Per month for Simpli Check customers. No setup fee.
+            </p>
+            <CheckoutLink href={CHECKOUT.archiveAddonUrl} className={`${buyClass} mt-6`}>
+              Add Simpli Archive
+            </CheckoutLink>
+          </div>
         </div>
-        <ArchivePricing status={status} showCta />
       </Section>
 
-      <Section id="check-offer" title="Simpli Check cuts the time you spend writing the report" tone="white" eyebrow="Simpli Check" accent="check">
-        <p className={lede}>{CHECK_FEATURES_INTRO}</p>
-        <CheckPillars />
-        <ul className="mt-8 max-w-3xl space-y-3 text-base leading-relaxed text-muted">
-          {CHECK_PERKS.map((perk) => (
-            <li key={perk}>{perk}</li>
-          ))}
-        </ul>
-        <FoundingOffer status={status} showCta />
+      <Section
+        id="check-offer"
+        title={CHECK_HEADLINE}
+        tone="white"
+        eyebrow="Simpli Check"
+        accent="check"
+      >
+        <div className={`${lede} space-y-4`}>
+          <p>{NARRATIVE_MIGRATION_BODY}</p>
+          <p>{CHECK_PRICE_LINE} Simpli Assist is included.</p>
+        </div>
+        <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+          <CheckoutLink href={CHECKOUT.simpliCheckUrl} className={buyClass}>
+            Get Simpli Check
+          </CheckoutLink>
+          <a href="/check" className={secondaryClass}>
+            Read the Simpli Check page
+          </a>
+        </div>
       </Section>
 
       <Section id="together" title="Simpli Archive and Simpli Check, under one platform" tone="navy" eyebrow={SITE.wordmark}>
         <div className="max-w-3xl space-y-4 text-lg leading-relaxed">
           <p>
             Simpli Intelligent is the platform. Simpli Archive and Simpli Check are
-            two products on it. Simpli Archive is the history problem every switcher
-            has, whichever software they choose next. Simpli Check is the inspection
-            product built to cut the time a working inspector spends writing the
-            report. {CHECK_WAITLIST_STATUS}
+            two products on it. Simpli Archive keeps the history. Simpli Check is
+            where you write the next report.
           </p>
           <p>
             The long-term aim is for Simpli products to share data into one
@@ -175,9 +226,12 @@ export function HorizonLanding({ status }: { status: FoundingSnapshot }) {
           </p>
         </div>
         <div className="mt-8">
-          <a href="#signup" className={primaryButtonClass}>
-            Join the list
-          </a>
+          <CheckoutLink
+            href={CHECKOUT.simpliCheckUrl}
+            className="inline-flex w-full items-center justify-center rounded-md bg-white px-6 py-3.5 text-base font-semibold text-navy sm:w-auto"
+          >
+            Get Simpli Check
+          </CheckoutLink>
         </div>
       </Section>
 
@@ -197,7 +251,6 @@ export function HorizonLanding({ status }: { status: FoundingSnapshot }) {
             </li>
           ))}
         </ol>
-        <SignupLinks primary="Send me a reminder" secondary="Read the FAQ" secondaryHref="#faq" />
       </Section>
 
       <Section id="faq" title="Questions inspectors ask" tone="white">
@@ -209,9 +262,8 @@ export function HorizonLanding({ status }: { status: FoundingSnapshot }) {
           <p>{INSPECTOR_BYLINE}</p>
           <p>
             Old reports get pulled for claims, disputes, and repeat clients.
-            Simpli Archive is being built for that moment. Simpli Check is the
-            inspection product for inspectors who want software shaped by the same
-            work.
+            Simpli Archive is for that moment. Simpli Check is the inspection
+            product for inspectors who want software shaped by the same work.
           </p>
           <p>
             {SITE.name} is not affiliated with Carson Dunlop, Horizon, Spectora, or
@@ -224,16 +276,18 @@ export function HorizonLanding({ status }: { status: FoundingSnapshot }) {
         </p>
       </Section>
 
-      <Section id="join" title="Tell us what you need" tone="white">
+      <Section id="updates" title="Send me launch updates" tone="white">
+        <EmailUpdatesForm page="/horizon" product="both" />
+      </Section>
+
+      <Section id="migration-help" title="Help me bring my narratives">
         <p className={`${lede} mb-8`}>
-          One form. Choose Simpli Archive, Simpli Check, or both.
+          Tell us about your narratives and your Horizon reports. We&apos;ll reply by email.
         </p>
         <PersonalFollowUp />
-        <LeadForm
-          page="/horizon"
-          interests={["archive", "check", "both"]}
-          defaultInterest="both"
-        />
+        <div className="mt-8">
+          <MigrationHelpForm page="/horizon" product="both" />
+        </div>
       </Section>
     </>
   );

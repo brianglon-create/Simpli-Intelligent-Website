@@ -1,4 +1,4 @@
-import { LeadForm } from "@/components/LeadForm";
+import { EmailUpdatesForm } from "@/components/forms/EmailUpdatesForm";
 import { SITE } from "@/lib/site";
 
 export function Contact() {
@@ -16,18 +16,13 @@ export function Contact() {
             id="contact-heading"
             className="font-display text-3xl font-semibold tracking-tight text-navy sm:text-4xl"
           >
-            Follow the journey.
+            Get updates.
           </h2>
           <p className="mt-6 text-lg leading-relaxed text-muted">
-            Simpli Intelligent is currently developing and internally testing
-            its first products.
-          </p>
-          <p className="mt-4 text-lg leading-relaxed text-muted">
-            Leave your name if you want to hear about one of them. This form
-            reserves your place. It does not charge a card.
+            Send your email for updates about Simpli Check and Simpli Archive.
           </p>
           <div className="mt-8">
-            <LeadForm page="/" id="contact-form" />
+            <EmailUpdatesForm page="/" product="both" id="contact-form" />
           </div>
           <p className="mt-8 text-base text-muted">
             Or email{" "}

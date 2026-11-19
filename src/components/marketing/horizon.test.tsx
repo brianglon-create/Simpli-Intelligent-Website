@@ -4,16 +4,11 @@ import { ArchiveLanding } from "@/components/marketing/ArchiveLanding";
 import { CheckLanding } from "@/components/marketing/CheckLanding";
 import { ComingSoonLanding } from "@/components/marketing/ComingSoonLanding";
 import { HorizonLanding } from "@/components/marketing/HorizonLanding";
-import { foundingSnapshot } from "@/lib/leads/founding";
 import PrivacyPage from "@/app/privacy/page";
 
-const open = foundingSnapshot(12, true);
-const closed = foundingSnapshot(100, true);
-const unconfigured = foundingSnapshot(0, false);
-
 describe("Horizon landing", () => {
-  it("explains the shutdown, the migration gap, pricing, and the export sequence", () => {
-    render(<HorizonLanding status={open} />);
+  it("explains the shutdown, the new prices, and the export sequence", () => {
+    render(<HorizonLanding />);
 
     expect(
       screen.getByRole("heading", {
@@ -21,117 +16,86 @@ describe("Horizon landing", () => {
         name: /horizon shuts down december 15, 2026/i,
       }),
     ).toBeInTheDocument();
-    expect(screen.getByText(/early access spots are available/i)).toBeInTheDocument();
-    expect(screen.queryByText(/spots claimed/i)).not.toBeInTheDocument();
-    expect(screen.queryByText(/left at this rate/i)).not.toBeInTheDocument();
-    expect(screen.queryByText(/you're spot \d/i)).not.toBeInTheDocument();
-    expect(screen.getAllByText(/\$19/).length).toBeGreaterThan(0);
-    expect(screen.getAllByText(/\$9\/month/).length).toBeGreaterThan(0);
-    expect(screen.getAllByText(/\$49\/month/).length).toBeGreaterThan(0);
-    expect(screen.getAllByText(/\$69\/month/).length).toBeGreaterThan(0);
+    expect(screen.getAllByText(/\$29/).length).toBeGreaterThan(0);
+    expect(screen.getAllByText(/\$9\.99/).length).toBeGreaterThan(0);
+    expect(screen.getAllByText(/\$49 per user per month/i).length).toBeGreaterThan(0);
+    expect(screen.queryByText(/\$19/)).not.toBeInTheDocument();
+    expect(screen.queryByText(/\$69/)).not.toBeInTheDocument();
+    expect(screen.queryByText(/included for simpli check early/i)).not.toBeInTheDocument();
     expect(screen.getAllByText(/historical inspection reports/i).length).toBeGreaterThan(0);
-    expect(screen.getAllByText(/isn integrations/i).length).toBeGreaterThan(0);
     expect(screen.getByRole("heading", { name: /export checklist/i })).toBeInTheDocument();
     expect(screen.getByText(/not a tour of horizon's screens/i)).toBeInTheDocument();
     expect(screen.getAllByText(/10 years of hands-on industry experience/i).length).toBeGreaterThan(0);
     expect(screen.queryByText(/north star/i)).not.toBeInTheDocument();
     expect(screen.queryByText(/\bBrian\b/)).not.toBeInTheDocument();
-    expect(screen.getByRole("heading", { name: /real-time photo recognition/i })).toBeInTheDocument();
-    expect(screen.getByRole("heading", { name: /automatic narrative generation/i })).toBeInTheDocument();
-    expect(screen.getByRole("heading", { name: /inspector reference library/i })).toBeInTheDocument();
-    expect(screen.getAllByText(/launching november/i).length).toBeGreaterThan(0);
-    expect(screen.getAllByText(/join the waitlist for our expected november launch/i).length).toBeGreaterThan(0);
-    expect(screen.getByText(/report writing is what eats your evenings/i)).toBeInTheDocument();
-    expect(screen.queryByText(/it is on the waitlist/i)).not.toBeInTheDocument();
-    expect(screen.queryByText(/coming to early access inspectors/i)).not.toBeInTheDocument();
-    expect(screen.getAllByText(/early access rate: \$49\/month \(first 50\), \$69\/month \(next 50\)/i).length).toBeGreaterThan(0);
+    expect(screen.queryByText(/identifies the defect/i)).not.toBeInTheDocument();
+    expect(screen.queryByText(/launching november/i)).not.toBeInTheDocument();
+    expect(screen.queryByText(/waitlist/i)).not.toBeInTheDocument();
+    expect(screen.queryByText(/early access/i)).not.toBeInTheDocument();
+    expect(screen.getByText(/us only for now\. canada later\./i)).toBeInTheDocument();
+    expect(screen.queryByText(/does not charge a card/i)).not.toBeInTheDocument();
+    expect(screen.queryByText(/before you pay/i)).not.toBeInTheDocument();
     expect(screen.getByText(/not something you can use today/i)).toBeInTheDocument();
-    expect(screen.getAllByRole("link", { name: /protect my report history/i }).length).toBeGreaterThan(1);
-    expect(screen.queryByText(/your findings and your wording/i)).not.toBeInTheDocument();
-    expect(screen.queryByText(/address, client, or date/i)).not.toBeInTheDocument();
-    expect(
-      screen.getByText(
-        /i agree to receive emails from simpli intelligent, a brand of polaris intelligence llc, about the product i selected/i,
-      ),
-    ).toBeInTheDocument();
-    expect(screen.getByText(/the founder will follow up personally/i)).toBeInTheDocument();
-    expect(
-      screen.getByText(/prefer to talk\? reply to the confirmation email or email/i),
-    ).toBeInTheDocument();
-    expect(screen.queryByRole("link", { name: /book 15 minutes/i })).not.toBeInTheDocument();
+    expect(screen.getAllByRole("link", { name: /get simpli archive/i }).length).toBeGreaterThan(0);
+    expect(screen.getAllByRole("link", { name: /get simpli check/i }).length).toBeGreaterThan(0);
+    expect(screen.getByRole("button", { name: /send me launch updates/i })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /help me bring my narratives/i })).toBeInTheDocument();
     expect(screen.queryByText(/\bAI\b/)).not.toBeInTheDocument();
-    expect(
-      screen.queryByRole("img", {
-        name: "Simpli Check workflow: capture, recognize, narrative, explain.",
-      }),
-    ).not.toBeInTheDocument();
-  });
-
-  it("stops offering founding tiers when 100 spots are claimed", () => {
-    render(<HorizonLanding status={closed} />);
-    expect(screen.getByRole("heading", { name: /early access pricing is closed/i })).toBeInTheDocument();
-    expect(screen.queryByText(/early access spots are available/i)).not.toBeInTheDocument();
-    expect(screen.queryByText(/spots claimed/i)).not.toBeInTheDocument();
-    expect(screen.queryByRole("link", { name: /book 15 minutes/i })).not.toBeInTheDocument();
-    expect(screen.getByText(/the founder will follow up personally/i)).toBeInTheDocument();
-  });
-
-  it("does not invent a live remaining count before storage is connected", () => {
-    render(<HorizonLanding status={unconfigured} />);
-    expect(screen.queryByText(/early access spots are available/i)).not.toBeInTheDocument();
-    expect(screen.queryByText(/spots claimed/i)).not.toBeInTheDocument();
-    expect(screen.queryByText(/left at this rate/i)).not.toBeInTheDocument();
-    expect(screen.getAllByText(/\$49\/month/).length).toBeGreaterThan(0);
+    expect(screen.queryByText(/office staff/i)).not.toBeInTheDocument();
+    expect(screen.queryByText(/unlimited reports/i)).not.toBeInTheDocument();
   });
 });
 
 describe("product pages", () => {
-  it("keeps Archive pricing and points campaigns back to Horizon", () => {
-    render(<ArchiveLanding status={open} />);
-    expect(screen.getByRole("heading", { level: 1, name: /don't let december 15, 2026 erase/i })).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: /read the full horizon briefing/i })).toHaveAttribute("href", "/horizon");
+  it("shows approved Archive prices and a buy button", () => {
+    render(<ArchiveLanding />);
+    expect(
+      screen.getByRole("heading", {
+        level: 1,
+        name: /horizon exports end december 15, 2026\. keep your inspection history/i,
+      }),
+    ).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: /how to export from horizon/i })).toHaveAttribute(
+      "href",
+      "/horizon#export-checklist",
+    );
+    expect(screen.getAllByRole("link", { name: /get simpli archive/i }).length).toBeGreaterThan(0);
+    expect(screen.getAllByText(/no setup fee/i).length).toBeGreaterThan(0);
+    expect(screen.queryByText(/\$19/)).not.toBeInTheDocument();
+    expect(screen.queryByText(/before you pay/i)).not.toBeInTheDocument();
   });
 
-  it("shows Check as a waitlist built to shorten report writing", () => {
-    render(<CheckLanding status={open} />);
-    expect(screen.getByRole("heading", { level: 1, name: /cut the time you spend writing the report/i })).toBeInTheDocument();
+  it("shows the locked Check headline, migration section, and screenshot slots", () => {
+    render(<CheckLanding />);
+    expect(
+      screen.getByRole("heading", {
+        level: 1,
+        name: /your words\. your photos\. your report, done faster\./i,
+      }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", {
+        name: /switching software shouldn't mean starting over/i,
+      }),
+    ).toBeInTheDocument();
     expect(screen.getAllByText(/10 years of hands-on industry experience/i).length).toBeGreaterThan(0);
     expect(screen.queryByText(/north star/i)).not.toBeInTheDocument();
     expect(screen.queryByText(/\bBrian\b/)).not.toBeInTheDocument();
-    expect(screen.getByRole("heading", { name: /real-time photo recognition/i })).toBeInTheDocument();
-    expect(
-      screen.getByText(
-        /built by a home inspector with 10 years of hands-on industry experience\. simpli check is inspection software designed around how inspectors actually work, not a sales team\. join the waitlist for our expected november launch\./i,
-      ),
-    ).toBeInTheDocument();
-    expect(screen.getByText(/report writing is what eats your evenings/i)).toBeInTheDocument();
-    expect(screen.getAllByText(/launching november/i).length).toBeGreaterThan(0);
-    expect(screen.getByText(/snap a photo and simpli check identifies the defect as you go/i)).toBeInTheDocument();
-    expect(screen.queryByText(/it is on the waitlist/i)).not.toBeInTheDocument();
-    expect(screen.queryByText(/archive storage resumes/i)).not.toBeInTheDocument();
-    expect(screen.getByText(/you review and edit them/i)).toBeInTheDocument();
-    expect(screen.getByText(/what it is, and why it matters/i)).toBeInTheDocument();
-    const storyboard = screen.getByRole("img", {
-      name: "Simpli Check workflow: capture, recognize, narrative, explain.",
-    });
-    expect(storyboard).toHaveAttribute("src", expect.stringContaining("simpli-check-storyboard.png"));
-    expect(storyboard).toHaveAttribute("width", "1280");
-    expect(storyboard).toHaveAttribute("height", "720");
-    const referenceLibrary = screen.getByRole("heading", { name: /inspector reference library/i });
-    const founderLine = screen.getByText(
-      "Built by a home inspector with 10 years of hands-on industry experience.",
+    expect(screen.queryByText(/identifies the defect/i)).not.toBeInTheDocument();
+    expect(screen.queryByText(/waitlist/i)).not.toBeInTheDocument();
+    expect(screen.queryByText(/early access/i)).not.toBeInTheDocument();
+    expect(screen.queryByText(/\$69/)).not.toBeInTheDocument();
+    expect(screen.queryByText(/office staff/i)).not.toBeInTheDocument();
+    expect(screen.queryByText(/unlimited reports/i)).not.toBeInTheDocument();
+    expect(screen.getByText(/screenshot 01/i)).toBeInTheDocument();
+    expect(screen.getByText(/check-01-report-writer\.png/i)).toBeInTheDocument();
+    expect(screen.getByText(/check-02-saved-narratives\.png/i)).toBeInTheDocument();
+    expect(screen.getAllByRole("link", { name: /get simpli check/i }).length).toBeGreaterThan(0);
+    expect(screen.getByRole("link", { name: /see how it works/i })).toHaveAttribute(
+      "href",
+      "#how-it-works",
     );
-    expect(
-      referenceLibrary.compareDocumentPosition(storyboard) & Node.DOCUMENT_POSITION_FOLLOWING,
-    ).toBeTruthy();
-    expect(
-      storyboard.compareDocumentPosition(founderLine) & Node.DOCUMENT_POSITION_FOLLOWING,
-    ).toBeTruthy();
-    expect(screen.queryByText(/save \d+%/i)).not.toBeInTheDocument();
-    expect(screen.queryByText(/not published yet/i)).not.toBeInTheDocument();
-    expect(screen.getByText(/early access spots are available/i)).toBeInTheDocument();
-    expect(screen.queryByText(/spots claimed/i)).not.toBeInTheDocument();
-    expect(screen.queryByText(/left at this rate/i)).not.toBeInTheDocument();
+    expect(screen.queryByText(/\bAI\b/)).not.toBeInTheDocument();
   });
 
   it("uses the same form for Operate and Reach", () => {
@@ -159,6 +123,8 @@ describe("privacy page", () => {
     expect(
       screen.getAllByText(/simpli intelligent, a brand of polaris intelligence llc/i).length,
     ).toBeGreaterThan(0);
+    expect(screen.queryByText(/simpli simpli/i)).not.toBeInTheDocument();
+    expect(screen.getAllByRole("link", { name: /hello@simpliintelligent.com/i }).length).toBeGreaterThan(0);
     expect(screen.queryByText(/\(R\)|®|™/)).not.toBeInTheDocument();
   });
 });
