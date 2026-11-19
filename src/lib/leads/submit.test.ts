@@ -48,12 +48,12 @@ describe("submitLead", () => {
     expect(
       messages
         .map((message) => message.subject)
-        .filter((subject) => subject.startsWith("Simpli Check Early Access spots")),
+        .filter((subject) => subject.startsWith("Simpli Check Early Adopter spots")),
     ).toEqual([
-      "Simpli Check Early Access spots: 40 of the first 50 ($49/month)",
-      "Simpli Check Early Access spots: 50 of the first 50 ($49/month)",
-      "Simpli Check Early Access spots: 40 of the next 50 (spots 51-100) ($69/month)",
-      "Simpli Check Early Access spots: 50 of the next 50 (spots 51-100) ($69/month)",
+      "Simpli Check Early Adopter spots: 40 of the first 50 ($49/month)",
+      "Simpli Check Early Adopter spots: 50 of the first 50 ($49/month)",
+      "Simpli Check Early Adopter spots: 40 of the next 50 (spots 51-100) ($69/month)",
+      "Simpli Check Early Adopter spots: 50 of the next 50 (spots 51-100) ($69/month)",
     ]);
 
     const extra = await submitLead(
@@ -84,7 +84,7 @@ describe("submitLead", () => {
     expect(brian?.text).toContain("dec15");
     expect(brian?.text).toContain("internachi");
     expect(brian?.text).toContain("Lead status: New");
-    expect(brian?.text).toContain("Early Access spot: 1 of the first 50 ($49/month)");
+    expect(brian?.text).toContain("Early Adopter spot: 1 of the first 50 ($49/month)");
     expect(brian?.text).toMatch(/Signed up: .+ ET/);
     expect(brian?.text).not.toMatch(/Signed up: \d{4}-\d{2}-\d{2}T/);
     expect(brian?.text).not.toMatch(/your wording/i);
@@ -110,7 +110,7 @@ describe("submitLead", () => {
     let failFounding = true;
     const subjects: string[] = [];
     const send = async (message: OutboundEmail) => {
-      if (message.subject.startsWith("Simpli Check Early Access") && failFounding) {
+      if (message.subject.startsWith("Simpli Check Early Adopter") && failFounding) {
         return { sent: false as const, reason: "email_failed" as const };
       }
       subjects.push(message.subject);
@@ -123,11 +123,11 @@ describe("submitLead", () => {
         { store, send },
       );
     }
-    expect(subjects.some((subject) => subject.includes("Early Access spots: 40"))).toBe(false);
+    expect(subjects.some((subject) => subject.includes("Early Adopter spots: 40"))).toBe(false);
 
     failFounding = false;
     await submitLead({ ...base, email: "retry40@example.com" }, { store, send });
-    expect(subjects.some((subject) => subject.includes("Early Access spots: 40"))).toBe(true);
+    expect(subjects.some((subject) => subject.includes("Early Adopter spots: 40"))).toBe(true);
   });
 
   it("does not store honeypot submissions", async () => {
@@ -143,6 +143,6 @@ describe("submitLead", () => {
     const outcome = await submitLead(base, { store: createUnconfiguredStore() });
     expect(outcome.status).toBe(503);
     if (outcome.status !== 503) return;
-    expect(outcome.body.message).toMatch(/brian@simpliintelligent.com/);
+    expect(outcome.body.message).toMatch(/hello@simpliintelligent.com/);
   });
 });

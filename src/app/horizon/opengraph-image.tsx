@@ -7,6 +7,6 @@ export const contentType = "image/png";
 export default function Image() {
   return ogImage(
     "Horizon shuts down December 15.",
-    "Simpli Archive keeps report history. Join the waitlist for our expected November launch.",
+    "Simpli Archive keeps your history. Simpli Check is where you write next.",
   );
 }

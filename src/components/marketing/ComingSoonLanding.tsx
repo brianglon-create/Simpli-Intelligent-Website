@@ -25,7 +25,7 @@ export function ComingSoonLanding({
           <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted">{description}</p>
           <p className="mt-4 max-w-2xl text-lg leading-relaxed text-muted">
             It is not open for customers yet. Join the list and we will write when
-            there is a public next step. This form does not charge a card.
+            there is a public next step.
           </p>
         </div>
       </section>

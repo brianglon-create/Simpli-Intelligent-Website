@@ -1,18 +1,12 @@
-import {
-  FOUNDING_PRICE_49,
-  FOUNDING_PRICE_69,
-  publicFoundingLine,
-} from "@/lib/leads/founding";
-import { OFFER_NAME } from "@/lib/offer-copy";
+import { CHECK_PRICE_LINE, NOT_A_PURCHASE } from "@/lib/offer-copy";
 import type { SuccessBody } from "@/lib/leads/types";
 import {
-  ARCHIVE_FIRST_MONTH_USD,
-  ARCHIVE_MONTHLY_USD,
+  ARCHIVE_ADDON_PRICE,
+  ARCHIVE_STANDALONE_PRICE,
   SHUTDOWN_LABEL,
 } from "@/lib/offers";
 
 const exportLine = `Horizon's export tools stop on ${SHUTDOWN_LABEL}. Please export your full history before then, whatever you decide about software.`;
-const noBill = "This does not start billing.";
 
 export function thankYouCopy(result: SuccessBody): {
   title: string;
@@ -20,52 +14,9 @@ export function thankYouCopy(result: SuccessBody): {
 } {
   if (result.duplicate) {
     return {
-      title: "You're already on the list.",
+      title: "We already have this email.",
       paragraphs: [
         "This email is already signed up. We'll keep the signup we have.",
-        exportLine,
-      ],
-    };
-  }
-
-  if (result.foundingPrice) {
-    const added = result.upgraded ? "We added Simpli Check to your signup. " : "";
-    return {
-      title: "You're on the list.",
-      paragraphs: [
-        `${added}${publicFoundingLine(result.foundingPrice)}`,
-        result.interest === "check"
-          ? "That includes personal onboarding and support directly from the founder."
-          : `That includes personal onboarding and support directly from the founder, and Simpli Archive. If you leave Simpli Check, Simpli Archive storage resumes at $${ARCHIVE_MONTHLY_USD}/month.`,
-        noBill,
-        exportLine,
-      ],
-    };
-  }
-
-  if (
-    (result.interest === "check" || result.interest === "both") &&
-    result.foundingClosed
-  ) {
-    const added = result.upgraded ? "We added Simpli Check to your signup. " : "";
-    return {
-      title: "You're on the list.",
-      paragraphs: [
-        `${added}You're on the Simpli Check waitlist. ${OFFER_NAME} pricing is full, so this signup does not lock a $${FOUNDING_PRICE_49} or $${FOUNDING_PRICE_69} ${OFFER_NAME} rate.`,
-        noBill,
-        exportLine,
-      ],
-    };
-  }
-
-  if (result.interest === "check" || result.interest === "both") {
-    return {
-      title: "You're on the list.",
-      paragraphs: [
-        result.interest === "both"
-          ? "You're on the list for Simpli Archive and Simpli Check. We'll write with next steps."
-          : "You're on the Simpli Check waitlist. We'll write with next steps.",
-        noBill,
         exportLine,
       ],
     };
@@ -75,10 +26,22 @@ export function thankYouCopy(result: SuccessBody): {
     return {
       title: "You're on the list.",
       paragraphs: [
-        `You're on the list for Simpli Archive. The price is $${ARCHIVE_FIRST_MONTH_USD} for the first month, then $${ARCHIVE_MONTHLY_USD}/month.`,
-        noBill,
+        `You asked to hear about Simpli Archive. ${ARCHIVE_STANDALONE_PRICE} ${ARCHIVE_ADDON_PRICE}`,
+        NOT_A_PURCHASE,
         exportLine,
       ],
+    };
+  }
+
+  if (result.interest === "check" || result.interest === "both") {
+    const added = result.upgraded ? "We added Simpli Check to your signup. " : "";
+    const product =
+      result.interest === "both"
+        ? "You asked to hear about Simpli Archive and Simpli Check."
+        : "You asked to hear about Simpli Check.";
+    return {
+      title: "You're on the list.",
+      paragraphs: [`${added}${product} ${CHECK_PRICE_LINE}`, NOT_A_PURCHASE, exportLine],
     };
   }
 
@@ -87,7 +50,7 @@ export function thankYouCopy(result: SuccessBody): {
       title: "You're on the list.",
       paragraphs: [
         "You're on the list for Simpli Operate. We'll write when there is a public next step.",
-        noBill,
+        NOT_A_PURCHASE,
       ],
     };
   }
@@ -96,7 +59,7 @@ export function thankYouCopy(result: SuccessBody): {
     title: "You're on the list.",
     paragraphs: [
       "You're on the list for Simpli Reach. We'll write when there is a public next step.",
-      noBill,
+      NOT_A_PURCHASE,
     ],
   };
 }

@@ -1,5 +1,3 @@
-import { CHECK_HERO } from "@/lib/offer-copy";
-
 /**
  * Site-wide configuration.
  * contactEmail is the public address shown on the site and in fallback messages.
@@ -8,7 +6,7 @@ export const SITE = {
   name: "Simpli Intelligent",
   wordmark: "SIMPLI INTELLIGENT",
   url: "https://simpliintelligent.com",
-  contactEmail: "brian@simpliintelligent.com",
+  contactEmail: "hello@simpliintelligent.com",
   legalEntity: "Polaris Intelligence LLC",
   /** Parent company and brand. Do not add a trademark symbol. */
   brandLine: "Simpli Intelligent, a brand of Polaris Intelligence LLC",
@@ -21,22 +19,18 @@ export const SITE = {
 
 export const NAV_LINKS = [
   { href: "/check", label: "Simpli Check" },
-  { href: "/operate", label: "Operate" },
   { href: "/archive", label: "Simpli Archive" },
-  { href: "/reach", label: "Reach" },
   { href: "/horizon", label: "Horizon" },
-  { href: "/#about", label: "About" },
-  { href: "/#contact", label: "Contact" },
+  { href: "/check#pricing", label: "Pricing" },
 ] as const;
 
 export const FOOTER_LINKS = [
-  { href: "/horizon", label: "Horizon" },
   { href: "/check", label: "Simpli Check" },
-  { href: "/operate", label: "Operate" },
   { href: "/archive", label: "Simpli Archive" },
+  { href: "/horizon", label: "Horizon" },
+  { href: "/operate", label: "Operate" },
   { href: "/reach", label: "Reach" },
   { href: "/privacy", label: "Privacy" },
-  { href: "/#contact", label: "Contact" },
 ] as const;
 
 export const PRODUCTS = [
@@ -44,9 +38,19 @@ export const PRODUCTS = [
     id: "check",
     name: "SIMPLI CHECK",
     category: "Inspection Software",
-    description: CHECK_HERO,
-    status: "Waitlist",
+    description:
+      "Your words. Your photos. Your report, done faster. Early Adopter pricing is $49 per user per month, for a limited time.",
+    status: "Available now",
     href: "/check",
+  },
+  {
+    id: "archive",
+    name: "SIMPLI ARCHIVE",
+    category: "Report History",
+    description:
+      "Keep past inspection reports searchable after the December 15, 2026 Horizon shutdown. $29 setup fee, then $9.99 per month. Simpli Check customers add it for $9.99 per month with no setup fee.",
+    status: "Available now",
+    href: "/archive",
   },
   {
     id: "operate",
@@ -54,17 +58,8 @@ export const PRODUCTS = [
     category: "Business Operations Software",
     description:
       "A practical operating platform designed to organize priorities, relationships, work, and the day-to-day responsibilities of running a business.",
-    status: "Internal Launch",
+    status: "Coming soon",
     href: "/operate",
-  },
-  {
-    id: "archive",
-    name: "SIMPLI ARCHIVE",
-    category: "Report History",
-    description:
-      "A place to keep Horizon inspection reports searchable after the December 15, 2026 shutdown, alongside whatever software you use next.",
-    status: "Early access",
-    href: "/archive",
   },
   {
     id: "reach",
@@ -72,7 +67,7 @@ export const PRODUCTS = [
     category: "Business Growth Software",
     description:
       "A marketing and growth workspace designed to help owner-operated businesses consistently reach better customers with less time and uncertainty.",
-    status: "In Development",
+    status: "Coming soon",
     href: "/reach",
   },
 ] as const;

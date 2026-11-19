@@ -47,4 +47,17 @@ describe("Supabase leads migration", () => {
     expect(sql).toContain("from public, anon, authenticated");
     expect(sql).toContain("enable row level security");
   });
+
+  it("stores narrative library size apart from the report count", () => {
+    const added = readFileSync(
+      path.join(process.cwd(), "supabase/migrations/20261119140000_narrative_library_size.sql"),
+      "utf8",
+    );
+    expect(added).toContain("add column if not exists narrative_library_size text");
+    expect(added).toContain("p_narrative_library_size text");
+    expect(added).toContain("'narrative_library_size', v_row.narrative_library_size");
+    expect(added).toContain("v_count < 100");
+    expect(added).toContain("pg_advisory_xact_lock");
+    expect(added).not.toContain("lib:");
+  });
 });

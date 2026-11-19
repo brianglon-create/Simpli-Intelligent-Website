@@ -44,7 +44,7 @@ export function Countdown() {
       <p className="text-sm font-medium text-muted">
         {value?.passed
           ? `${SHUTDOWN_LABEL} has passed. Horizon export tools were scheduled to stop that day.`
-          : `Countdown to the end of ${SHUTDOWN_LABEL}, Eastern Time.`}
+          : "Horizon exports end in…"}
       </p>
       <div className="mt-4 grid max-w-xl grid-cols-4 gap-3" aria-hidden="true">
         {units.map((unit) => (
@@ -60,10 +60,10 @@ export function Countdown() {
       </div>
       <p className="sr-only">
         {value?.passed
-          ? `The ${SHUTDOWN_LABEL} export deadline has passed.`
+          ? `Horizon exports were scheduled to end on ${SHUTDOWN_LABEL}.`
           : value
-            ? `${value.days} days until the end of ${SHUTDOWN_LABEL}.`
-            : `Deadline ${SHUTDOWN_LABEL}.`}
+            ? `${value.days} days until Horizon exports end on ${SHUTDOWN_LABEL}.`
+            : `Horizon exports end on ${SHUTDOWN_LABEL}.`}
       </p>
     </div>
   );

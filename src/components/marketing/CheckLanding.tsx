@@ -1,64 +1,264 @@
-import Image from "next/image";
-import { Lockup } from "@/components/brand/Lockup";
-import { CheckPillars } from "@/components/CheckPillars";
-import { FoundingOffer } from "@/components/FoundingOffer";
-import { LeadForm } from "@/components/LeadForm";
+import { CheckoutLink, CheckoutPlaceholderNote } from "@/components/CheckoutLink";
+import { EmailUpdatesForm } from "@/components/forms/EmailUpdatesForm";
+import { MigrationHelpForm } from "@/components/forms/MigrationHelpForm";
+import { ScreenshotSlot } from "@/components/ScreenshotSlot";
 import { Section } from "@/components/Section";
+import { FaqList } from "@/components/FaqList";
+import { Lockup } from "@/components/brand/Lockup";
 import { primaryButtonClass, secondaryButtonClass } from "@/components/classes";
-import type { FoundingSnapshot } from "@/lib/leads/types";
-import { CHECK_FEATURES_INTRO, CHECK_HERO } from "@/lib/offer-copy";
-import { CHECK_PERKS } from "@/lib/offers";
+import { CHECKOUT } from "@/lib/checkout";
+import {
+  CHECK_HEADLINE,
+  CHECK_PRICE_LINE,
+  CHECK_PRICE_SHORT,
+  CHECK_SUBHEAD,
+  FOUNDER_ONBOARDING,
+  NARRATIVE_MIGRATION_BODY,
+  NARRATIVE_MIGRATION_HEADLINE,
+  SWITCHING_STEPS,
+} from "@/lib/offer-copy";
+import {
+  ARCHIVE_ADDON_PRICE,
+  CHECK_BENEFITS,
+  CHECK_COMING_SOON,
+  CHECK_FAQS,
+  CHECK_OBJECTIONS,
+  CHECK_STEPS,
+} from "@/lib/offers";
+import { SITE } from "@/lib/site";
 
-export function CheckLanding({ status }: { status: FoundingSnapshot }) {
+const buyClass = `${primaryButtonClass} w-full justify-center sm:w-auto`;
+const secondaryClass = `${secondaryButtonClass} w-full justify-center sm:w-auto`;
+const onNavyClass =
+  "inline-flex w-full items-center justify-center rounded-md bg-white px-6 py-3.5 text-base font-semibold text-navy transition-colors hover:bg-blue-soft sm:w-auto";
+
+export function CheckLanding() {
   return (
     <>
-      <section className="relative overflow-hidden">
+      <section aria-labelledby="check-hero-heading" className="relative overflow-hidden">
         <div className="mx-auto max-w-6xl px-5 pb-16 pt-16 sm:px-8 sm:pt-24">
           <Lockup product="check" surface="light" size="lg" />
-          <h1 className="font-display mt-6 max-w-4xl text-4xl font-semibold leading-tight tracking-tight text-navy sm:text-5xl">
-            Cut the time you spend writing the report.
-          </h1>
-          <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted">
-            {CHECK_HERO}
+          <p className="font-display mt-6 text-xs font-semibold tracking-[0.18em] text-check-ink">
+            SIMPLI CHECK · HOME INSPECTION SOFTWARE
           </p>
+          <h1
+            id="check-hero-heading"
+            className="font-display mt-4 max-w-4xl text-4xl font-semibold leading-tight tracking-tight text-navy sm:text-5xl"
+          >
+            {CHECK_HEADLINE}
+          </h1>
+          <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted">{CHECK_SUBHEAD}</p>
           <div className="mt-10 flex flex-col gap-3 sm:flex-row">
-            <a href="#signup" className={primaryButtonClass}>
-              Join the Simpli Check waitlist
-            </a>
-            <a href="/horizon" className={secondaryButtonClass}>
-              Coming from Horizon?
+            <CheckoutLink href={CHECKOUT.simpliCheckUrl} className={buyClass}>
+              Get Simpli Check
+            </CheckoutLink>
+            <a href="#how-it-works" className={secondaryClass}>
+              See how it works
             </a>
           </div>
+          <p className="mt-4 text-base font-medium text-navy">{CHECK_PRICE_LINE}</p>
+          <div className="mt-3">
+            <CheckoutPlaceholderNote />
+          </div>
+          <ScreenshotSlot
+            shot="01"
+            title="Report Writer"
+            fileName="check-01-report-writer.png"
+          />
         </div>
       </section>
-      <Section id="check-features" title="Launching in November" tone="white" accent="check">
-        <p className="max-w-3xl text-lg leading-relaxed text-muted">
-          {CHECK_FEATURES_INTRO}
+
+      <Section
+        id="narratives"
+        title={NARRATIVE_MIGRATION_HEADLINE}
+        eyebrow="Your narratives"
+        accent="check"
+        tone="white"
+      >
+        <p className="max-w-3xl text-lg leading-relaxed text-muted">{NARRATIVE_MIGRATION_BODY}</p>
+        <ol className="mt-8 grid gap-4 sm:grid-cols-2">
+          {SWITCHING_STEPS.map((step, index) => (
+            <li key={step.title} className="border border-border bg-neutral p-5">
+              <p className="text-xs font-semibold uppercase tracking-[0.12em] text-check-ink">
+                Step {index + 1}
+              </p>
+              <h3 className="font-display mt-2 text-lg font-semibold text-navy">{step.title}</h3>
+              <p className="mt-2 text-base leading-relaxed text-muted">{step.body}</p>
+            </li>
+          ))}
+        </ol>
+        <a href="#switching" className={`${secondaryClass} mt-8`}>
+          Help me bring my narratives
+        </a>
+        <ScreenshotSlot
+          shot="02"
+          title="Saved narrative and Simpli Assist"
+          fileName="check-02-saved-narratives.png"
+        />
+      </Section>
+
+      <Section id="price" title="Early Adopter pricing" eyebrow="Price" accent="check">
+        <p className="max-w-3xl text-lg leading-relaxed text-navy">
+          {CHECK_PRICE_LINE} Simpli Assist is included. {FOUNDER_ONBOARDING}
         </p>
-        <CheckPillars />
-        <figure className="mt-8">
-          <Image
-            src="/images/simpli-check-storyboard.png"
-            alt="Simpli Check workflow: capture, recognize, narrative, explain."
-            width={1280}
-            height={720}
-            sizes="(min-width: 72rem) 68rem, (min-width: 40rem) calc(100vw - 4rem), calc(100vw - 2.5rem)"
-            className="h-auto w-full"
-          />
-        </figure>
-        <ul className="mt-8 max-w-3xl space-y-3 text-base leading-relaxed text-muted">
-          {CHECK_PERKS.map((perk) => (
-            <li key={perk}>{perk}</li>
+      </Section>
+
+      <Section id="benefits" title="Built for the way you already write" tone="white" accent="check">
+        <ul className="grid gap-4 lg:grid-cols-2">
+          {CHECK_BENEFITS.map((benefit) => (
+            <li key={benefit.title} className="border border-border bg-neutral p-6">
+              <h3 className="font-display text-lg font-semibold text-navy">{benefit.title}</h3>
+              <p className="mt-3 text-base leading-relaxed text-muted">{benefit.body}</p>
+            </li>
           ))}
         </ul>
-        <FoundingOffer status={status} />
       </Section>
-      <Section id="check-join" title="Join the Simpli Check waitlist" accent="check">
-        <LeadForm
-          page="/check"
-          interests={["check", "archive", "both"]}
-          defaultInterest="check"
-        />
+
+      <Section id="how-it-works" title="How it works" eyebrow="Simpli Check" accent="check">
+        <ol className="grid gap-4 lg:grid-cols-2">
+          {CHECK_STEPS.map((step, index) => (
+            <li key={step.title} className="border border-border bg-white p-6">
+              <p className="text-xs font-semibold uppercase tracking-[0.12em] text-check-ink">
+                Step {index + 1}
+              </p>
+              <h3 className="font-display mt-3 text-xl font-semibold text-navy">{step.title}</h3>
+              <p className="mt-3 text-base leading-relaxed text-muted">{step.body}</p>
+            </li>
+          ))}
+        </ol>
+        <p className="mt-8 max-w-3xl text-base leading-relaxed text-muted">
+          Simpli Check can read equipment data plates from a photo.
+        </p>
+      </Section>
+
+      <Section
+        id="assist"
+        title="Simpli Assist suggests. You decide."
+        tone="white"
+        eyebrow="Simpli Assist"
+        accent="check"
+      >
+        <div className="max-w-3xl space-y-4 text-lg leading-relaxed text-muted">
+          <p>
+            Add a photo or a few notes. Simpli Assist drafts a Simpli-generated narrative
+            in plain report language, shaped by your saved wording. Read it, edit it, or
+            toss it. Nothing goes in the report until you approve it. Your license, your
+            call, your words.
+          </p>
+          <p>
+            Snap a photo, add a note, and Simpli Assist suggests what to write. You
+            approve the wording.
+          </p>
+        </div>
+      </Section>
+
+      <Section
+        id="switching"
+        title="Questions about switching"
+        eyebrow="Switching"
+        accent="check"
+      >
+        <dl className="max-w-3xl space-y-8">
+          {CHECK_OBJECTIONS.map((item) => (
+            <div key={item.question}>
+              <dt className="font-display text-xl font-semibold text-navy">{item.question}</dt>
+              <dd className="mt-3 text-base leading-relaxed text-muted">{item.answer}</dd>
+            </div>
+          ))}
+        </dl>
+        <h3 className="font-display mt-12 text-2xl font-semibold text-navy">
+          Help me bring my narratives
+        </h3>
+        <p className="mt-3 max-w-xl text-base leading-relaxed text-muted">
+          Tell us about the narratives you want to bring. We&apos;ll reply by email.
+        </p>
+        <div className="mt-6">
+          <MigrationHelpForm page="/check" product="check" />
+        </div>
+      </Section>
+
+      <Section
+        id="pricing"
+        title="Simpli Check — Early Adopter pricing"
+        tone="white"
+        eyebrow="Pricing"
+        accent="check"
+      >
+        <div className="max-w-xl border border-border bg-neutral p-6 sm:p-8">
+          <p className="text-xs font-semibold uppercase tracking-[0.12em] text-check-ink">
+            Early Adopter pricing — limited time
+          </p>
+          <p className="font-display mt-4 text-4xl font-semibold tracking-tight text-navy sm:text-5xl">
+            $49
+          </p>
+          <p className="mt-2 text-base text-navy">per user / month</p>
+          <ul className="mt-6 space-y-2 text-base leading-relaxed text-muted">
+            <li>Simpli Assist</li>
+            <li>Report writer, saved narratives, and narrative migration</li>
+            <li>Work orders, dashboard, photo tools, preview, and publishing</li>
+            <li>{FOUNDER_ONBOARDING}</li>
+          </ul>
+          <p className="mt-6 text-base leading-relaxed text-navy">
+            Add Simpli Archive: {ARCHIVE_ADDON_PRICE}
+          </p>
+          <p className="mt-4 text-sm text-muted">
+            <a href={CHECKOUT.termsUrl} className="font-medium text-navy underline-offset-2 hover:underline">
+              See Terms & Conditions.
+            </a>
+          </p>
+          <div className="mt-8 flex flex-col gap-3">
+            <CheckoutLink href={CHECKOUT.simpliCheckUrl} className={buyClass}>
+              Get Simpli Check
+            </CheckoutLink>
+            <CheckoutLink href={CHECKOUT.archiveAddonUrl} className={secondaryClass}>
+              Add Simpli Archive
+            </CheckoutLink>
+          </div>
+          <div className="mt-4">
+            <CheckoutPlaceholderNote id="checkout-note-pricing" />
+          </div>
+          <p className="mt-4 text-sm text-muted">
+            <a href="/welcome" className="font-medium text-navy underline-offset-2 hover:underline">
+              See what happens after purchase
+            </a>
+          </p>
+        </div>
+      </Section>
+
+      <Section id="faq" title="Questions inspectors ask" accent="check">
+        <FaqList items={CHECK_FAQS} />
+      </Section>
+
+      <Section id="coming-soon" title="Coming soon" tone="white" eyebrow="Later" accent="check">
+        <p className="max-w-3xl text-base leading-relaxed text-muted">
+          These are not in Simpli Check today.
+        </p>
+        <ul className="mt-6 max-w-3xl space-y-3 text-base leading-relaxed text-navy">
+          {CHECK_COMING_SOON.map((item) => (
+            <li key={item}>{item}</li>
+          ))}
+        </ul>
+      </Section>
+
+      <Section id="get-check" title={CHECK_HEADLINE} tone="navy" accent="check">
+        <p className="max-w-3xl text-lg leading-relaxed">
+          {CHECK_PRICE_SHORT}, Early Adopter pricing for a limited time.
+        </p>
+        <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
+          <CheckoutLink href={CHECKOUT.simpliCheckUrl} className={onNavyClass}>
+            Get Simpli Check
+          </CheckoutLink>
+          <a href={`mailto:${SITE.contactEmail}`} className="text-base font-semibold text-white underline-offset-2 hover:underline">
+            Questions? {SITE.contactEmail}
+          </a>
+        </div>
+      </Section>
+
+      <Section id="updates" title="Send me launch updates" tone="white" accent="check">
+        <p className="mb-8 max-w-xl text-base leading-relaxed text-muted">
+          Email only. We&apos;ll send a link to this page. No calendar booking.
+        </p>
+        <EmailUpdatesForm page="/check" product="check" />
       </Section>
     </>
   );

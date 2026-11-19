@@ -62,4 +62,48 @@ describe("lead schema", () => {
     expect(parsed.lead.currentSoftware).toBe("Other: Spectora");
     expect(parsed.lead.productInterest).toBe("operate");
   });
+
+  it("accepts an email-only update without inventing a region", () => {
+    const parsed = parseLead({
+      formKind: "updates",
+      email: "Ada@Example.com",
+      interest: "check",
+      consent: true,
+      page: "/check",
+      utmSource: "newsletter",
+    });
+    expect(parsed.ok).toBe(true);
+    if (!parsed.ok || parsed.honeypot) return;
+    expect(parsed.lead.email).toBe("ada@example.com");
+    expect(parsed.lead.name).toBe("Email signup");
+    expect(parsed.lead.stateProvince).toBe("Not collected");
+    expect(parsed.lead.productInterest).toBe("check");
+    expect(parsed.lead.source).toBe("form:updates|newsletter");
+    expect(parsed.lead.reportCount).toBeNull();
+  });
+
+  it("keeps narrative library size and report count as separate whole values", () => {
+    const library = "About 4,000 saved comments written since 2014, including the wording I reuse on roofs";
+    const reports = "About 1,600 Horizon reports from 2016 through 2026, plus a few older PDFs";
+    const parsed = parseLead({
+      formKind: "migration",
+      name: "Ada Inspect",
+      company: "Ada Inspections",
+      email: "ada@example.com",
+      stateProvince: "Indiana",
+      currentSoftware: "The software I use now",
+      narrativeLibrarySize: library,
+      reportCount: reports,
+      interest: "both",
+      consent: true,
+      page: "/horizon",
+    });
+    expect(parsed.ok).toBe(true);
+    if (!parsed.ok || parsed.honeypot) return;
+    expect(parsed.lead.currentSoftware).toBe("The software I use now");
+    expect(parsed.lead.narrativeLibrarySize).toBe(library);
+    expect(parsed.lead.reportCount).toBe(reports);
+    expect(parsed.lead.narrativeLibrarySize).not.toBe(parsed.lead.reportCount);
+    expect(parsed.lead.source).toBe("form:migration|/horizon");
+  });
 });
