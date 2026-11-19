@@ -86,6 +86,7 @@ export function signupNotification(args: {
       "Previous interest",
       args.previousInterest ? interestLabel[args.previousInterest] : null,
     ),
+    line("Narrative library", lead.narrativeLibrarySize),
     line("Horizon reports (approx.)", lead.reportCount),
     line("Lead status", lead.leadStatus),
     line(`${OFFER_NAME} spot`, lead.foundingSpot ? foundingSpotLabel(lead.foundingSpot) : null),

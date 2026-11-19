@@ -49,12 +49,12 @@ Copy `.env.example` to `.env.local`. Without Supabase credentials, `npm run dev`
 Use the same Supabase project planned for Simpli Operate. The `leads` table is the shared inbox.
 
 1. Create or open the Supabase project.
-2. In the SQL editor, run `supabase/migrations/20261022160000_create_leads.sql`. The script creates `leads` and `founding_alerts`, turns on row level security with no public policies, and grants `submit_lead` to `service_role` only.
+2. In the SQL editor, run `supabase/migrations/20261022160000_create_leads.sql`, then `supabase/migrations/20261119140000_narrative_library_size.sql`. The first script creates `leads` and `founding_alerts`, turns on row level security with no public policies, and grants `submit_lead` to `service_role` only. The second adds nullable `narrative_library_size` and replaces `submit_lead` so that column stays separate from `report_count`.
 3. In Project Settings → API, copy the Project URL to `SUPABASE_URL`. Use `https://<project-ref>.supabase.co` with no `/rest/v1` path. A bare 20-character project ref, a missing `https://`, or a trailing `/rest/v1/` is rewritten to that origin. Do not paste the database connection string.
 4. Copy the `service_role` key to `SUPABASE_SERVICE_ROLE_KEY`. This key bypasses row level security. Put it only in server environment variables. Do not use the anon key for writes, and do not prefix the service key with `NEXT_PUBLIC_`.
 5. Redeploy. The first signup should appear in `public.leads` with `lead_status` = `New`.
 
-The public site shows one Simpli Check price: $49 per user per month, Early Adopter pricing. It does not show seat counts or a second price. The database still counts `leads.founding_spot` for internal alerts. The column name stays `founding_spot`. Spots 1–50 and 51–100 are an internal counter only. Archive, Operate, and Reach signups do not take a spot. Email-only and migration-help forms still call `submit_lead` with no schema change, so a Simpli Check or both interest can still receive a `founding_spot`. Customer email does not mention that counter. The notify inbox gets an email at 40, 50, 90, and 100 when Resend is configured.
+The public site shows one Simpli Check price: $49 per user per month, Early Adopter pricing. It does not show seat counts or a second price. The database still counts `leads.founding_spot` for internal alerts. The column name stays `founding_spot`. Spots 1–50 and 51–100 are an internal counter only. Archive, Operate, and Reach signups do not take a spot. A Simpli Check or both interest can still receive a `founding_spot`. Customer email does not mention that counter. Migration help stores the narrative library size in `narrative_library_size` and the historical report count in `report_count`. The notify inbox gets an email at 40, 50, 90, and 100 when Resend is configured.
 
 ## Email setup
 

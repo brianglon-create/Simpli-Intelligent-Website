@@ -2,6 +2,12 @@ import { Mark } from "@/components/brand/Mark";
 import { productLineColor, PRODUCT_LINE, type BrandProduct } from "@/lib/brand";
 
 const sizeClass = {
+  xs: {
+    mark: "h-7 w-7",
+    word: "text-[13px] tracking-[0.04em]",
+    line: "mt-0.5 text-[7px] tracking-[0.18em]",
+    gap: "gap-1.5",
+  },
   sm: {
     mark: "h-8 w-8",
     word: "text-[15px] tracking-[0.04em]",

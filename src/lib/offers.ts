@@ -149,7 +149,7 @@ export const CHECK_OBJECTIONS = [
   {
     question: "“My comment library is my life's work.”",
     answer:
-      "Bring it. Your established narratives, writing style, and preferred wording come with you from the software you use now. Review them and keep writing like you.",
+      "Share that library with the form on this page. You review the wording before you use it on a report.",
   },
   {
     question: "“My current software already writes narratives for me.”",
@@ -195,7 +195,7 @@ export const CHECK_FAQS = [
   {
     question: "Can I bring my narratives from my current software?",
     answer:
-      "Yes. Bring your established narratives, writing style, and preferred wording from the software you use now.",
+      "Yes. Tell us what you use now, share your narratives, and review your wording after we bring them into Simpli Check.",
   },
   {
     question: "How long does Early Adopter pricing last?",
@@ -272,7 +272,7 @@ export const HORIZON_FAQS = [
   },
   {
     question: "What can Simpli Check do?",
-    answer: `${INSPECTOR_BYLINE} ${CHECK_HEADLINE} Bring your established narratives, preferred wording, and writing style from the software you use now. Simpli Assist drafts Simpli-generated narratives from your photos and notes, and you approve every line. Simpli Check can read equipment data plates from a photo.`,
+    answer: `${INSPECTOR_BYLINE} ${CHECK_HEADLINE} Simpli Assist drafts Simpli-generated narratives from your photos and notes, and you approve every line. Simpli Check can read equipment data plates from a photo. The steps for bringing narratives over are on the Simpli Check page.`,
   },
   {
     question: "How will I search old reports?",

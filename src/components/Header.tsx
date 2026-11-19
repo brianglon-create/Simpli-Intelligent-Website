@@ -27,9 +27,14 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-border/80 bg-white/90 backdrop-blur-md">
-      <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3 px-5 py-4 sm:px-8">
+      <div className="mx-auto flex max-w-6xl items-center justify-between gap-2 px-3 py-2 sm:px-8 lg:py-4">
         <Link href="/" aria-label="Simpli Intelligent" className="shrink-0">
-          <Lockup product="intelligent" surface="light" size="sm" />
+          <span className="lg:hidden">
+            <Lockup product="intelligent" surface="light" size="xs" />
+          </span>
+          <span className="hidden lg:inline-flex">
+            <Lockup product="intelligent" surface="light" size="sm" />
+          </span>
         </Link>
 
         <nav aria-label="Primary" className="hidden items-center gap-5 lg:flex">
@@ -61,21 +66,22 @@ export function Header() {
           </CheckoutLink>
         </nav>
 
-        <div className="flex items-center gap-2 lg:hidden">
+        <div className="flex shrink-0 items-center gap-2 lg:hidden">
           <CheckoutLink
             href={CHECKOUT.simpliCheckUrl}
-            className={`${primaryButtonClass} min-h-11 px-3 py-2 text-sm`}
+            className="inline-flex min-h-11 items-center justify-center whitespace-nowrap rounded-md bg-navy px-2.5 text-sm font-semibold text-white"
           >
             Get Simpli Check
           </CheckoutLink>
           <button
             type="button"
-            className="inline-flex min-h-11 items-center justify-center rounded-md border border-border bg-white px-3 py-2 text-sm font-medium text-navy"
+            className="inline-flex min-h-11 items-center justify-center whitespace-nowrap rounded-md border border-border bg-white px-2.5 text-sm font-medium text-navy"
             aria-expanded={open}
             aria-controls={menuId}
+            aria-label={open ? "Close menu" : "Menu"}
             onClick={() => setOpen((value) => !value)}
           >
-            {open ? "Close menu" : "Menu"}
+            {open ? "Close" : "Menu"}
           </button>
         </div>
       </div>

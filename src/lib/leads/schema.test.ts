@@ -82,7 +82,9 @@ describe("lead schema", () => {
     expect(parsed.lead.reportCount).toBeNull();
   });
 
-  it("packs migration help into the existing report count column", () => {
+  it("keeps narrative library size and report count as separate whole values", () => {
+    const library = "About 4,000 saved comments written since 2014, including the wording I reuse on roofs";
+    const reports = "About 1,600 Horizon reports from 2016 through 2026, plus a few older PDFs";
     const parsed = parseLead({
       formKind: "migration",
       name: "Ada Inspect",
@@ -90,8 +92,8 @@ describe("lead schema", () => {
       email: "ada@example.com",
       stateProvince: "Indiana",
       currentSoftware: "The software I use now",
-      narrativeLibrarySize: "1200",
-      reportCount: "400",
+      narrativeLibrarySize: library,
+      reportCount: reports,
       interest: "both",
       consent: true,
       page: "/horizon",
@@ -99,7 +101,9 @@ describe("lead schema", () => {
     expect(parsed.ok).toBe(true);
     if (!parsed.ok || parsed.honeypot) return;
     expect(parsed.lead.currentSoftware).toBe("The software I use now");
-    expect(parsed.lead.reportCount).toBe("lib:1200; reports:400");
+    expect(parsed.lead.narrativeLibrarySize).toBe(library);
+    expect(parsed.lead.reportCount).toBe(reports);
+    expect(parsed.lead.narrativeLibrarySize).not.toBe(parsed.lead.reportCount);
     expect(parsed.lead.source).toBe("form:migration|/horizon");
   });
 });

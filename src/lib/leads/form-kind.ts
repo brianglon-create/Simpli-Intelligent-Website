@@ -34,15 +34,3 @@ export function sourceFormKind(source: string | null): PublicFormKind | null {
   }
   return null;
 }
-
-/** Narrative library size has no column. It shares report_count with the Horizon count. */
-export function packMigrationCounts(
-  library: string | null,
-  reports: string | null,
-): string | null {
-  const parts: string[] = [];
-  if (library) parts.push(`lib:${library}`);
-  if (reports) parts.push(`reports:${reports}`);
-  if (parts.length === 0) return null;
-  return parts.join("; ").slice(0, 40);
-}

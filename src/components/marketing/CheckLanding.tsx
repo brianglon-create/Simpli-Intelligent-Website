@@ -15,6 +15,7 @@ import {
   FOUNDER_ONBOARDING,
   NARRATIVE_MIGRATION_BODY,
   NARRATIVE_MIGRATION_HEADLINE,
+  SWITCHING_STEPS,
 } from "@/lib/offer-copy";
 import {
   ARCHIVE_ADDON_PRICE,
@@ -75,8 +76,19 @@ export function CheckLanding() {
         tone="white"
       >
         <p className="max-w-3xl text-lg leading-relaxed text-muted">{NARRATIVE_MIGRATION_BODY}</p>
+        <ol className="mt-8 grid gap-4 sm:grid-cols-2">
+          {SWITCHING_STEPS.map((step, index) => (
+            <li key={step.title} className="border border-border bg-neutral p-5">
+              <p className="text-xs font-semibold uppercase tracking-[0.12em] text-check-ink">
+                Step {index + 1}
+              </p>
+              <h3 className="font-display mt-2 text-lg font-semibold text-navy">{step.title}</h3>
+              <p className="mt-2 text-base leading-relaxed text-muted">{step.body}</p>
+            </li>
+          ))}
+        </ol>
         <a href="#switching" className={`${secondaryClass} mt-8`}>
-          See how switching works
+          Help me bring my narratives
         </a>
         <ScreenshotSlot
           shot="02"
@@ -142,15 +154,11 @@ export function CheckLanding() {
 
       <Section
         id="switching"
-        title="Keep your narratives. Change the software."
+        title="Questions about switching"
         eyebrow="Switching"
         accent="check"
       >
-        <p className="max-w-3xl text-lg leading-relaxed text-muted">
-          Keep your narratives, your writing style, and your preferred wording. Change
-          the software, not the way you write.
-        </p>
-        <dl className="mt-8 max-w-3xl space-y-8">
+        <dl className="max-w-3xl space-y-8">
           {CHECK_OBJECTIONS.map((item) => (
             <div key={item.question}>
               <dt className="font-display text-xl font-semibold text-navy">{item.question}</dt>
@@ -234,8 +242,7 @@ export function CheckLanding() {
 
       <Section id="get-check" title={CHECK_HEADLINE} tone="navy" accent="check">
         <p className="max-w-3xl text-lg leading-relaxed">
-          {CHECK_PRICE_SHORT}, Early Adopter pricing for a limited time. Bring your
-          narratives. Keep your voice.
+          {CHECK_PRICE_SHORT}, Early Adopter pricing for a limited time.
         </p>
         <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
           <CheckoutLink href={CHECKOUT.simpliCheckUrl} className={onNavyClass}>

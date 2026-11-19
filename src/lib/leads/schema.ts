@@ -1,10 +1,5 @@
 import { z } from "zod";
-import {
-  EMAIL_ONLY_NAME,
-  NOT_COLLECTED,
-  leadFormSource,
-  packMigrationCounts,
-} from "@/lib/leads/form-kind";
+import { EMAIL_ONLY_NAME, NOT_COLLECTED, leadFormSource } from "@/lib/leads/form-kind";
 import { REGION_SET } from "@/lib/regions";
 import { PRODUCT_INTERESTS, type Interest, type LeadInput } from "@/lib/leads/types";
 
@@ -70,6 +65,7 @@ const updatesSchema = z
       currentSoftware: NOT_COLLECTED,
       productInterest: value.interest,
       reportCount: null,
+      narrativeLibrarySize: null,
       source: leadFormSource("updates", campaignBase(value)),
       utmSource: value.utmSource,
       utmMedium: value.utmMedium,
@@ -99,8 +95,8 @@ const migrationSchema = z
       .trim()
       .min(1, "Enter your current inspection software.")
       .max(120, "Software name is too long."),
-    narrativeLibrarySize: optionalText(24),
-    reportCount: optionalText(16),
+    narrativeLibrarySize: optionalText(200),
+    reportCount: optionalText(200),
     interest: interestField,
     consent: consentField,
     ...campaignFields,
@@ -113,7 +109,8 @@ const migrationSchema = z
       stateProvince: value.stateProvince,
       currentSoftware: value.currentSoftware.replace(/[\r\n]+/g, " ").trim(),
       productInterest: value.interest,
-      reportCount: packMigrationCounts(value.narrativeLibrarySize, value.reportCount),
+      reportCount: value.reportCount,
+      narrativeLibrarySize: value.narrativeLibrarySize,
       source: leadFormSource("migration", campaignBase(value)),
       utmSource: value.utmSource,
       utmMedium: value.utmMedium,
@@ -156,7 +153,7 @@ const leadRequestSchema = z
       PRODUCT_INTERESTS,
       "Choose what you want to hear about.",
     ),
-    reportCount: optionalText(40),
+    reportCount: optionalText(200),
     consent: z.literal(true, "Consent is required before we can email you."),
     source: optionalText(200),
     utmSource: optionalText(200),
@@ -185,6 +182,7 @@ const leadRequestSchema = z
       currentSoftware,
       productInterest: value.interest,
       reportCount: value.reportCount,
+      narrativeLibrarySize: null,
       source,
       utmSource: value.utmSource,
       utmMedium: value.utmMedium,

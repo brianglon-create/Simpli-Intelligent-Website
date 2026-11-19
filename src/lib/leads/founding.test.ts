@@ -17,6 +17,7 @@ function input(index: number, interest: LeadInput["productInterest"] = "check"):
     currentSoftware: "Horizon",
     productInterest: interest,
     reportCount: null,
+    narrativeLibrarySize: null,
     source: "test",
     utmSource: null,
     utmMedium: null,

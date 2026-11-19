@@ -16,6 +16,7 @@ function lead(spot: number): StoredLead {
     currentSoftware: "Horizon",
     productInterest: "both",
     reportCount: "1600",
+    narrativeLibrarySize: null,
     source: "cahpi",
     utmSource: null,
     utmMedium: null,

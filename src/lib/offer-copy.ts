@@ -11,7 +11,7 @@ export const INSPECTOR_BYLINE =
 export const CHECK_HEADLINE =
   "Your words. Your photos. Your report, done faster.";
 
-export const CHECK_SUBHEAD = `${INSPECTOR_BYLINE} Bring the narratives you've already written, add your photos, and let Simpli Assist suggest the rest. You approve every word before it publishes.`;
+export const CHECK_SUBHEAD = `${INSPECTOR_BYLINE} Add your photos and let Simpli Assist suggest the rest. You approve every word before it publishes.`;
 
 export const CHECK_PRICE_LINE =
   "Early Adopter pricing — limited time. $49 per user per month.";
@@ -22,7 +22,30 @@ export const NARRATIVE_MIGRATION_HEADLINE =
   "Switching software shouldn't mean starting over.";
 
 export const NARRATIVE_MIGRATION_BODY =
-  "Years of narratives, your writing style, the wording you trust. Bring them into Simpli Check from the software you use now. Review them once and keep writing reports that sound like you.";
+  "Bring the narratives you've already written into Simpli Check. You review your wording, then keep writing reports that sound like you.";
+
+export const SWITCHING_STEPS = [
+  {
+    title: "Tell us what software you use now",
+    body: "Name the inspection software you write with today.",
+  },
+  {
+    title: "Share your narratives",
+    body: "Send the narratives and the wording you want to keep.",
+  },
+  {
+    title: "We bring them into Simpli Check",
+    body: "We move that library into Simpli Check.",
+  },
+  {
+    title: "You review your wording",
+    body: "Read what arrived and edit anything you want to change.",
+  },
+  {
+    title: "Start writing reports",
+    body: "Use those narratives on the next inspection.",
+  },
+] as const;
 
 export const FOUNDER_ONBOARDING =
   "Early Adopters get founder-led onboarding from a home inspector with 10 years of hands-on industry experience. It is not offered on later plans, and no response time is guaranteed.";

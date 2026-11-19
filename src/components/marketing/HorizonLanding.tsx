@@ -12,7 +12,6 @@ import {
   CHECK_HEADLINE,
   CHECK_PRICE_LINE,
   INSPECTOR_BYLINE,
-  NARRATIVE_MIGRATION_BODY,
 } from "@/lib/offer-copy";
 import {
   ARCHIVE_BULLETS,
@@ -199,8 +198,12 @@ export function HorizonLanding() {
         accent="check"
       >
         <div className={`${lede} space-y-4`}>
-          <p>{NARRATIVE_MIGRATION_BODY}</p>
           <p>{CHECK_PRICE_LINE} Simpli Assist is included.</p>
+          <p>
+            <a href="/check#narratives" className="font-semibold text-navy underline-offset-2 hover:underline">
+              See how switching works
+            </a>
+          </p>
         </div>
         <div className="mt-8 flex flex-col gap-3 sm:flex-row">
           <CheckoutLink href={CHECKOUT.simpliCheckUrl} className={buyClass}>
