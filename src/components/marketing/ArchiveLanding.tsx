@@ -87,7 +87,9 @@ export function ArchiveLanding() {
             <p className="font-display mt-4 text-4xl font-semibold tracking-tight text-navy">
               {usd(ARCHIVE_SETUP_USD)}
             </p>
-            <p className="mt-2 text-base text-navy">setup fee, then {usd(ARCHIVE_MONTHLY_USD)} per month</p>
+            <p className="mt-2 text-base text-navy">
+              for the first month, covering setup and the initial file transfer, then {usd(ARCHIVE_MONTHLY_USD)} per month
+            </p>
             <CheckoutLink href={CHECKOUT.archiveStandaloneUrl} className={`${buyClass} mt-8`}>
               Get Simpli Archive
             </CheckoutLink>

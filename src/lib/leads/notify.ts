@@ -20,9 +20,6 @@ import {
   ARCHIVE_ADDON_PRICE,
   ARCHIVE_STANDALONE_PRICE,
   SHUTDOWN_LABEL,
-  usd,
-  ARCHIVE_MONTHLY_USD,
-  ARCHIVE_SETUP_USD,
 } from "@/lib/offers";
 import { SITE } from "@/lib/site";
 
@@ -125,7 +122,7 @@ export function thresholdNotification(
   } else if (threshold === 90) {
     detail = `${remaining69} database spots remain before the database cap of 100. The public site does not show this cap.`;
   } else {
-    detail = `The database cap of 100 spots is full. Public pages show Simpli Check at $49 per user per month. Simpli Archive is a ${usd(ARCHIVE_SETUP_USD)} setup fee, then ${usd(ARCHIVE_MONTHLY_USD)} per month.`;
+    detail = `The database cap of 100 spots is full. Public pages show Simpli Check at $49 per user per month. ${ARCHIVE_STANDALONE_PRICE}`;
   }
 
   return {

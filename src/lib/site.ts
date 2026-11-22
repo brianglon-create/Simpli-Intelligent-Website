@@ -30,7 +30,8 @@ export const FOOTER_LINKS = [
   { href: "/horizon", label: "Horizon" },
   { href: "/operate", label: "Operate" },
   { href: "/reach", label: "Reach" },
-  { href: "/privacy", label: "Privacy" },
+  { href: "/legal/privacy", label: "Privacy" },
+  { href: "/legal", label: "Legal" },
 ] as const;
 
 export const PRODUCTS = [
@@ -48,7 +49,7 @@ export const PRODUCTS = [
     name: "SIMPLI ARCHIVE",
     category: "Report History",
     description:
-      "Keep past inspection reports searchable after the December 15, 2026 Horizon shutdown. $29 setup fee, then $9.99 per month. Simpli Check customers add it for $9.99 per month with no setup fee.",
+      "Keep past inspection reports searchable after the December 15, 2026 Horizon shutdown. $29 for the first month, covering setup and the initial file transfer, then $9.99 per month. Simpli Check customers add it for $9.99 per month with no setup fee.",
     status: "Available now",
     href: "/archive",
   },

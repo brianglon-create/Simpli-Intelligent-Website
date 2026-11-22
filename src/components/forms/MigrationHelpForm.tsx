@@ -212,7 +212,7 @@ export function MigrationHelpForm({
           </p>
         ) : null}
         <p className="mt-2 text-sm text-muted">
-          <a href="/privacy" className="font-medium text-navy underline-offset-2 hover:underline">
+          <a href="/legal/privacy" className="font-medium text-navy underline-offset-2 hover:underline">
             Read the privacy policy
           </a>
         </p>

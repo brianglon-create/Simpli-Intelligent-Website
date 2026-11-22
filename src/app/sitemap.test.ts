@@ -11,7 +11,14 @@ describe("sitemap", () => {
       "https://simpliintelligent.com/check",
       "https://simpliintelligent.com/operate",
       "https://simpliintelligent.com/reach",
-      "https://simpliintelligent.com/privacy",
+      "https://simpliintelligent.com/legal",
+      "https://simpliintelligent.com/legal/terms",
+      "https://simpliintelligent.com/legal/check-schedule",
+      "https://simpliintelligent.com/legal/archive-schedule",
+      "https://simpliintelligent.com/legal/privacy",
+      "https://simpliintelligent.com/legal/dpa",
+      "https://simpliintelligent.com/legal/acceptable-use",
+      "https://simpliintelligent.com/legal/data-retention",
     ]);
   });
 });

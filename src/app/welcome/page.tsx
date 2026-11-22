@@ -57,7 +57,7 @@ export default function WelcomePage() {
             Terms & Conditions
           </a>
           {" · "}
-          <a href="/privacy" className="font-medium text-navy underline-offset-2 hover:underline">
+          <a href="/legal/privacy" className="font-medium text-navy underline-offset-2 hover:underline">
             Privacy
           </a>
         </p>

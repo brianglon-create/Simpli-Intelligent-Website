@@ -17,7 +17,7 @@ export function usd(amount: number): string {
   return Number.isInteger(amount) ? `$${amount}` : `$${amount.toFixed(2)}`;
 }
 
-export const ARCHIVE_STANDALONE_PRICE = `${usd(ARCHIVE_SETUP_USD)} setup fee, then ${usd(ARCHIVE_MONTHLY_USD)} per month.`;
+export const ARCHIVE_STANDALONE_PRICE = `${usd(ARCHIVE_SETUP_USD)} for the first month, covering setup and the initial file transfer, then ${usd(ARCHIVE_MONTHLY_USD)} per month.`;
 
 export const ARCHIVE_ADDON_PRICE = `${usd(ARCHIVE_MONTHLY_USD)} per month for Simpli Check customers. No setup fee.`;
 
@@ -186,7 +186,7 @@ export const CHECK_OBJECTIONS = [
 export const CHECK_FAQS = [
   {
     question: "Is Simpli Check $49 per user or per company?",
-    answer: "Per user. Simpli Check is $49 per user per month.",
+    answer: "Per user. Simpli Check is $49 per user per month. Every user counts as a paid user, whatever the role.",
   },
   {
     question: "Is Simpli Assist extra?",

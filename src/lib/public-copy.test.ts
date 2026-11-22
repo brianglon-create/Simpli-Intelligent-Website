@@ -44,7 +44,9 @@ describe("public copy", () => {
     const files = roots.flatMap((root) => (statSync(root).isDirectory() ? filesIn(root) : [root]));
     for (const file of files) {
       const text = readFileSync(file, "utf8");
+      const legalPage = file.includes(`${path.sep}app${path.sep}legal${path.sep}`);
       for (const pattern of banned) {
+        if (legalPage && pattern.source === "\\bAI\\b") continue;
         expect(text, `${file} matches ${pattern}`).not.toMatch(pattern);
       }
     }

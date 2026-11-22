@@ -18,6 +18,14 @@ export const CHECK_PRICE_LINE =
 
 export const CHECK_PRICE_SHORT = "$49 per user per month";
 
+export const EVERY_USER_PAID =
+  "Every user counts as a paid user, whatever the role.";
+
+export const DIFFERENTIATOR_HEADING = "Built with inspectors, not just for them.";
+
+export const DIFFERENTIATOR_BODY =
+  "Simpli is founder-led, so your feedback turns into real improvements fast. Early Adopters get a seat at the table in shaping what Simpli Check becomes.";
+
 export const NARRATIVE_MIGRATION_HEADLINE =
   "Switching software shouldn't mean starting over.";
 

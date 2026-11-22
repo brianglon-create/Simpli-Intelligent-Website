@@ -8,7 +8,7 @@
  * - NEXT_PUBLIC_CHECKOUT_SUCCESS_URL → successUrl (defaults to /welcome)
  * - NEXT_PUBLIC_CHECKOUT_CANCEL_URL → cancelUrl
  * - NEXT_PUBLIC_LOGIN_URL → loginUrl
- * - NEXT_PUBLIC_TERMS_URL → termsUrl (defaults to /terms)
+ * - NEXT_PUBLIC_TERMS_URL → termsUrl (defaults to /legal/terms)
  *
  * Until a product checkout URL is set, buy buttons stay on a placeholder
  * and the draft must not be read as a working checkout.
@@ -34,7 +34,7 @@ export const CHECKOUT = {
   successUrl: readPublic("NEXT_PUBLIC_CHECKOUT_SUCCESS_URL") ?? "/welcome",
   cancelUrl: readPublic("NEXT_PUBLIC_CHECKOUT_CANCEL_URL") ?? UNCONFIGURED_URL,
   loginUrl: readPublic("NEXT_PUBLIC_LOGIN_URL") ?? UNCONFIGURED_URL,
-  termsUrl: readPublic("NEXT_PUBLIC_TERMS_URL") ?? "/terms",
+  termsUrl: readPublic("NEXT_PUBLIC_TERMS_URL") ?? "/legal/terms",
 } as const;
 
 export function isConfiguredUrl(value: string): boolean {

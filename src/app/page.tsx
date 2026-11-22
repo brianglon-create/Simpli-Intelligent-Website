@@ -4,6 +4,7 @@ import { Hero } from "@/components/Hero";
 import { HorizonNotice } from "@/components/HorizonNotice";
 import { Intelligence } from "@/components/Intelligence";
 import { Mission } from "@/components/Mission";
+import { FounderLed } from "@/components/FounderLed";
 import { Products } from "@/components/Products";
 import { SiteFrame } from "@/components/SiteFrame";
 
@@ -14,6 +15,7 @@ export default function Home() {
       <Hero />
       <Mission />
       <Products />
+      <FounderLed />
       <Intelligence />
       <About />
       <Contact />

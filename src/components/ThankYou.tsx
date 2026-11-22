@@ -24,7 +24,7 @@ export function ThankYou({ result }: { result: SuccessBody | null }) {
       </div>
       <PersonalFollowUp />
       <p className="mt-6 text-sm text-muted">
-        <a href="/privacy" className="font-medium text-navy underline-offset-2 hover:underline">
+        <a href="/legal/privacy" className="font-medium text-navy underline-offset-2 hover:underline">
           Privacy policy
         </a>
       </p>

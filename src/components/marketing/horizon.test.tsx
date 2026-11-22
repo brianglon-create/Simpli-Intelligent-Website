@@ -4,7 +4,7 @@ import { ArchiveLanding } from "@/components/marketing/ArchiveLanding";
 import { CheckLanding } from "@/components/marketing/CheckLanding";
 import { ComingSoonLanding } from "@/components/marketing/ComingSoonLanding";
 import { HorizonLanding } from "@/components/marketing/HorizonLanding";
-import PrivacyPage from "@/app/privacy/page";
+import PrivacyLegalPage from "@/app/legal/privacy/page";
 
 describe("Horizon landing", () => {
   it("explains the shutdown, the new prices, and the export sequence", () => {
@@ -114,17 +114,13 @@ describe("product pages", () => {
 });
 
 describe("privacy page", () => {
-  it("covers consent, unsubscribe, and the company address", () => {
-    render(<PrivacyPage />);
+  it("publishes the v1.1 privacy policy", () => {
+    render(<PrivacyLegalPage />);
     expect(screen.getByRole("heading", { level: 1, name: /privacy policy/i })).toBeInTheDocument();
-    expect(screen.getByRole("heading", { name: /casl, and can-spam/i })).toBeInTheDocument();
-    expect(screen.getAllByText(/unsubscribe/i).length).toBeGreaterThan(0);
-    expect(screen.getByText(/express consent/i)).toBeInTheDocument();
-    expect(
-      screen.getAllByText(/simpli intelligent, a brand of polaris intelligence llc/i).length,
-    ).toBeGreaterThan(0);
+    expect(screen.getByText(/version: v1\.1/i)).toBeInTheDocument();
+    expect(screen.getByText(/effective: november 22, 2026/i)).toBeInTheDocument();
+    expect(screen.getByRole("columnheader", { name: "Provider" })).toBeInTheDocument();
     expect(screen.queryByText(/simpli simpli/i)).not.toBeInTheDocument();
-    expect(screen.getAllByRole("link", { name: /hello@simpliintelligent.com/i }).length).toBeGreaterThan(0);
     expect(screen.queryByText(/\(R\)|®|™/)).not.toBeInTheDocument();
   });
 });

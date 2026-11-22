@@ -12,6 +12,8 @@ import {
   CHECK_PRICE_LINE,
   CHECK_PRICE_SHORT,
   CHECK_SUBHEAD,
+  DIFFERENTIATOR_BODY,
+  EVERY_USER_PAID,
   FOUNDER_ONBOARDING,
   NARRATIVE_MIGRATION_BODY,
   NARRATIVE_MIGRATION_HEADLINE,
@@ -192,6 +194,8 @@ export function CheckLanding() {
             $49
           </p>
           <p className="mt-2 text-base text-navy">per user / month</p>
+          <p className="mt-3 text-base leading-relaxed text-navy">{EVERY_USER_PAID}</p>
+          <p className="mt-3 text-base leading-relaxed text-muted">{DIFFERENTIATOR_BODY}</p>
           <ul className="mt-6 space-y-2 text-base leading-relaxed text-muted">
             <li>Simpli Assist</li>
             <li>Report writer, saved narratives, and narrative migration</li>

@@ -167,7 +167,7 @@ export function HorizonLanding() {
               {usd(ARCHIVE_SETUP_USD)}
             </p>
             <p className="mt-3 text-base leading-relaxed text-muted">
-              Setup fee, then {usd(ARCHIVE_MONTHLY_USD)} per month.
+              First month, covering setup and the initial file transfer, then {usd(ARCHIVE_MONTHLY_USD)} per month.
             </p>
             <CheckoutLink href={CHECKOUT.archiveStandaloneUrl} className={`${buyClass} mt-6`}>
               Get Simpli Archive
