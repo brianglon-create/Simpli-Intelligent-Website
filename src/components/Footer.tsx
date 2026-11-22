@@ -1,6 +1,6 @@
 import { Mark } from "@/components/brand/Mark";
 import { CheckoutPlaceholderNote } from "@/components/CheckoutLink";
-import { CHECKOUT, isConfiguredUrl } from "@/lib/checkout";
+import { CHECKOUT, isConfiguredUrl, showDraftCheckoutNote } from "@/lib/checkout";
 import { FOOTER_LINKS, SITE } from "@/lib/site";
 
 export function Footer() {
@@ -53,7 +53,7 @@ export function Footer() {
         </p>
         <div className="mt-4 max-w-3xl space-y-2">
           <CheckoutPlaceholderNote id="checkout-not-connected" />
-          {isConfiguredUrl(CHECKOUT.loginUrl) ? null : (
+          {isConfiguredUrl(CHECKOUT.loginUrl) || !showDraftCheckoutNote() ? null : (
             <p id="login-not-connected" className="text-sm leading-relaxed text-muted">
               Sign in is not connected on this draft.
             </p>

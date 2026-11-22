@@ -1,4 +1,4 @@
-import { checkoutIsConnected, isConfiguredUrl } from "@/lib/checkout";
+import { isConfiguredUrl, showDraftCheckoutNote } from "@/lib/checkout";
 
 export function CheckoutLink({
   href,
@@ -24,7 +24,7 @@ export function CheckoutLink({
 }
 
 export function CheckoutPlaceholderNote({ id }: { id?: string }) {
-  if (checkoutIsConnected()) return null;
+  if (!showDraftCheckoutNote()) return null;
   return (
     <p id={id} className="max-w-2xl text-sm leading-relaxed text-muted">
       Checkout is not connected on this draft. Buy buttons use placeholder links,

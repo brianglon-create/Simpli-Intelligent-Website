@@ -1,3 +1,5 @@
+import { Advantages } from "@/components/Advantages";
+import { CheckHeadline } from "@/components/CheckHeadline";
 import { CheckoutLink, CheckoutPlaceholderNote } from "@/components/CheckoutLink";
 import { EmailUpdatesForm } from "@/components/forms/EmailUpdatesForm";
 import { MigrationHelpForm } from "@/components/forms/MigrationHelpForm";
@@ -38,18 +40,14 @@ export function CheckLanding() {
   return (
     <>
       <section aria-labelledby="check-hero-heading" className="relative overflow-hidden">
-        <div className="mx-auto max-w-6xl px-5 pb-16 pt-16 sm:px-8 sm:pt-24">
-          <Lockup product="check" surface="light" size="lg" />
-          <p className="font-display mt-6 text-xs font-semibold tracking-[0.18em] text-check-ink">
+        <div className="mx-auto max-w-6xl px-5 pb-10 pt-8 sm:px-8 sm:pt-10">
+          <Lockup product="check" surface="light" size="md" />
+          <p className="font-display mt-4 text-xs font-semibold tracking-[0.18em] text-check-ink">
             SIMPLI CHECK · HOME INSPECTION SOFTWARE
           </p>
-          <h1
-            id="check-hero-heading"
-            className="font-display mt-4 max-w-4xl text-4xl font-semibold leading-tight tracking-tight text-navy sm:text-5xl"
-          >
-            {CHECK_HEADLINE}
-          </h1>
-          <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted">{CHECK_SUBHEAD}</p>
+          <CheckHeadline id="check-hero-heading" className="mt-3 max-w-none" />
+          <Advantages />
+          <p className="mt-5 max-w-2xl text-base leading-relaxed text-muted sm:text-lg">{CHECK_SUBHEAD}</p>
           <div className="mt-10 flex flex-col gap-3 sm:flex-row">
             <CheckoutLink href={CHECKOUT.simpliCheckUrl} className={buyClass}>
               Get Simpli Check

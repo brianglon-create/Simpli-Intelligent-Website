@@ -1,3 +1,5 @@
+import { Advantages } from "@/components/Advantages";
+
 export function Hero() {
   return (
     <section
@@ -5,16 +7,17 @@ export function Hero() {
       aria-labelledby="hero-heading"
       className="relative overflow-hidden"
     >
-      <div className="mx-auto flex max-w-6xl flex-col px-5 pb-20 pt-16 sm:px-8 sm:pb-28 sm:pt-24 lg:pt-28">
-        <p className="font-display mb-6 text-xs font-semibold tracking-[0.18em] text-blue sm:text-sm">
+      <div className="mx-auto flex max-w-6xl flex-col px-5 pb-12 pt-8 sm:px-8 sm:pb-16 sm:pt-10">
+        <p className="font-display mb-3 text-xs font-semibold tracking-[0.18em] text-blue sm:text-sm">
           SIMPLI INTELLIGENT
         </p>
         <h1
           id="hero-heading"
-          className="font-display max-w-4xl text-4xl font-semibold leading-tight tracking-tight text-navy sm:text-5xl lg:text-[3.35rem] lg:leading-[1.12]"
+          className="font-display max-w-4xl text-4xl font-semibold leading-tight tracking-tight text-navy sm:text-5xl lg:text-[2.7rem] lg:leading-[1.12]"
         >
           Built for Small Business. Built by Small Business.
         </h1>
+        <Advantages />
         <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted sm:text-xl">
           We&apos;re creating a connected family of business applications that
           help owner-operated businesses grow, organize, and operate with

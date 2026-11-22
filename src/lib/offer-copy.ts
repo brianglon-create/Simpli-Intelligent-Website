@@ -24,7 +24,27 @@ export const EVERY_USER_PAID =
 export const DIFFERENTIATOR_HEADING = "Built with inspectors, not just for them.";
 
 export const DIFFERENTIATOR_BODY =
-  "Simpli is founder-led, so your feedback turns into real improvements fast. Early Adopters get a seat at the table in shaping what Simpli Check becomes.";
+  "Early Adopters get a seat at the table in shaping what Simpli Check becomes. Simpli is founder-led, so feedback from working inspectors can turn into the next improvement.";
+
+export const ADVANTAGE_PRICE =
+  "$49/user/month Early Adopter pricing, more than 50% less than Spectora.";
+
+export const ADVANTAGE_PRICE_NOTE =
+  "Based on Spectora's published monthly pricing, November 2026.";
+
+export const ADVANTAGE_FAST_START =
+  "Migrate your reports today and start inspecting tomorrow.";
+
+export const ADVANTAGE_FAST_START_MORE =
+  "No migration? No problem. Set up your business profile, add your logo, and start using Simpli Check today. Migrate later.";
+
+export const ADVANTAGE_INSPECTOR =
+  "Built by an inspector who wanted more from his software. No investors, no corporate roadmap, so when inspectors ask for something, we can actually build it.";
+
+export const ADVANTAGE_TIME =
+  "Simpli Assist narratives and equipment data-plate reading can save 20–30 minutes per inspection report.";
+
+export const ADVANTAGE_TIME_NOTE = "Based on founder testing compared with Horizon.";
 
 export const NARRATIVE_MIGRATION_HEADLINE =
   "Switching software shouldn't mean starting over.";

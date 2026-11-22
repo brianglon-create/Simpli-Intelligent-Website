@@ -53,3 +53,8 @@ export function checkoutIsConnected(): boolean {
     isConfiguredUrl(CHECKOUT.archiveAddonUrl)
   );
 }
+
+/** Draft checkout copy stays off the production site. Preview and local builds still show it. */
+export function showDraftCheckoutNote(): boolean {
+  return process.env.VERCEL_ENV !== "production" && !checkoutIsConnected();
+}
