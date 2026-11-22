@@ -6,7 +6,7 @@ const doc = LEGAL_DOCS[6];
 
 export const metadata = pageMetadata({
   title: "Data Access, Retention and Deletion | Simpli Intelligent",
-  description: "Data Access, Retention and Deletion Policy. Version v1.1, effective November 22, 2026.",
+  description: "Data Access, Retention and Deletion Policy. Version 1.1, effective November 22, 2026.",
   path: doc.href,
 });
 

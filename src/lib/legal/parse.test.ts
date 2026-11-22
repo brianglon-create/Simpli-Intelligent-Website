@@ -16,8 +16,9 @@ describe("legal documents", () => {
         .filter((line) => line.length > 0)
         .join("\n");
       expect(legalText(parseLegal(raw)), file).toBe(source);
-      expect(source).toContain("v1.1");
-      expect(source.toLowerCase()).toContain("november 22, 2026");
+      expect(source).toContain("Version 1.1 · Effective November 22, 2026");
+      expect(source.toLowerCase()).not.toContain("counsel");
+      expect(source.toLowerCase()).not.toContain("final draft");
     }
   });
 });

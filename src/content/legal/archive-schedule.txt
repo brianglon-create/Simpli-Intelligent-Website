@@ -1,5 +1,5 @@
 SCHEDULE B — SIMPLI ARCHIVE PRODUCT TERMS
-Version: v1.1 (final draft for counsel review) - November 22, 2026
+Version 1.1 · Effective November 22, 2026
 Applies with the Master SaaS Terms to subscriptions for Simpli Archive. When Customer also subscribes to Simpli Check, Schedule A applies to Simpli Check.
 1. Product scope
 Simpli Archive provides supported document upload and import, storage, search and retrieval features as described in the purchased plan. Not every feature is available on every plan; plan disclosures control.

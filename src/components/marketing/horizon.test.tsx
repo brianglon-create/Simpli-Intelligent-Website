@@ -117,8 +117,8 @@ describe("privacy page", () => {
   it("publishes the v1.1 privacy policy", () => {
     render(<PrivacyLegalPage />);
     expect(screen.getByRole("heading", { level: 1, name: /privacy policy/i })).toBeInTheDocument();
-    expect(screen.getByText(/version: v1\.1/i)).toBeInTheDocument();
-    expect(screen.getByText(/effective: november 22, 2026/i)).toBeInTheDocument();
+    expect(screen.getByText(/version 1\.1 · effective november 22, 2026/i)).toBeInTheDocument();
+    expect(screen.queryByText(/counsel/i)).not.toBeInTheDocument();
     expect(screen.getByRole("columnheader", { name: "Provider" })).toBeInTheDocument();
     expect(screen.queryByText(/simpli simpli/i)).not.toBeInTheDocument();
     expect(screen.queryByText(/\(R\)|®|™/)).not.toBeInTheDocument();

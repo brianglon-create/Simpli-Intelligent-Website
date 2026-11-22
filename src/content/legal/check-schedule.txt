@@ -1,5 +1,5 @@
 SCHEDULE A — SIMPLI CHECK PRODUCT TERMS
-Version: v1.1 (final draft for counsel review) - November 22, 2026
+Version 1.1 · Effective November 22, 2026
 Applies with the Master SaaS Terms to subscriptions for Simpli Check. When Customer also subscribes to Simpli Archive, Schedule B applies to Simpli Archive.
 1. Product and professional responsibility
 Simpli Check supports inspection workflows, narratives, photographs and report creation. Polaris does not inspect properties or certify conditions. The inspector or Customer is responsible for inspection scope, observation, licensing, professional standards, report accuracy, client agreements and final approval. Simpli Assist suggestions require human review and acceptance; no generated observation should be treated as a verified defect without inspection evidence.

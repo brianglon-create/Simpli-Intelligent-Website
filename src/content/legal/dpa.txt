@@ -1,5 +1,5 @@
 DATA PROCESSING ADDENDUM (DPA)
-Version: v1.1 (final draft for counsel review) - November 22, 2026
+Version 1.1 · Effective November 22, 2026
 This DPA supplements the Master SaaS Terms between Polaris Intelligence LLC ("Processor" or "Service Provider," as applicable) and the subscribing business customer ("Customer"). It applies only where Polaris processes personal information on Customer's behalf and a data-processing agreement is legally or contractually required. Effective: November 22, 2026.
 1. Roles and instructions
 Customer determines the purposes and lawful basis of its collection and processing of customer-uploaded personal information. Polaris processes that information to provide the subscribed Services on Customer's documented instructions, including the Master Terms, applicable schedules and supported product settings, unless law requires otherwise. Polaris will notify Customer of a legally required conflicting instruction where permitted.

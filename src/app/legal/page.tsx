@@ -6,7 +6,7 @@ import { pageMetadata } from "@/lib/metadata";
 export const metadata = pageMetadata({
   title: "Legal documents | Simpli Intelligent",
   description:
-    "Master SaaS Terms, product schedules, privacy policy, and related policies for Simpli Check and Simpli Archive. Version v1.1, effective November 22, 2026.",
+    "Master SaaS Terms, product schedules, privacy policy, and related policies for Simpli Check and Simpli Archive. Version 1.1, effective November 22, 2026.",
   path: "/legal",
 });
 
@@ -19,13 +19,13 @@ export default function LegalIndexPage() {
           Legal documents
         </h1>
         <p className="mt-4 text-base leading-relaxed text-muted">
-          Version v1.1. Effective November 22, 2026.
+          Version 1.1 · Effective November 22, 2026.
         </p>
         <ul className="mt-10 divide-y divide-border border-y border-border">
           {LEGAL_DOCS.map((doc) => {
             const blocks = parseLegal(readLegalFile(doc.file));
             const version = blocks.find(
-              (block) => block.type === "paragraph" && block.text.startsWith("Version:"),
+              (block) => block.type === "paragraph" && block.text.startsWith("Version "),
             );
             return (
               <li key={doc.href} className="py-5">

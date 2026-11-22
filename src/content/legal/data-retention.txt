@@ -1,5 +1,5 @@
 DATA ACCESS, RETENTION & DELETION POLICY
-Version: v1.1 (final draft for counsel review) - November 22, 2026
+Version 1.1 · Effective November 22, 2026
 Incorporated into the Master SaaS Terms. Effective: November 22, 2026.
 1. Active accounts
 During a paid subscription, customer records are accessible according to plan functionality, subject to lawful suspension. Polaris does not promise a separate archive or indefinite preservation.

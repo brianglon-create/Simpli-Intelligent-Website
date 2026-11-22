@@ -1,5 +1,5 @@
 MASTER SOFTWARE-AS-A-SERVICE TERMS OF SERVICE
-Version: v1.1 (final draft for counsel review) - November 22, 2026
+Version 1.1 · Effective November 22, 2026
 Provider: Polaris Intelligence LLC, doing business as Simpli Intelligent ("Polaris," "we," "us"). Effective: November 22, 2026. Legal notice: Hello@simpliintelligent.com; Polaris Intelligence LLC, 4302 Lathrop Drive, South Bend, IN 46628.
 1. Agreement and scope
 These Terms govern business subscriptions to Simpli Check and Simpli Archive (the "Services"). "Customer" is the subscribing business or person acting for a business. A person accepting for a business represents authority to bind it. The applicable product schedule (Schedule A for Simpli Check; Schedule B for Simpli Archive), the accepted order, the Acceptable Use & AI Addendum, and the Data Access, Retention & Deletion Policy form part of this Agreement. When Customer purchases both Services, both schedules apply, each to its own Service. If a schedule conflicts with these Terms, the schedule controls for that product. The Data Processing Addendum ("DPA") applies as described in Section 8. The Privacy Policy is a notice of Polaris's data practices and is not a substitute for contractual consent or the DPA.

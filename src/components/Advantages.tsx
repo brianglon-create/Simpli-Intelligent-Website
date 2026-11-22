@@ -5,7 +5,6 @@ import {
   ADVANTAGE_PRICE,
   ADVANTAGE_PRICE_NOTE,
   ADVANTAGE_TIME,
-  ADVANTAGE_TIME_NOTE,
 } from "@/lib/offer-copy";
 
 const items = [
@@ -26,7 +25,6 @@ const items = [
   {
     label: "Time saved",
     body: ADVANTAGE_TIME,
-    note: "2",
   },
 ] as const;
 
@@ -49,14 +47,9 @@ export function Advantages() {
           </li>
         ))}
       </ul>
-      <ol className="mt-2 space-y-0.5 text-xs leading-snug text-muted">
-        <li>
-          <sup>1</sup> {ADVANTAGE_PRICE_NOTE}
-        </li>
-        <li>
-          <sup>2</sup> {ADVANTAGE_TIME_NOTE}
-        </li>
-      </ol>
+      <p className="mt-2 text-xs leading-snug text-muted">
+        <sup>1</sup> {ADVANTAGE_PRICE_NOTE}
+      </p>
     </div>
   );
 }

@@ -169,7 +169,7 @@ export const CHECK_OBJECTIONS = [
   {
     question: "“Switching mid-season is a hassle.”",
     answer:
-      "Early Adopters get founder-led onboarding. No response time is guaranteed. Keep your old software until your first Simpli Check report goes out.",
+      "Early Adopters get founder-led onboarding. Keep your old software until your first Simpli Check report goes out.",
   },
   {
     question: "“I'm on Horizon.”",

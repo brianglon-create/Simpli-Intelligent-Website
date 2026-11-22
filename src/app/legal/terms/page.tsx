@@ -6,7 +6,7 @@ const doc = LEGAL_DOCS[0];
 
 export const metadata = pageMetadata({
   title: "Master SaaS Terms | Simpli Intelligent",
-  description: "Master Software-as-a-Service Terms of Service. Version v1.1, effective November 22, 2026.",
+  description: "Master Software-as-a-Service Terms of Service. Version 1.1, effective November 22, 2026.",
   path: doc.href,
 });
 

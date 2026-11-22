@@ -6,7 +6,7 @@ const doc = LEGAL_DOCS[4];
 
 export const metadata = pageMetadata({
   title: "Data Processing Addendum | Simpli Intelligent",
-  description: "Data Processing Addendum. Version v1.1, effective November 22, 2026.",
+  description: "Data Processing Addendum. Version 1.1, effective November 22, 2026.",
   path: doc.href,
 });
 

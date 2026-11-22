@@ -42,9 +42,7 @@ export const ADVANTAGE_INSPECTOR =
   "Built by an inspector who wanted more from his software. No investors, no corporate roadmap, so when inspectors ask for something, we can actually build it.";
 
 export const ADVANTAGE_TIME =
-  "Simpli Assist narratives and equipment data-plate reading can save 20–30 minutes per inspection report.";
-
-export const ADVANTAGE_TIME_NOTE = "Based on founder testing compared with Horizon.";
+  "Simpli Assist narratives and equipment data-plate reading help you finish reports faster than traditional inspection software.";
 
 export const NARRATIVE_MIGRATION_HEADLINE =
   "Switching software shouldn't mean starting over.";
@@ -76,7 +74,7 @@ export const SWITCHING_STEPS = [
 ] as const;
 
 export const FOUNDER_ONBOARDING =
-  "Early Adopters get founder-led onboarding from a home inspector with 10 years of hands-on industry experience. It is not offered on later plans, and no response time is guaranteed.";
+  "Early Adopters get founder-led onboarding from a home inspector with 10 years of hands-on industry experience. It is not offered on later plans.";
 
 export const FOUNDER_FOLLOW_UP = "The founder will follow up personally.";
 

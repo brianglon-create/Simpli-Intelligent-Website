@@ -29,6 +29,13 @@ const banned = [
   /\$69/,
   /before you pay/i,
   /defect recognition/i,
+  /counsel/i,
+  /20[\u2013-]30/,
+  /offline/i,
+  /response time/i,
+  /testimonial/i,
+  /native app/i,
+  /mobile app/i,
 ];
 
 describe("public copy", () => {
