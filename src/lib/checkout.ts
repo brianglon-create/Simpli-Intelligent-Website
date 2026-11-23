@@ -7,7 +7,7 @@
  * - NEXT_PUBLIC_SIMPLI_ARCHIVE_ADDON_CHECKOUT_URL → archiveAddonUrl
  * - NEXT_PUBLIC_CHECKOUT_SUCCESS_URL → successUrl (defaults to /welcome)
  * - NEXT_PUBLIC_CHECKOUT_CANCEL_URL → cancelUrl
- * - NEXT_PUBLIC_LOGIN_URL → loginUrl
+ * - NEXT_PUBLIC_LOGIN_URL → loginUrl (defaults to the live Simpli Check sign-in)
  * - NEXT_PUBLIC_TERMS_URL → termsUrl (defaults to /legal/terms)
  *
  * Until a product checkout URL is set, buy buttons stay on a placeholder
@@ -24,6 +24,9 @@ function readPublic(name: string): string | undefined {
 /** Sentinel used when a URL has not been supplied. Not a live destination. */
 export const UNCONFIGURED_URL = "unconfigured";
 
+/** Live Simpli Check customer sign-in. Checkout URLs stay unset until Stripe is live. */
+export const SIMPLI_CHECK_SIGN_IN_URL = "https://app.simpliintelligent.com/sign-in";
+
 export const CHECKOUT = {
   simpliCheckUrl:
     readPublic("NEXT_PUBLIC_SIMPLI_CHECK_CHECKOUT_URL") ?? UNCONFIGURED_URL,
@@ -33,7 +36,7 @@ export const CHECKOUT = {
     readPublic("NEXT_PUBLIC_SIMPLI_ARCHIVE_ADDON_CHECKOUT_URL") ?? UNCONFIGURED_URL,
   successUrl: readPublic("NEXT_PUBLIC_CHECKOUT_SUCCESS_URL") ?? "/welcome",
   cancelUrl: readPublic("NEXT_PUBLIC_CHECKOUT_CANCEL_URL") ?? UNCONFIGURED_URL,
-  loginUrl: readPublic("NEXT_PUBLIC_LOGIN_URL") ?? UNCONFIGURED_URL,
+  loginUrl: readPublic("NEXT_PUBLIC_LOGIN_URL") ?? SIMPLI_CHECK_SIGN_IN_URL,
   termsUrl: readPublic("NEXT_PUBLIC_TERMS_URL") ?? "/legal/terms",
 } as const;
 
