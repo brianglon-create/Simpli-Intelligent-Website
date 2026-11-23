@@ -3,7 +3,8 @@ import { CheckHeadline } from "@/components/CheckHeadline";
 import { CheckoutLink, CheckoutPlaceholderNote } from "@/components/CheckoutLink";
 import { EmailUpdatesForm } from "@/components/forms/EmailUpdatesForm";
 import { MigrationHelpForm } from "@/components/forms/MigrationHelpForm";
-import { ScreenshotSlot } from "@/components/ScreenshotSlot";
+import { CheckWalkthrough } from "@/components/marketing/CheckWalkthrough";
+import { ProductShot } from "@/components/marketing/ProductShot";
 import { Section } from "@/components/Section";
 import { FaqList } from "@/components/FaqList";
 import { Lockup } from "@/components/brand/Lockup";
@@ -29,6 +30,7 @@ import {
   CHECK_OBJECTIONS,
   CHECK_STEPS,
 } from "@/lib/offers";
+import { checkShot } from "@/lib/check-shots";
 import { SITE } from "@/lib/site";
 
 const buyClass = `${primaryButtonClass} w-full justify-center sm:w-auto`;
@@ -52,7 +54,7 @@ export function CheckLanding() {
             <CheckoutLink href={CHECKOUT.simpliCheckUrl} className={buyClass}>
               Get Simpli Check
             </CheckoutLink>
-            <a href="#how-it-works" className={secondaryClass}>
+            <a href="#see-how" className={secondaryClass}>
               See how it works
             </a>
           </div>
@@ -60,11 +62,12 @@ export function CheckLanding() {
           <div className="mt-3">
             <CheckoutPlaceholderNote />
           </div>
-          <ScreenshotSlot
-            shot="01"
-            title="Report Writer"
-            fileName="check-01-report-writer.png"
-          />
+          <figure className="mx-auto mt-8 max-w-3xl">
+            <ProductShot shot={checkShot("03")} sizes="(min-width: 768px) 720px, 100vw" />
+            <figcaption className="mt-3 text-sm leading-relaxed text-muted">
+              {checkShot("03").caption}
+            </figcaption>
+          </figure>
         </div>
       </section>
 
@@ -90,11 +93,12 @@ export function CheckLanding() {
         <a href="#switching" className={`${secondaryClass} mt-8`}>
           Help me bring my narratives
         </a>
-        <ScreenshotSlot
-          shot="02"
-          title="Saved narrative and Simpli Assist"
-          fileName="check-02-saved-narratives.png"
-        />
+        <figure className="mx-auto mt-8 max-w-3xl">
+          <ProductShot shot={checkShot("06")} sizes="(min-width: 768px) 720px, 100vw" />
+          <figcaption className="mt-3 text-sm leading-relaxed text-muted">
+            {checkShot("06").preview}
+          </figcaption>
+        </figure>
       </Section>
 
       <Section id="price" title="Early Adopter pricing" eyebrow="Price" accent="check">
@@ -129,6 +133,16 @@ export function CheckLanding() {
         <p className="mt-8 max-w-3xl text-base leading-relaxed text-muted">
           Simpli Check can read equipment data plates from a photo.
         </p>
+      </Section>
+
+      <Section
+        id="see-how"
+        title="See how Simpli Check works"
+        eyebrow="Walkthrough"
+        accent="check"
+        tone="white"
+      >
+        <CheckWalkthrough />
       </Section>
 
       <Section

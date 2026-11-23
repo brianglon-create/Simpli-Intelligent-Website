@@ -43,6 +43,7 @@ describe("public copy", () => {
       path.join(process.cwd(), "src/app"),
       path.join(process.cwd(), "src/components"),
       path.join(process.cwd(), "src/lib/offer-copy.ts"),
+      path.join(process.cwd(), "src/lib/check-shots.ts"),
       path.join(process.cwd(), "src/lib/offers.ts"),
       path.join(process.cwd(), "src/lib/site.ts"),
       path.join(process.cwd(), "src/lib/leads/thank-you.ts"),

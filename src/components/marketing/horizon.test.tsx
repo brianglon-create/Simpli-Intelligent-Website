@@ -87,14 +87,16 @@ describe("product pages", () => {
     expect(screen.queryByText(/\$69/)).not.toBeInTheDocument();
     expect(screen.queryByText(/office staff/i)).not.toBeInTheDocument();
     expect(screen.queryByText(/unlimited reports/i)).not.toBeInTheDocument();
-    expect(screen.getByText(/screenshot 01/i)).toBeInTheDocument();
-    expect(screen.getByText(/check-01-report-writer\.png/i)).toBeInTheDocument();
-    expect(screen.getByText(/check-02-saved-narratives\.png/i)).toBeInTheDocument();
+    expect(screen.queryByText(/screenshot 01/i)).not.toBeInTheDocument();
+    expect(screen.queryByText(/empty slot/i)).not.toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { name: /see how simpli check works/i }),
+    ).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: /no typing required/i })).toBeInTheDocument();
+    expect(screen.getByText(/get narrative pulls from your approved narrative library/i)).toBeInTheDocument();
+    expect(screen.getAllByRole("img", { name: /simpli check dashboard/i }).length).toBeGreaterThan(0);
     expect(screen.getAllByRole("link", { name: /get simpli check/i }).length).toBeGreaterThan(0);
-    expect(screen.getByRole("link", { name: /see how it works/i })).toHaveAttribute(
-      "href",
-      "#how-it-works",
-    );
+    expect(screen.getByRole("link", { name: /see how it works/i })).toHaveAttribute("href", "#see-how");
     expect(screen.queryByText(/\bAI\b/)).not.toBeInTheDocument();
     expect(
       screen.getByRole("heading", { name: /coming soon to simpli check/i }),
