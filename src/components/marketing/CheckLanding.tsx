@@ -231,15 +231,22 @@ export function CheckLanding() {
         <FaqList items={CHECK_FAQS} />
       </Section>
 
-      <Section id="coming-soon" title="Coming soon" tone="white" eyebrow="Later" accent="check">
+      <Section id="coming-soon" title="Coming soon to Simpli Check" accent="check">
         <p className="max-w-3xl text-base leading-relaxed text-muted">
-          These are not in Simpli Check today.
+          What we&apos;re building next, shaped by inspectors who use Simpli Check every day.
         </p>
-        <ul className="mt-6 max-w-3xl space-y-3 text-base leading-relaxed text-navy">
+        <ul className="mt-6 grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
           {CHECK_COMING_SOON.map((item) => (
-            <li key={item}>{item}</li>
+            <li key={item.title} className="border border-border bg-white p-4">
+              <h3 className="font-display text-lg font-semibold text-navy">{item.title}</h3>
+              <p className="mt-2 text-sm leading-snug text-muted">{item.body}</p>
+            </li>
           ))}
         </ul>
+        <p className="mt-4 max-w-3xl text-sm leading-relaxed text-muted">
+          Features in development. Availability and timing may change. You always review and confirm
+          what goes in your report.
+        </p>
       </Section>
 
       <Section id="get-check" title={CHECK_HEADLINE} tone="navy" accent="check">

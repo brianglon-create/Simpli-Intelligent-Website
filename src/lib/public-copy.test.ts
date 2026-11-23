@@ -34,8 +34,7 @@ const banned = [
   /offline/i,
   /response time/i,
   /testimonial/i,
-  /native app/i,
-  /mobile app/i,
+  /stripe connect/i,
 ];
 
 describe("public copy", () => {

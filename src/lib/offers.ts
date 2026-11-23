@@ -220,9 +220,26 @@ export const CHECK_FAQS = [
 ] as const;
 
 export const CHECK_COMING_SOON = [
-  "Client reference library, with plain-language explanations of what you found",
-  "Simpli Operate",
-  "Simpli Reach",
+  {
+    title: "Native mobile app",
+    body: "A dedicated iOS and Android Report Writer: work your orders, edit observations, capture photos, and write reports from your phone.",
+  },
+  {
+    title: "Simpli Knowledge Check",
+    body: "Technical answers on equipment, building components, and inspection questions, right inside your report workflow.",
+  },
+  {
+    title: "Automatic illustration suggestions",
+    body: "Pick an observation chip and Simpli Check suggests the matching illustration.",
+  },
+  {
+    title: "Custom chip editor",
+    body: "Create and organize your own observation chips so your catalog matches how you inspect.",
+  },
+  {
+    title: "Equipment age from serial numbers",
+    body: "Snap the data plate and Simpli Check works out the manufacture date where the brand supports it.",
+  },
 ] as const;
 
 export const ARCHIVE_FAQS = [

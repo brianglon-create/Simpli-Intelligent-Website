@@ -96,6 +96,11 @@ describe("product pages", () => {
       "#how-it-works",
     );
     expect(screen.queryByText(/\bAI\b/)).not.toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { name: /coming soon to simpli check/i }),
+    ).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: /native mobile app/i })).toBeInTheDocument();
+    expect(screen.getByText(/features in development/i)).toBeInTheDocument();
   });
 
   it("uses the same form for Operate and Reach", () => {
