@@ -12,7 +12,14 @@ const PAGES: {
   { path: "/check", priority: 0.8, changeFrequency: "weekly" },
   { path: "/operate", priority: 0.6, changeFrequency: "monthly" },
   { path: "/reach", priority: 0.6, changeFrequency: "monthly" },
-  { path: "/privacy", priority: 0.3, changeFrequency: "yearly" },
+  { path: "/legal", priority: 0.3, changeFrequency: "yearly" },
+  { path: "/legal/terms", priority: 0.3, changeFrequency: "yearly" },
+  { path: "/legal/check-schedule", priority: 0.3, changeFrequency: "yearly" },
+  { path: "/legal/archive-schedule", priority: 0.3, changeFrequency: "yearly" },
+  { path: "/legal/privacy", priority: 0.3, changeFrequency: "yearly" },
+  { path: "/legal/dpa", priority: 0.3, changeFrequency: "yearly" },
+  { path: "/legal/acceptable-use", priority: 0.3, changeFrequency: "yearly" },
+  { path: "/legal/data-retention", priority: 0.3, changeFrequency: "yearly" },
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {

@@ -1,25 +1,22 @@
 import { CheckLanding } from "@/components/marketing/CheckLanding";
 import { SiteFrame } from "@/components/SiteFrame";
-import { readFoundingStatus } from "@/lib/leads/store";
 import { flushFoundingAlerts } from "@/lib/leads/submit";
-import { CHECK_HERO } from "@/lib/offer-copy";
 import { pageMetadata } from "@/lib/metadata";
+import { CHECK_HEADLINE, CHECK_PRICE_LINE } from "@/lib/offer-copy";
 
 export const dynamic = "force-dynamic";
 
 export const metadata = pageMetadata({
-  title: "Simpli Check waitlist | Simpli Intelligent",
-  description:
-    CHECK_HERO,
+  title: "Simpli Check | Simpli Intelligent",
+  description: `${CHECK_HEADLINE} ${CHECK_PRICE_LINE}`,
   path: "/check",
 });
 
 export default async function CheckPage() {
-  const status = await readFoundingStatus();
   await flushFoundingAlerts();
   return (
     <SiteFrame>
-      <CheckLanding status={status} />
+      <CheckLanding />
     </SiteFrame>
   );
 }

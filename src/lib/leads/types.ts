@@ -29,6 +29,8 @@ export type LeadInput = {
   currentSoftware: string;
   productInterest: Interest;
   reportCount: string | null;
+  /** Narrative library size from the migration-help form. Null when not collected. */
+  narrativeLibrarySize: string | null;
   source: string | null;
   utmSource: string | null;
   utmMedium: string | null;

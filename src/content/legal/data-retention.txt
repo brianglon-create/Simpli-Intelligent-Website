@@ -1,0 +1,19 @@
+DATA ACCESS, RETENTION & DELETION POLICY
+Version 1.1 · Effective November 22, 2026
+Incorporated into the Master SaaS Terms. Effective: November 22, 2026.
+1. Active accounts
+During a paid subscription, customer records are accessible according to plan functionality, subject to lawful suspension. Polaris does not promise a separate archive or indefinite preservation.
+2. Failed payment and pause
+If a payment fails, Polaris or its payment processor notifies Customer by email sent to the billing contact on file, and Customer has three (3) days to update payment before the account is paused. While paused, users are directed to update payment, report writing in Simpli Check is locked, and historical data remains accessible in read-only form. Simpli Archive remains viewable, searchable and downloadable while a payment is past due or the account is paused, but new uploads are not accepted.
+3. After cancellation
+Cancellation and seat-reduction requests are made by email to Hello@simpliintelligent.com as described in the Master SaaS Terms; a request received before the end of the current billing period is processed for that period end. A cancellation takes effect at the end of the current billing period. After that: Simpli Check becomes read-only, and existing records can be viewed and downloaded through supported functions but no new reports can be created or published. Simpli Archive remains viewable, searchable and downloadable, but new uploads are not accepted. Imported historical report files (such as Horizon PDFs) are kept under a preservation hold. Customer may request historical and migration data by contacting customer service at Hello@simpliintelligent.com. If Polaris later decides to end read-only access for canceled accounts, it will give reasonable advance notice and an opportunity to retrieve supported records.
+4. No automatic deletion
+Polaris does not automatically delete customer records, during a subscription or after it ends. The only automatic removal is of temporary Simpli Assist working data, such as suggestions that were not accepted, which expires automatically. Polaris does not commit to a deletion timeline.
+5. Supported exports
+Supported exports are CSV exports of business records, PDF downloads of individual reports and signed documents, and downloads of photographs, media and Simpli Archive files. There is no single full-account export package. Polaris may assist with available historical or migration data on request but does not promise a custom export format.
+6. Inspection report and photograph retention
+Simpli Check is designed to retain published report PDFs and report photographs for at least seven years, and saved reference photographs for at least one year after report finalization, and to prevent their early deletion during those periods. These are minimum retention designs, not a promise of indefinite hosting. Customer remains responsible for preserving records required by inspection law, contract or professional standards and should keep independent copies.
+7. Backups
+Polaris's database provider maintains backups under its own service terms. Polaris does not promise any particular backup frequency, backup retention period or restoration outcome. Copies may remain in backups after records are deleted until they expire under the provider's practices.
+8. Requests and legal holds
+Verified account owners may request access, export or deletion by contacting Hello@simpliintelligent.com. Polaris will act on verified requests as the Service supports and as required by law, subject to legal-retention obligations and preservation holds. Requests concerning third-party personal information are handled with the customer business. Polaris may preserve information when legally required; specialized litigation-hold tools are not promised.

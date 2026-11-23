@@ -1,0 +1,13 @@
+ACCEPTABLE USE & AI ASSISTANCE ADDENDUM
+Version 1.1 · Effective November 22, 2026
+Incorporated into the Master SaaS Terms for Simpli Check and Simpli Archive. Effective: November 22, 2026.
+1. Permitted use
+Use the Services only for lawful professional and business purposes, within the subscribed plan and authorized user rights. Customer is responsible for uploaded content, permissions, account security and the actions of its authorized users.
+2. Prohibited conduct
+Prohibited: sharing credentials in violation of user licensing; unauthorized access; malware; attacks, scraping or automated abuse; evading usage limits; infringement; unlawful disclosure; uploading prohibited regulated information; or any use that materially impairs availability or security. Polaris may apply proportionate rate limits, blocks or suspension consistent with the Master Terms.
+3. AI assistance
+Simpli Assist uses AI, provided through a third-party AI provider (currently OpenAI), to suggest narratives, analyze photographs and read equipment data plates. AI output is assistive, not a verified fact or professional conclusion. Inspectors must independently verify inspection narratives, defects, equipment details and report content before accepting or publishing them. Archive users must compare consequential extraction and search results against original documents. Under the provider's API terms and Polaris's account settings, content sent for AI processing is not used to train the provider's general-purpose models; the provider's standard data-retention practices apply. General-purpose model training on customer-uploaded content requires Customer's separate authorization.
+4. Product allowances
+Simpli Check requires a paid user license for each user. Normal professional use is permitted, subject to abuse-prevention controls for unusually high publication volume, rapid or concurrent AI requests, automated activity and account sharing. Polaris may temporarily restrict affected functions, review activity and grant exceptions; triggering a safeguard does not delete existing records. Simpli Archive may apply the storage, file-size and processing allowances shown in the purchased plan. Material restrictions will be disclosed where required by law.
+5. Changes
+Material prospective changes to limits or permitted use require reasonable notice and applicable contractual and legal protections. Security restrictions may be applied promptly when necessary.

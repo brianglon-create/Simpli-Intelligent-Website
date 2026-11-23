@@ -1,0 +1,33 @@
+DATA PROCESSING ADDENDUM (DPA)
+Version 1.1 · Effective November 22, 2026
+This DPA supplements the Master SaaS Terms between Polaris Intelligence LLC ("Processor" or "Service Provider," as applicable) and the subscribing business customer ("Customer"). It applies only where Polaris processes personal information on Customer's behalf and a data-processing agreement is legally or contractually required. Effective: November 22, 2026.
+1. Roles and instructions
+Customer determines the purposes and lawful basis of its collection and processing of customer-uploaded personal information. Polaris processes that information to provide the subscribed Services on Customer's documented instructions, including the Master Terms, applicable schedules and supported product settings, unless law requires otherwise. Polaris will notify Customer of a legally required conflicting instruction where permitted.
+2. Processing description
+Subject matter: hosted inspection reporting and document storage and retrieval. Duration: the subscription, any post-cancellation read-only period, and any later period during which Polaris continues to hold the data under this DPA. Purpose: hosting, storing, indexing, generating, searching, transmitting, securing and supporting customer records, and deleting them on instruction. Individuals may include inspectors, staff, clients, property owners, occupants and persons identified in uploaded records. Data may include contact information, addresses, reports, photographs, narratives, documents, metadata and other customer-selected content, which may include sensitive information. Customer must not upload prohibited regulated data.
+3. Confidentiality and security
+Polaris will limit access to personnel and providers with legitimate needs and appropriate confidentiality obligations, and will implement reasonable technical and organizational safeguards appropriate to the risks. Polaris does not claim any security certification.
+4. Subprocessors
+Customer authorizes Polaris to engage the subprocessors listed below and other service providers necessary to operate the subscribed Services, subject to appropriate confidentiality and data-protection commitments. Subprocessors may process data in locations other than those shown, under their terms. A current list may be requested at Hello@simpliintelligent.com and may be published at simpliintelligent.com/legal/subprocessors. Polaris will give notice of new subprocessors where required by law. Customer may object on reasonable data-protection grounds by contacting that address within 15 days of notice; the parties will work in good faith toward a practical resolution.
+Subprocessor | Purpose | Location
+Vercel | Application hosting | Varies / per provider terms
+Supabase | Database, authentication and file storage | US-East (Northern Virginia), United States
+Cloudflare | File storage (R2), bot protection (Turnstile), email routing | R2: Eastern North America; other services vary / per provider terms
+Stripe | Payment processing | Varies / per provider terms
+OpenAI | AI processing for Simpli Assist (narratives, photo analysis, equipment data-plate recognition) | Varies / per provider terms
+Resend | Transactional email | Varies / per provider terms
+Fly.io | Simpli Archive import processing | Varies / per provider terms
+5. AI subprocessing
+Customer content sent to OpenAI for Simpli Assist is processed under OpenAI's API terms. Under those terms and Polaris's account settings, it is not used to train OpenAI's general-purpose models, and OpenAI's standard data-retention practices apply; no zero-data-retention arrangement is in place. Polaris will not authorize general-purpose AI model training on customer-uploaded content without Customer's separate authorization.
+6. Assistance and incidents
+Polaris will provide reasonable assistance, considering the nature of processing and the information available, with legally required data-subject requests, security incidents and regulatory obligations. Polaris will notify Customer of qualifying security incidents without undue delay and within any timeframe required by applicable law. Customer remains responsible for obligations legally assigned to it.
+7. Return and deletion
+After cancellation, customer records remain available in read-only form through supported functions, and Customer may request historical and migration data at Hello@simpliintelligent.com. Polaris does not automatically delete customer records when a subscription ends. Polaris will act on Customer's written deletion instructions as the Service supports and as required by law, subject to legal-retention obligations and preservation holds. Copies may remain in provider backups until they expire under the provider's practices. No specific deletion timeline or custom export format is promised.
+8. Audits and information
+Polaris will provide reasonably available documentation needed to demonstrate compliance with applicable processing obligations, subject to confidentiality, security and proportionality. Additional audit rights apply only where required by applicable law or agreed in writing.
+9. Restricted use
+Polaris will not sell customer-uploaded personal information or use it for targeted advertising. Polaris may process data as needed to deliver, secure and support the Services.
+10. Priority and governing law
+If this DPA conflicts with the Master Terms regarding mandatory processing obligations, this DPA controls to the extent required by law. Applicable U.S. state privacy-law terms are incorporated to the extent required. The Services are offered to U.S. customers only.
+11. Contact
+For questions about processing, subprocessors or legally required requests, contact Hello@simpliintelligent.com.

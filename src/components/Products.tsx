@@ -1,3 +1,6 @@
+import { CheckoutLink } from "@/components/CheckoutLink";
+import { primaryButtonClass } from "@/components/classes";
+import { CHECKOUT } from "@/lib/checkout";
 import { PRODUCTS } from "@/lib/site";
 
 const categoryInk = {
@@ -23,8 +26,8 @@ export function Products() {
             Our products
           </h2>
           <p className="mt-4 text-lg leading-relaxed text-muted">
-            Simpli Intelligent is the platform. Each product does one job. Open
-            one to see where it stands and join its list.
+            Simpli Check and Simpli Archive are available now. Simpli Operate and
+            Simpli Reach are coming soon.
           </p>
         </div>
 
@@ -48,12 +51,30 @@ export function Products() {
               <p className="mt-4 flex-1 text-base leading-relaxed text-muted">
                 {product.description}
               </p>
-              <a
-                href={product.href}
-                className="mt-6 inline-flex text-sm font-semibold text-blue hover:text-navy"
-              >
-                View {product.name}
-              </a>
+              <div className="mt-6 flex flex-col gap-3">
+                {product.id === "check" ? (
+                  <CheckoutLink
+                    href={CHECKOUT.simpliCheckUrl}
+                    className={`${primaryButtonClass} w-full justify-center`}
+                  >
+                    Get Simpli Check
+                  </CheckoutLink>
+                ) : null}
+                {product.id === "archive" ? (
+                  <CheckoutLink
+                    href={CHECKOUT.archiveStandaloneUrl}
+                    className={`${primaryButtonClass} w-full justify-center`}
+                  >
+                    Get Simpli Archive
+                  </CheckoutLink>
+                ) : null}
+                <a
+                  href={product.href}
+                  className="inline-flex text-sm font-semibold text-blue hover:text-navy"
+                >
+                  View {product.name}
+                </a>
+              </div>
             </li>
           ))}
         </ul>

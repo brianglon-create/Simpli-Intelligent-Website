@@ -1,0 +1,22 @@
+SCHEDULE B — SIMPLI ARCHIVE PRODUCT TERMS
+Version 1.1 · Effective November 22, 2026
+Applies with the Master SaaS Terms to subscriptions for Simpli Archive. When Customer also subscribes to Simpli Check, Schedule A applies to Simpli Check.
+1. Product scope
+Simpli Archive provides supported document upload and import, storage, search and retrieval features as described in the purchased plan. Not every feature is available on every plan; plan disclosures control.
+2. Pricing
+Simpli Archive is available as an add-on to Simpli Check at $9.99 per month, or as a standalone subscription at $29 for the first month, which covers account setup and the initial large file transfer, and $9.99 per month after that. The order states the price that applies. Fees renew monthly as described in the Master SaaS Terms.
+3. Customer records
+Customer retains its rights in uploaded documents and must be authorized to store them. Polaris receives a limited license to process records to provide, secure and support the Service. Customer determines its legal retention obligations and whether the Service is suitable for regulated records. No specialized legal-hold, certified evidentiary vault or records-custodian service is promised absent a separate written agreement.
+4. Imports and indexing
+An upload receipt does not necessarily mean storage or indexing has completed. Unsupported, corrupt, encrypted or poor-quality files may fail. Where provided, Customer should review import results. Extracted text, metadata and search results may be inaccurate; original documents control when precision matters. Polaris will use commercially reasonable care for expressly contracted functions.
+5. Integrity and storage
+Polaris does not intentionally modify original stored documents except as authorized or necessary for lawful service operation. Imported historical report files (such as Horizon PDFs) are kept under a preservation hold. No zero-data-loss, perpetual-availability, or particular backup frequency or retention guarantee is made. Customer should keep independent copies of important documents.
+6. Limits and restrictions
+Plan-specific storage, upload, processing and file-size limits will be disclosed at purchase. Limits may restrict additional uploads or processing but do not delete existing stored records. Automated abuse and security safeguards may apply.
+7. Automated processing
+If AI-assisted extraction or classification is offered for Simpli Archive, results may be inaccurate or incomplete and Customer must verify consequential results against source documents. Relevant content may be processed by Polaris's service providers to deliver requested functions, and general-purpose model training on customer-uploaded content requires Customer's separate authorization.
+8. Failed payment, cancellation and access
+While a payment is past due, the account is paused or the subscription is canceled, Simpli Archive remains viewable, searchable and downloadable, but new uploads are not accepted. Polaris does not automatically delete Simpli Archive records when a subscription ends. Customer may request historical and migration data by contacting Hello@simpliintelligent.com. Cancellation is handled as described in the Master SaaS Terms.
+9. Service discontinuation
+No permanent preservation is promised. If Polaris discontinues the Service or ends access for canceled accounts, it will provide reasonable advance notice and an opportunity to retrieve supported records where practicable and legally permitted.
+Effective date: November 22, 2026. Notices: Hello@simpliintelligent.com; Polaris Intelligence LLC, 4302 Lathrop Drive, South Bend, IN 46628.
