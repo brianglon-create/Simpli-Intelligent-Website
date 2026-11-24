@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 import { Lockup } from "@/components/brand/Lockup";
 import { CheckoutLink } from "@/components/CheckoutLink";
 import { primaryButtonClass } from "@/components/classes";
-import { CHECKOUT } from "@/lib/checkout";
+import { CHECK_ORDER_PATH, CHECKOUT } from "@/lib/checkout";
 import { NAV_LINKS } from "@/lib/site";
 
 export function Header() {
@@ -59,7 +59,7 @@ export function Header() {
             Sign in
           </CheckoutLink>
           <CheckoutLink
-            href={CHECKOUT.simpliCheckUrl}
+            href={CHECK_ORDER_PATH}
             className={`${primaryButtonClass} px-4 py-2 text-sm`}
           >
             Get Simpli Check
@@ -68,7 +68,7 @@ export function Header() {
 
         <div className="flex shrink-0 items-center gap-2 lg:hidden">
           <CheckoutLink
-            href={CHECKOUT.simpliCheckUrl}
+            href={CHECK_ORDER_PATH}
             className="inline-flex min-h-11 items-center justify-center whitespace-nowrap rounded-md bg-navy px-2.5 text-sm font-semibold text-white"
           >
             Get Simpli Check

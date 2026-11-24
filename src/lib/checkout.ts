@@ -27,6 +27,9 @@ export const UNCONFIGURED_URL = "unconfigured";
 /** Live Simpli Check customer sign-in. Checkout URLs stay unset until Stripe is live. */
 export const SIMPLI_CHECK_SIGN_IN_URL = "https://app.simpliintelligent.com/sign-in";
 
+/** Simpli Check buy buttons open this order form. Archive buttons stay on placeholders. */
+export const CHECK_ORDER_PATH = "/check/order";
+
 export const CHECKOUT = {
   simpliCheckUrl:
     readPublic("NEXT_PUBLIC_SIMPLI_CHECK_CHECKOUT_URL") ?? UNCONFIGURED_URL,
@@ -57,7 +60,9 @@ export function checkoutIsConnected(): boolean {
   );
 }
 
-/** Draft checkout copy stays off the production site. Preview and local builds still show it. */
+/** Draft Archive copy stays off the production site. Preview and local builds still show it. */
 export function showDraftCheckoutNote(): boolean {
-  return process.env.VERCEL_ENV !== "production" && !checkoutIsConnected();
+  const archiveReady =
+    isConfiguredUrl(CHECKOUT.archiveStandaloneUrl) && isConfiguredUrl(CHECKOUT.archiveAddonUrl);
+  return process.env.VERCEL_ENV !== "production" && !archiveReady;
 }

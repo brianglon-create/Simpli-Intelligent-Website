@@ -9,7 +9,7 @@ import { Section } from "@/components/Section";
 import { FaqList } from "@/components/FaqList";
 import { Lockup } from "@/components/brand/Lockup";
 import { primaryButtonClass, secondaryButtonClass } from "@/components/classes";
-import { CHECKOUT } from "@/lib/checkout";
+import { CHECK_ORDER_PATH, CHECKOUT } from "@/lib/checkout";
 import {
   CHECK_HEADLINE,
   CHECK_PRICE_LINE,
@@ -51,7 +51,7 @@ export function CheckLanding() {
           <Advantages />
           <p className="mt-5 max-w-2xl text-base leading-relaxed text-muted sm:text-lg">{CHECK_SUBHEAD}</p>
           <div className="mt-10 flex flex-col gap-3 sm:flex-row">
-            <CheckoutLink href={CHECKOUT.simpliCheckUrl} className={buyClass}>
+            <CheckoutLink href={CHECK_ORDER_PATH} className={buyClass}>
               Get Simpli Check
             </CheckoutLink>
             <a href="#see-how" className={secondaryClass}>
@@ -223,7 +223,7 @@ export function CheckLanding() {
             </a>
           </p>
           <div className="mt-8 flex flex-col gap-3">
-            <CheckoutLink href={CHECKOUT.simpliCheckUrl} className={buyClass}>
+            <CheckoutLink href={CHECK_ORDER_PATH} className={buyClass}>
               Get Simpli Check
             </CheckoutLink>
             <CheckoutLink href={CHECKOUT.archiveAddonUrl} className={secondaryClass}>
@@ -268,7 +268,7 @@ export function CheckLanding() {
           {CHECK_PRICE_SHORT}, Early Adopter pricing for a limited time.
         </p>
         <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
-          <CheckoutLink href={CHECKOUT.simpliCheckUrl} className={onNavyClass}>
+          <CheckoutLink href={CHECK_ORDER_PATH} className={onNavyClass}>
             Get Simpli Check
           </CheckoutLink>
           <a href={`mailto:${SITE.contactEmail}`} className="text-base font-semibold text-white underline-offset-2 hover:underline">
