@@ -40,7 +40,7 @@ Site identity, SEO copy, product listings, and the contact email live in `src/li
 
 The public contact address is `hello@simpliintelligent.com` (`SITE.contactEmail` in `src/lib/site.ts`). Signup alerts go to `LEAD_NOTIFY_EMAIL` when that is set, and otherwise to the same address.
 
-Checkout, success, cancel, and Terms URLs live in `src/lib/checkout.ts` and the `NEXT_PUBLIC_*` variables in `.env.example`. Until the checkout URLs are set, buy buttons stay on placeholders. Sign in defaults to `https://app.simpliintelligent.com/sign-in`.
+Simpli Check buy buttons open `/check/order`, which posts the order to Operate. Simpli Archive buy buttons stay on placeholders until their checkout URLs are set. Sign in defaults to `https://app.simpliintelligent.com/sign-in`. Those settings live in `src/lib/checkout.ts`, `src/lib/operate-checkout.ts`, and `.env.example`.
 
 Copy `.env.example` to `.env.local`. Without Supabase credentials, `npm run dev` keeps signups in memory and they disappear when the server restarts. Production without those credentials does not pretend a signup was saved. The form tells the visitor to email the public contact address instead.
 

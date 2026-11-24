@@ -27,8 +27,8 @@ export function CheckoutPlaceholderNote({ id }: { id?: string }) {
   if (!showDraftCheckoutNote()) return null;
   return (
     <p id={id} className="max-w-2xl text-sm leading-relaxed text-muted">
-      Checkout is not connected on this draft. Buy buttons use placeholder links,
-      and a purchase cannot be completed here.
+      Simpli Archive checkout is not connected on this draft. Those buy buttons use
+      placeholder links, and an Archive purchase cannot be completed here.
     </p>
   );
 }

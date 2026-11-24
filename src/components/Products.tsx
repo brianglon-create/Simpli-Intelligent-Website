@@ -1,6 +1,6 @@
 import { CheckoutLink } from "@/components/CheckoutLink";
 import { primaryButtonClass } from "@/components/classes";
-import { CHECKOUT } from "@/lib/checkout";
+import { CHECK_ORDER_PATH, CHECKOUT } from "@/lib/checkout";
 import { PRODUCTS } from "@/lib/site";
 
 const categoryInk = {
@@ -54,7 +54,7 @@ export function Products() {
               <div className="mt-6 flex flex-col gap-3">
                 {product.id === "check" ? (
                   <CheckoutLink
-                    href={CHECKOUT.simpliCheckUrl}
+                    href={CHECK_ORDER_PATH}
                     className={`${primaryButtonClass} w-full justify-center`}
                   >
                     Get Simpli Check

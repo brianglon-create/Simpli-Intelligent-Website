@@ -1,5 +1,5 @@
 import { CheckoutLink } from "@/components/CheckoutLink";
-import { CHECKOUT } from "@/lib/checkout";
+import { CHECK_ORDER_PATH } from "@/lib/checkout";
 
 export function HorizonNotice() {
   return (
@@ -10,7 +10,7 @@ export function HorizonNotice() {
           December 15, 2026.
         </p>
         <CheckoutLink
-          href={CHECKOUT.simpliCheckUrl}
+          href={CHECK_ORDER_PATH}
           className="inline-flex min-h-11 shrink-0 items-center justify-center rounded-md bg-white px-4 py-2 text-sm font-semibold text-navy hover:bg-blue-soft"
         >
           Get Simpli Check

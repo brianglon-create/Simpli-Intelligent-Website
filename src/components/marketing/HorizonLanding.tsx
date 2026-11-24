@@ -7,7 +7,7 @@ import { Lockup } from "@/components/brand/Lockup";
 import { PersonalFollowUp } from "@/components/PersonalFollowUp";
 import { Section } from "@/components/Section";
 import { primaryButtonClass, secondaryButtonClass } from "@/components/classes";
-import { CHECKOUT } from "@/lib/checkout";
+import { CHECK_ORDER_PATH, CHECKOUT } from "@/lib/checkout";
 import {
   CHECK_HEADLINE,
   CHECK_PRICE_LINE,
@@ -43,7 +43,7 @@ function ProductButtons({
       <CheckoutLink href={CHECKOUT.archiveStandaloneUrl} className={buyClass}>
         {archiveLabel}
       </CheckoutLink>
-      <CheckoutLink href={CHECKOUT.simpliCheckUrl} className={secondaryClass}>
+      <CheckoutLink href={CHECK_ORDER_PATH} className={secondaryClass}>
         {checkLabel}
       </CheckoutLink>
     </div>
@@ -206,7 +206,7 @@ export function HorizonLanding() {
           </p>
         </div>
         <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-          <CheckoutLink href={CHECKOUT.simpliCheckUrl} className={buyClass}>
+          <CheckoutLink href={CHECK_ORDER_PATH} className={buyClass}>
             Get Simpli Check
           </CheckoutLink>
           <a href="/check" className={secondaryClass}>
@@ -230,7 +230,7 @@ export function HorizonLanding() {
         </div>
         <div className="mt-8">
           <CheckoutLink
-            href={CHECKOUT.simpliCheckUrl}
+            href={CHECK_ORDER_PATH}
             className="inline-flex w-full items-center justify-center rounded-md bg-white px-6 py-3.5 text-base font-semibold text-navy sm:w-auto"
           >
             Get Simpli Check
